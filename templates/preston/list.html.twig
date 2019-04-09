@@ -1,0 +1,97 @@
+    {% extends "base.html.twig" %}
+
+    {% block body %}
+{#    <p>Logado como : {{session['username']}}</p>#}
+
+<div class="jumbotron bg-dark">
+
+    <table id="dtBasicExample" class="table table-borderless text-white" >
+    <thead>
+        <tr>
+        <th class="th-sm">Slack id
+
+        </th>
+        <th class="th-sm">Full name
+
+        </th>
+        <th class="th-sm">User name
+
+        </th>
+        <th class="th-sm">Email
+
+        </th>
+        <th class="th-sm">Data de Nascimento
+
+        </th>
+        </tr>
+    </thead>
+  <tbody class="table text-white">
+    {% for u in users %}
+        {% if u.real_name is defined%}
+            {% set real_name = u.real_name%}
+        {% else %}
+            {% set real_name = "sem nome"%}
+        {% endif %}
+
+        {% if u.name is defined %}
+            {% set name = u.name%}
+        {% else %}
+            {% set name = "sem nome"%}
+        {% endif %}
+
+        {% if u.profile.email is defined %}
+            {% set email = u.profile.email%}
+        {% else %}
+            {% set email = "sem email"%}
+        {% endif %}
+
+        <tr class="bg-dark">
+            <td>{{u.id}}</td>
+            <td>{{real_name}}</td>
+            <td>{{name}}</td>
+            <td>{{email}}</td>
+            <td>Sem data de nascimento</td>
+        </tr>
+    {% endfor %}
+  </tbody>
+  <tfoot>
+    <tr>
+      <th>Slack id
+      </th>
+      <th>Full name
+      </th>
+      <th>User name
+      </th>
+      <th>Email
+      </th>
+      <th>Data de Nascimento
+      </th>
+    </tr>
+  </tfoot>
+</table>
+
+    <a href="{{ path('update_trello_database') }}">Update database</a>
+
+</div>
+<style>
+    label {
+        color :whitesmoke !important;
+        font-size : 15px !important
+    }
+    .dataTables_info{
+        color: whitesmoke !important;
+    }
+    .dataTables_paginate.paging_simple{
+        background-color: whitesmoke !important;
+    }
+</style>
+<script>
+    // Basic example
+$(document).ready(function () {
+  $('#dtBasicExample').DataTable({
+    "pagingType": "simple"
+  });
+  $('.dataTables_length').addClass('bs-select');
+});
+</script>
+{% endblock %}  
