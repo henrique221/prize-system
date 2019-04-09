@@ -1,4 +1,4 @@
-#Instructions:
+# Instructions:
 
 Required Php 7.2 and Symfony 4.2
 
