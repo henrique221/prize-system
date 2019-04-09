@@ -13,11 +13,13 @@
         "symfony/debug-bundle": "4.2.*",
         "symfony/dotenv": "4.2.*",
         "symfony/flex": "^1.1",
+        "symfony/form": "4.2.*",
         "symfony/framework-bundle": "4.2.*",
         "symfony/http-foundation": "4.2.*",
         "symfony/orm-pack": "^1.0",
         "symfony/security-bundle": "4.2.*",
         "symfony/twig-bundle": "4.2.*",
+        "symfony/validator": "4.2.*",
         "symfony/yaml": "4.2.*"
     },
     "config": {
@@ -66,6 +68,7 @@
         }
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.1",
         "symfony/maker-bundle": "^1.11",
         "symfony/web-server-bundle": "4.2.*"
     }

@@ -1,7 +1,7 @@
     {% extends "base.html.twig" %}
 
     {% block body %}
-{#    <p>Logado como : {{session['username']}}</p>#}
+    <p>Logado como : {{ user.login }}</p>
 
 <div class="jumbotron bg-dark">
 
@@ -71,6 +71,7 @@
 </table>
 
     <a href="{{ path('update_trello_database') }}">Update database</a>
+    <a href="{{ path('create_access') }}">Create user access</a>
 
 </div>
 <style>
