@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Services\TrelloService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class PrestonController extends AbstractController
@@ -25,6 +26,10 @@ class PrestonController extends AbstractController
      * @Route("/update", name="update_trello_database")
      */
     public function updateDatabase(TrelloService $trelloService){
-        return $trelloService->updateTrelloDatabase();
-    }
+        $updateStatus = $trelloService->updateTrelloDatabase();
+        if($updateStatus == "ok"){
+            return $this->redirectToRoute('preston', ['atualizado' => 'Atualizado']);
+        }else{
+            return $this->redirectToRoute('preston', ['atualizado' => 'Nao pode ser atualizado']);
+        }}
 }

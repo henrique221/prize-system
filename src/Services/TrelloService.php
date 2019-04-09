@@ -42,15 +42,19 @@ class TrelloService
 
         foreach ($trelloUsers as $trelloUser) {
             $userFromDatabase = $this->trelloUserRepository->findBy(["TrelloId" => $trelloUser->id]);
-            if(is_null($userFromDatabase)){
+            if(!$userFromDatabase){
                 $trelloUserObj = new TrelloUser();
-                $trelloUserObj->setTrelloId($trelloUser->id);
+
+                $trelloUserObj
+                    ->setTrelloId($trelloUser->id)
+                    ->setUsername($trelloUser->name);
+
                 $em = $this->managerRegistry->getManager();
                 $em->persist($trelloUserObj);
                 $em->flush();
-                return "Atualizado";
             }
+
         }
-        return "Finalizado";
+        return "ok";
     }
 }

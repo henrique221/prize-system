@@ -17,9 +17,24 @@ class TrelloUser
     private $id;
 
     /**
-     * @ORM\Column(type="integer", unique=true, nullable=false)
+     * @ORM\Column(type="string", unique=true, nullable=false)
      */
     private $TrelloId;
+
+    /**
+     * @ORM\Column(type="string", nullable=false, unique=false)
+     */
+    private $username;
+
+    /**
+     * @ORM\Column(type="array", nullable=true, unique=false)
+     */
+    private $premios;
+
+    /**
+     * @ORM\Column(type="date", nullable=true, unique=false)
+     */
+    private $dataDeNascimento;
 
     public function getId(): ?int
     {
@@ -33,15 +48,63 @@ class TrelloUser
         return $this;
     }
 
-    public function getTrelloId(): ?int
+    public function getTrelloId(): ?string
     {
         return $this->TrelloId;
     }
 
-    public function setTrelloId(int $TrelloId): self
+    public function setTrelloId(string $TrelloId): self
     {
         $this->TrelloId = $TrelloId;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDataDeNascimento()
+    {
+        return $this->dataDeNascimento;
+    }
+
+    /**
+     * @param mixed $dataDeNascimento
+     */
+    public function setDataDeNascimento($dataDeNascimento): void
+    {
+        $this->dataDeNascimento = $dataDeNascimento;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * @param mixed $username
+     */
+    public function setUsername($username): void
+    {
+        $this->username = $username;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPremios()
+    {
+        return $this->premios;
+    }
+
+    /**
+     * @param mixed $premios
+     */
+    public function setPremios($premios): void
+    {
+        $this->premios = $premios;
     }
 }
