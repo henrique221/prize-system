@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\TrelloUser;
+use App\Entity\SlackUser;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method TrelloUser|null find($id, $lockMode = null, $lockVersion = null)
- * @method TrelloUser|null findOneBy(array $criteria, array $orderBy = null)
- * @method TrelloUser[]    findAll()
- * @method TrelloUser[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method SlackUser|null find($id, $lockMode = null, $lockVersion = null)
+ * @method SlackUser|null findOneBy(array $criteria, array $orderBy = null)
+ * @method SlackUser[]    findAll()
+ * @method SlackUser[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class TrelloUserRepository extends ServiceEntityRepository
+class SlackUserRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, TrelloUser::class);
+        parent::__construct($registry, SlackUser::class);
     }
 
     // /**
-    //  * @return TrelloUser[] Returns an array of TrelloUser objects
+    //  * @return SlackUser[] Returns an array of SlackUser objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class TrelloUserRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?TrelloUser
+    public function findOneBySomeField($value): ?SlackUser
     {
         return $this->createQueryBuilder('t')
             ->andWhere('t.exampleField = :val')

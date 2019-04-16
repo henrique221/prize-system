@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\TrelloUserRepository")
+ * @ORM\Entity(repositoryClass="SlackUserRepository")
  */
-class TrelloUser
+class SlackUser
 {
     /**
      * @ORM\Id()
@@ -19,7 +19,7 @@ class TrelloUser
     /**
      * @ORM\Column(type="string", unique=true, nullable=false)
      */
-    private $TrelloId;
+    private $SlackId;
 
     /**
      * @ORM\Column(type="string", nullable=false, unique=false)
@@ -36,6 +36,20 @@ class TrelloUser
      */
     private $dataDeNascimento;
 
+    /**
+     * @ORM\Column(type="string", nullable=true, unique=false)
+     */
+
+    private $real_name;
+
+
+    /**
+     * @ORM\Column(type="string", nullable=true, unique=false)
+     */
+
+    private $email;
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -48,14 +62,14 @@ class TrelloUser
         return $this;
     }
 
-    public function getTrelloId(): ?string
+    public function getSlackId(): ?string
     {
-        return $this->TrelloId;
+        return $this->SlackId;
     }
 
-    public function setTrelloId(string $TrelloId): self
+    public function setSlackId(string $SlackId): self
     {
-        $this->TrelloId = $TrelloId;
+        $this->SlackId = $SlackId;
 
         return $this;
     }
@@ -106,5 +120,37 @@ class TrelloUser
     public function setPremios($premios): void
     {
         $this->premios = $premios;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRealName()
+    {
+        return $this->real_name;
+    }
+
+    /**
+     * @param mixed $real_name
+     */
+    public function setRealName($real_name)
+    {
+        $this->real_name = $real_name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
     }
 }

@@ -4,8 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Usuario;
 use App\Form\UsuarioType;
+use App\Repository\SlackUserRepository;
 use App\Repository\UsuarioRepository;
-use App\Services\TrelloService;
+use App\Services\SlackService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,30 +18,41 @@ class PrestonController extends AbstractController
      * @var UsuarioRepository
      */
     private $usuarioRepository;
+    /**
+     * @var SlackUserRepository
+     */
+    private $slackUserRepository;
 
-    public function __construct(UsuarioRepository $usuarioRepository)
+    public function __construct(UsuarioRepository $usuarioRepository, SlackUserRepository $slackUserRepository)
     {
         $this->usuarioRepository = $usuarioRepository;
+        $this->slackUserRepository = $slackUserRepository;
     }
 
     /**
      * @Route("/preston", name="preston")
      */
-    public function index(TrelloService $trelloService)
+    public function index(SlackService $slackService)
     {
-        $users = $trelloService->getAllUsers();
+        $users = $slackService->getAllUsers();
+
+        $userDatabase = [];
+        foreach ($users->members as $userForId){
+            $userDatabase[] = $this->slackUserRepository->findOneBy(["SlackId" => $userForId->id]);
+        }
 
         return $this->render('preston/list.html.twig', [
             'user' => $this->getUser(),
-            'users' =>  $users->members
+            'users' =>  $users->members,
+            'userDatabase' => $userDatabase
         ]);
     }
 
     /**
      * @Route("/update", name="update_trello_database")
      */
-    public function updateDatabase(TrelloService $trelloService){
-        $updateStatus = $trelloService->updateTrelloDatabase();
+    public function updateDatabase(SlackService $slackService){
+        $updateStatus = $slackService->updateTrelloDatabase();
         if($updateStatus == "ok"){
             return $this->redirectToRoute('preston', ['atualizado' => 'Atualizado']);
         }else{

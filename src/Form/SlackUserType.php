@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\TrelloUser;
+use App\Entity\SlackUser;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -21,7 +21,7 @@ class SlackUserType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => TrelloUser::class,
+            'data_class' => SlackUser::class,
         ]);
     }
 }

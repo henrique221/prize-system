@@ -3,12 +3,69 @@
     {% block body %}
     <p>Logado como : {{ user.login }}</p>
 
+
+
 <div class="jumbotron bg-dark">
+    <!-- Modal -->
+    <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <form class="formModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Adicionar premio</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <button>Crie</button>
+                    <button>Faça</button>
+                    <button>Conecte</button>
+                    <button>Ouse</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+        </form>
+    </div>
 
     <table id="dtBasicExample" class="table table-borderless text-white" >
-    <thead>
-        <tr>
-        <th class="th-sm">Slack id
+        <tbody class="table text-white">
+
+        {% for u in userDatabase %}
+
+            {% if u %}
+
+            <tr class="bg-dark">
+                <td>{{ u.id }}</td>
+                <td>{{u.realName}}</td>
+                <td class="username{{ u.id }}" name="{{ u.username }}">{{u.username}}</td>
+                <td>{{u.email}}</td>
+                {% if u.dataDeNascimento is null %}
+                    <td>sem data de nascimento</td>
+                {% else %}
+                <td>{{ u.dataDeNascimento|date("d/m/Y") }}</td>
+                {% endif %}
+                <td>
+                    {% for p in u.premios %}
+                        {{ p }}
+                    {% endfor %}
+                    <a class="openModal{{ u.id }}" data-toggle="modal" data-target="#modelId" name="{{ u.id }}">
+                        <i class="fas fa-plus-circle"></i>
+                    </a>
+                </td>
+            </tr>
+        {% endif %}
+        {% endfor %}
+        </tbody>
+
+        <thead>
+
+        </th>
+        <th class="th-sm">Id
 
         </th>
         <th class="th-sm">Full name
@@ -23,48 +80,24 @@
         <th class="th-sm">Data de Nascimento
 
         </th>
+        <th class="th-sm">Premiações
+
+        </th>
         </tr>
     </thead>
-  <tbody class="table text-white">
-    {% for u in users %}
-        {% if u.real_name is defined%}
-            {% set real_name = u.real_name%}
-        {% else %}
-            {% set real_name = "sem nome"%}
-        {% endif %}
-
-        {% if u.name is defined %}
-            {% set name = u.name%}
-        {% else %}
-            {% set name = "sem nome"%}
-        {% endif %}
-
-        {% if u.profile.email is defined %}
-            {% set email = u.profile.email%}
-        {% else %}
-            {% set email = "sem email"%}
-        {% endif %}
-
-        <tr class="bg-dark">
-            <td>{{u.id}}</td>
-            <td>{{real_name}}</td>
-            <td>{{name}}</td>
-            <td>{{email}}</td>
-            <td>Sem data de nascimento</td>
-        </tr>
-    {% endfor %}
-  </tbody>
   <tfoot>
     <tr>
-      <th>Slack id
+      <th>Id
       </th>
-      <th>Full name
+        <th>Full name
       </th>
       <th>User name
       </th>
       <th>Email
       </th>
       <th>Data de Nascimento
+      </th>
+      <th>Premiações
       </th>
     </tr>
   </tfoot>
@@ -86,13 +119,26 @@
         background-color: whitesmoke !important;
     }
 </style>
-<script>
-    // Basic example
-$(document).ready(function () {
-  $('#dtBasicExample').DataTable({
-    "pagingType": "simple"
-  });
-  $('.dataTables_length').addClass('bs-select');
-});
-</script>
-{% endblock %}  
+        <script>
+            // Basic example
+            $(document).ready(function () {
+                $('#dtBasicExample').DataTable({
+                    "pagingType": "simple"
+                });
+                $('.dataTables_length').addClass('bs-select');
+
+                {% for u in userDatabase %}
+                {% if u %}
+                $(document).on("click", ".openModal{{ u.id }}", function () {
+                    var id = $(".openModal{{ u.id }}").attr("name");
+                    console.log(id);
+                    var nome = $(".username{{ u.id }}").attr("name");
+                    $('.formModal').attr("name", id);
+                    $('.modal-title').text("Adicionar premio para " + nome);
+                });
+                {% endif %}
+                {% endfor %}
+
+            });
+        </script>
+    {% endblock %}
