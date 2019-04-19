@@ -1,11 +1,16 @@
     {% extends "base.html.twig" %}
 
     {% block body %}
-    <p>Logado como : {{ user.login }}</p>
+
 
 
 
 <div class="jumbotron bg-dark">
+
+    <h1 class="mb-md-3">Preston control panel</h1>
+
+    <p class="mb-md-5">Welcome, {{ user.login }} !</p>
+
     <!-- Modal -->
     <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
         <form class="formModal">
@@ -32,7 +37,7 @@
         </form>
     </div>
 
-    <table id="dtBasicExample" class="table table-borderless text-white" >
+    <table id="dtBasicExample" class="table table-borderless text-white col-md-12 col-lg-12" >
         <tbody class="table text-white">
 
         {% for u in userDatabase %}
@@ -41,8 +46,8 @@
 
             <tr class="bg-dark">
                 <td>{{ u.id }}</td>
-                <td>{{u.realName}}</td>
                 <td class="username{{ u.id }}" name="{{ u.username }}">{{u.username}}</td>
+                <td>{{u.realName}}</td>
                 <td>{{u.email}}</td>
                 {% if u.dataDeNascimento is null %}
                     <td>sem data de nascimento</td>
@@ -68,10 +73,10 @@
         <th class="th-sm">Id
 
         </th>
-        <th class="th-sm">Full name
+        <th class="th-sm">User name
 
         </th>
-        <th class="th-sm">User name
+        <th class="th-sm">Full name
 
         </th>
         <th class="th-sm">Email
@@ -84,45 +89,37 @@
 
         </th>
         </tr>
-    </thead>
-  <tfoot>
-    <tr>
-      <th>Id
-      </th>
-        <th>Full name
-      </th>
-      <th>User name
-      </th>
-      <th>Email
-      </th>
-      <th>Data de Nascimento
-      </th>
-      <th>Premiações
-      </th>
-    </tr>
-  </tfoot>
-</table>
+        </thead>
+        <tfoot>
+        <tr>
+            <th>Id
+            <th>User name
+            </th>
+            </th>
+            <th>Full name
+            </th>
+            <th>Email
+            </th>
+            <th>Data de Nascimento
+            </th>
+            <th>Premiações
+            </th>
+        </tr>
+        </tfoot>
+    </table>
 
     <a href="{{ path('update_trello_database') }}">Update database</a>
     <a href="{{ path('create_access') }}">Create user access</a>
 
 </div>
 <style>
-    label {
-        color :whitesmoke !important;
-        font-size : 15px !important
-    }
-    .dataTables_info{
-        color: whitesmoke !important;
-    }
-    .dataTables_paginate.paging_simple{
-        background-color: whitesmoke !important;
-    }
+
 </style>
         <script>
             // Basic example
             $(document).ready(function () {
                 $('#dtBasicExample').DataTable({
+                    responsive : true,
                     "pagingType": "simple"
                 });
                 $('.dataTables_length').addClass('bs-select');

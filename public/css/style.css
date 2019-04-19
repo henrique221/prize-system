@@ -1,5 +1,9 @@
-h1, h2, h3, h4, p, a, strong, button, input {
+*:not(i) {
     font-family: 'Roboto', sans-serif !important;
+}
+
+p, a, h1, h2, h3, h4, strong, button, li, i {
+    color: white;
 }
 
 button {
@@ -127,3 +131,20 @@ span:nth-child(2) {
     color: white;
 }
 
+
+label {
+    color :white !important;
+    font-size : 15px !important
+}
+.dataTables_info{
+    color: white !important;
+}
+.dataTables_paginate.paging_simple{
+    background-color: #343940 !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button{
+    color: white !important;
+}
+table.dataTable.dtr-inline.collapsed>tbody>tr>td.child, table.dataTable.dtr-inline.collapsed>tbody>tr>th.child, table.dataTable.dtr-inline.collapsed>tbody>tr>td.dataTables_empty{
+    background: #343a40;
+}
