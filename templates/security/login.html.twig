@@ -21,10 +21,10 @@
             "{{ asset('img/batman-icon.png') }}"
         ];
         function getImageTag() {
-            var img = '<img src=\"';
+            var img = '<img class="icons" src=\"';
             var randomIndex = Math.floor(Math.random() * imageURLs.length);
             img += imageURLs[randomIndex];
-            img += '\" alt=\"Preston" style="width:200px; height: 200px;"/>';
+            img += '\" alt=\"Preston"/>';
             return img;
         }
     </script>
@@ -41,11 +41,11 @@
             document.write(getImageTag());
         </script>
     </div>
+    <div class="prestonText">
+        <p class="text-center text-white m-md-5 mt-5" style="font-size: 22px">Com o <strong style="color: #ba8b00">Preston</strong> vc pode<span class="text-center text-white" id="typed3"></span> seus funcionários</p>
+    </div>
 
-    <p class="text-center text-white m-5" style="font-size: 22px">Com o Preston vc pode<span class="text-center text-white" id="typed3"></span> seus funcionários</p>
-
-
-    <form class="d-flex justify-content-center mt-5 text-center" method="post">
+    <form class="d-flex justify-content-center mt-md-5 text-center" method="post">
 
         <div class="d-flex col-md-2 flex-column">
 
@@ -53,11 +53,11 @@
                 <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
             {% endif %}
 
-            <h1 class="text-white m-5">Login Preston</h1>
+            <p class="m-md-5 mb-5 mt-5 loginPrestonText">Login Preston</p>
             <div class="d-flex flex-row">
             <i class="text-white fa fa-user my-auto mr-2"></i>
             <input type="text" value="{{ last_username }}" name="login" id="inputLogin" class="form-control"
-                   placeholder="Login" required autofocus>
+                   placeholder="Login" required>
             </div>
             <br>
             <div class="d-flex flex-row">

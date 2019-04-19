@@ -1,5 +1,5 @@
-h1, h2, h3, h4, p, a {
-    font-family: 'Roboto', sans-serif;
+h1, h2, h3, h4, p, a, strong, button, input {
+    font-family: 'Roboto', sans-serif !important;
 }
 
 button {
@@ -100,8 +100,30 @@ span:nth-child(2) {
     width: auto;
     height: auto;
     z-index: -1000;
-    background: url(images/torre.jpg) no-repeat;
     background-size: cover;
     filter:opacity(20%);
+}
+
+@media only screen and (max-width: 600px) {
+    .prestonText {
+        height: 100px;
+        margin: 10px;
+    }
+    .icons{
+        width: 150px;
+        height: 150px;
+    }
+    .loginPrestonText{
+        font-size: 20px;
+    }
+}
+@media only screen and (min-width: 601px) {
+    .icons {
+        width: 200px;
+        height: 200px;
+    }
+}
+.loginPrestonText{
+    color: white;
 }
 
