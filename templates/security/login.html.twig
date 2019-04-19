@@ -32,6 +32,9 @@
 {% endblock %}
 
 {% block body %}
+    <video autoplay loop class="bg_video z2">
+        <source src="{{ asset('img/tech.mp4') }}" type="video/mp4">
+    </video>
 
     <div class="d-flex justify-content-center">
         <script type="text/javascript">
@@ -94,9 +97,6 @@
 
     </form>
 
-    <video autoplay loop class="bg_video z2">
-        <source src="{{ asset('img/tech.mp4') }}" type="video/mp4">
-    </video>
 
 {% endblock %}
 {% block javascripts %}
