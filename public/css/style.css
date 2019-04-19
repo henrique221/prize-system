@@ -1,9 +1,10 @@
-*:not(i) {
-    font-family: 'Roboto', sans-serif !important;
+i {
+    color: white;
 }
 
-p, a, h1, h2, h3, h4, strong, button, li, i {
+p, a, h1, h2, h3, h4, strong, button, li {
     color: white;
+    font-family: 'Roboto', sans-serif !important;
 }
 
 button {

@@ -13,20 +13,17 @@
 
     <!-- Modal -->
     <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-        <form class="formModal">
+        <form class="formModal" style="font-family: 'Roboto', sans-serif !important;">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Adicionar premio</h5>
+                    <h5 class="modal-title">Reward</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <button>Crie</button>
-                    <button>Faça</button>
-                    <button>Conecte</button>
-                    <button>Ouse</button>
+                    <input type="text" id="tags">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -37,7 +34,7 @@
         </form>
     </div>
 
-    <table id="dtBasicExample" class="table table-borderless text-white col-md-12 col-lg-12" >
+    <table id="dtBasicExample" style="font-family: 'Roboto', sans-serif !important;" class="table table-borderless text-white col-md-12 col-lg-12" >
         <tbody class="table text-white">
 
         {% for u in userDatabase %}
@@ -73,7 +70,7 @@
         <th class="th-sm">Id
 
         </th>
-        <th class="th-sm">User name
+        <th class="th-sm">Username
 
         </th>
         <th class="th-sm">Full name
@@ -82,10 +79,10 @@
         <th class="th-sm">Email
 
         </th>
-        <th class="th-sm">Data de Nascimento
+        <th class="th-sm">Birth date
 
         </th>
-        <th class="th-sm">Premiações
+        <th class="th-sm">Rewards
 
         </th>
         </tr>
@@ -93,16 +90,16 @@
         <tfoot>
         <tr>
             <th>Id
-            <th>User name
+            <th>Username
             </th>
             </th>
             <th>Full name
             </th>
             <th>Email
             </th>
-            <th>Data de Nascimento
+            <th>Birth date
             </th>
-            <th>Premiações
+            <th>Rewards
             </th>
         </tr>
         </tfoot>
@@ -131,11 +128,24 @@
                     console.log(id);
                     var nome = $(".username{{ u.id }}").attr("name");
                     $('.formModal').attr("name", id);
-                    $('.modal-title').text("Adicionar premio para " + nome);
+                    $('.modal-title').text("Reward " + nome);
                 });
                 {% endif %}
                 {% endfor %}
 
             });
+
+
+            var tagsdata=[]
+            tagsdata.push({id:1,name:"Faça",screen:"faça"})
+            tagsdata.push({id:2,name:"Crie",screen:"crie"})
+            tagsdata.push({id:3,name:"Ouse",screen:"ouse"})
+            tagsdata.push({id:4,name:"Conecte",screen:"conecte"})
+
+            $("#tags").sTags({
+                data:tagsdata,
+                color:1
+            })
+
         </script>
     {% endblock %}
