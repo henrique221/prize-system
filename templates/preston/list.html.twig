@@ -2,28 +2,10 @@
 
     {% block body %}
 
-        <div class="area" >
-            <ul class="circles">
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
-        </div >
-        <div class="context">
-
-
-
 
         <link rel="stylesheet" href="{{ asset('css/back.css') }}">
 
-
+        <div class="context">
             <div class="jumbotron bg-transparent">
 
                 <h1 class="mb-md-3">Preston control panel</h1>
@@ -78,7 +60,7 @@
                                     {% endfor %}
                                     <a class="openModal{{ u.id }}" data-toggle="modal" data-target="#modelId"
                                        name="{{ u.id }}">
-                                        <i class="fas fa-plus-circle"></i>
+                                        <i class="fas fa-plus-circle cell"></i>
                                     </a>
                                 </td>
                             </tr>
@@ -126,14 +108,23 @@
                     </tr>
                     </tfoot>
                 </table>
-
-                <a href="{{ path('update_trello_database') }}">Update database</a>
-                <a href="{{ path('create_access') }}">Create user access</a>
-
             </div>
-        <style>
+        </div>
+        <div class="area" >
+            <ul class="circles">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div >
 
-        </style>
         <script>
             // Basic example
             $(document).ready(function () {
@@ -170,5 +161,5 @@
             })
 
         </script>
-        </div>
+
     {% endblock %}

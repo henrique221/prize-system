@@ -6,7 +6,9 @@ p, a, h1, h2, h3, h4, strong, button, li {
     color: white;
     font-family: 'Roboto', sans-serif !important;
 }
-
+input{
+    border-radius: 10px !important;
+}
 button {
     border-radius: 30px !important;
 }
@@ -121,6 +123,16 @@ span:nth-child(2) {
     .loginPrestonText{
         font-size: 20px;
     }
+    .dataTables_wrapper .dataTables_length {
+        display: none;
+    }
+    .dataTables_wrapper .dataTables_filter{
+        text-align: left;
+        font-family: 'Roboto', sans-serif !important;
+    }
+}
+.dataTables_wrapper .dataTables_filter{
+    font-family: 'Roboto', sans-serif !important;
 }
 @media only screen and (min-width: 601px) {
     .icons {
@@ -148,4 +160,7 @@ label {
 }
 table.dataTable.dtr-inline.collapsed>tbody>tr>td.child, table.dataTable.dtr-inline.collapsed>tbody>tr>th.child, table.dataTable.dtr-inline.collapsed>tbody>tr>td.dataTables_empty{
     background: #343a40;
+}
+.cell{
+    cursor: cell;
 }
