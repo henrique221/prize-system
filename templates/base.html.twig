@@ -35,6 +35,7 @@
     {% block javascriptStyles %}{% endblock %}
 
 </head>
+<body>
 <nav class="navbar navbar-expand-sm navbar-light text-white-50">
     <a class="navbar-brand text-white-50" href="{{ path('index') }}">Antheia</a>
     <button class="navbar-toggler d-lg-none"  style="border-color: transparent; color: white; filter: opacity(50%); font-size: 30px;" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
@@ -53,14 +54,14 @@
                 <a class="navbar-brand text-white-50 mr-md-3" href="{{ path('update_trello_database') }}">Update database</a>
                 <a class="navbar-brand text-white-50 mr-md-3" href="{{ path('create_access') }}">Create user access</a>
             {% endif %}
-            <a name="logout" id="logout" class="btn btn-secondary" href="{{ path('app_logout') }}"
-               role="button">logout</a>
+            <a name="logout" id="logout" style="background: #261b30; filter: opacity(95%); padding: 25px; border-radius: 35px" href="{{ path('app_logout') }}" role="button">logout</a>
         {% else %}
-            <a name="login" id="login" class="btn btn-primary" href="{{ path('app_login') }}" role="button">login</a>
+            <a name="login" id="login" style="background: #1b2735; padding: 25px; border-radius: 35px" href="{{ path('app_login') }}" role="button">login</a>
         {% endif %}
 
     </div>
 </nav>
 {% block body %}{% endblock %}
+</body>
 {% block javascripts %}{% endblock %}
 </html>

@@ -4,7 +4,6 @@ body {
     background: radial-gradient(ellipse at center, #1b2735 0%, #090a0f 100%);
     width: 100wh;
     height: 100vh;
-    overflow: hidden;
 }
 
 .context {

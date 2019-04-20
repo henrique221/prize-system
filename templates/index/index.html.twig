@@ -1,30 +1,38 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+    <body>
+    <div class="main">
+        <link rel="stylesheet" href="{{ asset('css/index.css') }}">
 
-    <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
-    <div class="d-flex justify-content-between">
-        <div id='stars'></div>
-        <div id='stars2'></div>
-        <div id='stars3'></div>
-    </div>
+        <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+        <div class="starsGroup">
+            <div id='stars'></div>
+            <div id='stars2'></div>
+            <div id='stars3'></div>
+        </div>
 
-    <div id='title'>
+        <section class="start">
+            <div id='title'>
   <span>
     ANTHEIA
   </span>
-        <br>
-        <span>
+                <br>
+                <span>
     SOFTWARE HOUSE
   </span>
-    </div>
 
-    {#        <div class="jumbotron col-sm-2 col-md-12 bg-transparent text-white-50">#}
-{#            <h1 class="display-3">Bem vindo a Antheia</h1>#}
-{#            <p class="lead"></p>#}
-{#            <hr class="my-4">#}
-{#            <p>Para informações, entre em contato pelo email : hborges9294@gmail.com</p>#}
-{#            <p>Responsável : Henrique Borges da Silva</p>#}
-{#        </div>#}
+
+            </div>
+        </section>
+    </div>
+    <div class="info d-flex col-sm-2 col-md-12 text-white-50" style="background: #141d29;">
+        <p class="infoAntheia">
+            <span>Antheia Software house</span>
+        </p>
+        <p class="responsavel">
+            <span>Henrique Borges da Silva</span>
+        </p>
+    </div>
+    </body>
 {% endblock %}

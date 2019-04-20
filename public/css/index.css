@@ -1,8 +1,12 @@
 body {
     background: radial-gradient(ellipse at center, #1b2735 0%, #090a0f 100%);
-    width: 100wh;
-    height: 100vh;
-    overflow: hidden;
+    background-size: 100% 100vh;
+}
+
+.starsGroup{
+    display: flex;
+    justify-content: space-between;
+    overflow-wrap: normal;
 }
 
 #stars {
@@ -56,9 +60,40 @@ body {
     box-shadow: 1396px 460px #FFF , 1229px 1868px #FFF , 32px 1499px #FFF , 849px 1655px #FFF , 1590px 1523px #FFF , 347px 1177px #FFF , 876px 797px #FFF , 1224px 904px #FFF , 513px 123px #FFF , 469px 1863px #FFF , 1854px 847px #FFF , 686px 862px #FFF , 143px 1554px #FFF , 437px 579px #FFF , 484px 727px #FFF , 857px 841px #FFF , 1939px 1502px #FFF , 540px 1698px #FFF , 264px 1568px #FFF , 1456px 229px #FFF , 837px 1197px #FFF , 1027px 1752px #FFF , 539px 1278px #FFF , 487px 455px #FFF , 400px 116px #FFF , 312px 1241px #FFF , 935px 857px #FFF , 1659px 183px #FFF , 26px 961px #FFF , 1616px 1944px #FFF , 1016px 516px #FFF , 874px 1016px #FFF , 1327px 1961px #FFF , 599px 985px #FFF , 1003px 1879px #FFF , 24px 1384px #FFF , 574px 1073px #FFF , 1104px 9px #FFF , 1013px 761px #FFF , 956px 1130px #FFF , 1180px 1585px #FFF , 595px 1660px #FFF , 1697px 510px #FFF , 877px 654px #FFF , 1607px 315px #FFF , 109px 651px #FFF , 1591px 1599px #FFF , 507px 641px #FFF , 1292px 619px #FFF , 1833px 1395px #FFF , 1054px 1098px #FFF , 1526px 1129px #FFF , 386px 948px #FFF , 595px 1343px #FFF , 101px 1918px #FFF , 399px 189px #FFF , 1718px 742px #FFF , 1010px 115px #FFF , 457px 258px #FFF , 747px 990px #FFF , 122px 1830px #FFF , 1135px 949px #FFF , 1686px 1480px #FFF , 372px 293px #FFF , 1047px 91px #FFF , 215px 25px #FFF , 497px 620px #FFF , 677px 664px #FFF , 3px 940px #FFF , 1364px 1910px #FFF , 1701px 81px #FFF , 319px 1778px #FFF , 59px 1093px #FFF , 1609px 66px #FFF , 1818px 736px #FFF , 1270px 1587px #FFF , 670px 1370px #FFF , 706px 806px #FFF , 755px 455px #FFF , 1179px 1405px #FFF , 637px 1021px #FFF , 944px 570px #FFF , 259px 212px #FFF , 952px 1915px #FFF , 1422px 744px #FFF , 1761px 747px #FFF , 1928px 72px #FFF , 1761px 1092px #FFF , 767px 1303px #FFF , 1338px 331px #FFF , 1425px 977px #FFF , 1182px 903px #FFF , 729px 692px #FFF , 1211px 852px #FFF , 1836px 806px #FFF , 1824px 1089px #FFF , 1747px 20px #FFF , 1006px 1078px #FFF , 128px 1489px #FFF , 173px 597px #FFF;
 }
 
+.start{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 95vh;
+}
+.info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 50vh;
+    -webkit-box-shadow: 0px -12px 20px 0px rgba(255,255,255,0.06);
+    -moz-box-shadow: 0px -12px 20px 0px rgba(255,255,255,0.06);
+    box-shadow: 0px -12px 20px 0px rgba(255,255,255,0.06);
+    margin: 0 auto -142px;
+}
+.responsavel, .infoAntheia{
+    left: 0;
+    right: 0;
+    color: #FFF;
+    text-align: center;
+    font-family: "lato", sans-serif;
+    font-weight: 350;
+    font-size: 20px;
+    letter-spacing: 8px;
+    padding-left: 10px;
+}
+.responsavel span, .infoAntheia span {
+    background: -webkit-linear-gradient(white, #5b778c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 #title {
-    position: absolute;
-    top: 50%;
     left: 0;
     right: 0;
     color: #FFF;
@@ -67,7 +102,6 @@ body {
     font-weight: 300;
     font-size: 50px;
     letter-spacing: 10px;
-    margin-top: -60px;
     padding-left: 10px;
 }
 #title span {
@@ -76,11 +110,12 @@ body {
     -webkit-text-fill-color: transparent;
 }
 
+
 @keyframes animStar {
     from {
-        transform: translateY(0px);
+        transform: translateY(-2000px);
     }
     to {
-        transform: translateY(-2000px);
+        transform: translateY(-2900px);
     }
 }

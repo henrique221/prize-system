@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Exo:400,700');
 
 body {
-    width: 100wh;
     height: 90vh;
     color: #fff;
     background: linear-gradient(-45deg, #0c0c7a, #29496e, #532a7b, #6d3ed5);
