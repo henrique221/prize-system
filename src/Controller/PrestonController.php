@@ -49,15 +49,20 @@ class PrestonController extends AbstractController
     }
 
     /**
-     * @Route("/update", name="update_trello_database")
+     * @Route("/update", name="update_trello_database", methods={"GET", "POST"})
+     * @param Request $request
      */
-    public function updateDatabase(SlackService $slackService){
-        $updateStatus = $slackService->updateTrelloDatabase();
-        if($updateStatus == "ok"){
-            return $this->redirectToRoute('preston', ['atualizado' => 'Atualizado']);
-        }else{
-            return $this->redirectToRoute('preston', ['atualizado' => 'Nao pode ser atualizado']);
-        }
+    public function updateDatabase(SlackService $slackService, Request $request){
+        $users = $slackService->getAllUsers();
+        return $this->render('preston/updateDatabase.html.twig', [
+            'users' => $users->members
+        ]);
+//        $updateStatus = $slackService->updateTrelloDatabase();
+//        if($updateStatus == "ok"){
+//            return $this->redirectToRoute('preston', ['atualizado' => 'Atualizado']);
+//        }else{
+//            return $this->redirectToRoute('preston', ['atualizado' => 'Nao pode ser atualizado']);
+//        }
     }
 
     /**

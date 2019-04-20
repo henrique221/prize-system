@@ -1,0 +1,92 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+    <style>
+        body {
+            background: darkblue;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+
+    <table id="dtBasicExample" style="font-family: 'Roboto', sans-serif !important;"
+           class="table table-borderless text-white col-12 col-lg-12">
+        <thead>
+        </th>
+        <th>Id
+
+        </th>
+        <th>Username
+
+        </th>
+        <th> Full name
+
+        </th>
+        <th>Email
+        </th>
+
+        <th>Active on Slack
+        </th>
+        </thead>
+        <tbody class="table text-white">
+
+        {% for u in users %}
+            {% if u %}
+                <tr class="bg-transparent">
+                    <td>{{ u.id }}</td>
+                    <td class="username{{ u.id }}" name="{{ u.name }}">{{ u.name }}</td>
+                    {% if u.real_name is defined %}
+                        <td>{{ u.real_name }}</td>
+                    {% else %}
+                        <td>no full name set</td>
+                    {% endif %}
+                    {% if u.profile.email is defined %}
+                        <td>{{ u.profile.email }}</td>
+                    {% else %}
+                        <td>no email set</td>
+                    {% endif %}
+                    {% if u.deleted == 1 %}
+                        <td class="text-info">active</td>
+                    {% else %}
+                        <td><strong class="text-danger">not active</strong></td>
+                    {% endif %}
+                </tr>
+            {% endif %}
+        {% endfor %}
+        </tbody>
+
+        <tfoot>
+        <tr>
+            </th>
+            <th>Id
+
+            </th>
+            <th>Username
+
+            </th>
+            <th> Full name
+
+            </th>
+            <th>Email
+            </th>
+
+            <th>Active on Slack
+            </th>
+        </tr>
+        </tfoot>
+    </table>
+
+
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            $('#dtBasicExample').DataTable({
+                responsive: true,
+                "pagingType": "simple"
+            });
+            $('.dataTables_length').addClass('bs-select');
+        })
+    </script>
+{% endblock %}
