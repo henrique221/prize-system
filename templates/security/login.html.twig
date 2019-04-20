@@ -1,6 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Log in!{% endblock %}
+{% block stylesheets %}
+
+{% endblock %}
 {% block javascriptStyles %}
 
     <script type="text/javascript">
@@ -20,6 +23,7 @@
             "{{ asset('img/robot-03-icon.png') }}",
             "{{ asset('img/batman-icon.png') }}"
         ];
+
         function getImageTag() {
             var img = '<img class="icons" src=\"';
             var randomIndex = Math.floor(Math.random() * imageURLs.length);
@@ -32,70 +36,87 @@
 {% endblock %}
 
 {% block body %}
-    <video autoplay loop muted class="bg_video z2">
-        <source src="{{ asset('img/tech.mp4') }}" type="video/mp4">
-    </video>
-
-    <div class="d-flex justify-content-center">
-        <script type="text/javascript">
-            document.write(getImageTag());
-        </script>
-    </div>
-    <div class="prestonText">
-        <p class="text-center text-white m-md-5 mt-5" style="font-size: 22px">Com o <strong style="color: #ba8b00">Preston</strong> vc pode<span class="text-center text-white" id="typed3"></span> seus funcionários</p>
-    </div>
-
-    <form class="d-flex justify-content-center mt-md-5 text-center" method="post">
-
-        <div class="d-flex col-md-2 flex-column">
-
-            {% if error %}
-                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-            {% endif %}
-
-            <p class="m-md-5 mb-5 mt-5 loginPrestonText">Login Preston</p>
-            <div class="d-flex flex-row">
-            <i class="text-white fa fa-user my-auto mr-2"></i>
-            <input type="text" value="{{ last_username }}" name="login" id="inputLogin" class="form-control"
-                   placeholder="Login" required>
-            </div>
-            <br>
-            <div class="d-flex flex-row">
-            <i class="text-white fa fa-lock my-auto mr-2"></i>
-            <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Senha"
-                   required>
-            </div>
-
-            <input type="hidden" name="_csrf_token"
-                   value="{{ csrf_token('authenticate') }}"
-            >
-
-
-            {#
-                Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-                See https://symfony.com/doc/current/security/remember_me.html
-
-                <div class="checkbox mb-3">
-                    <label>
-                        <input type="checkbox" name="_remember_me"> Remember me
-                    </label>
-                </div>
-            #}
-
-            <div class="main">
-                <button class="button btn btn-primary mt-4" type="submit">Entrar</button>
-
-                <div class="loader">
-                    <div class="check">
-                        <span class="check-one"></span>
-                        <span class="check-two"></span>
-                    </div>
-                </div>
-
-            </div>
+    <link rel="stylesheet" href="{{ asset('css/loginBack.css') }}">
+    {#    <video autoplay loop muted class="bg_video z2">#}
+    {#        <source src="{{ asset('img/tech.mp4') }}" type="video/mp4">#}
+    {#    </video>#}
+    <div class="context">
+        <div class="d-flex justify-content-center">
+            <script type="text/javascript">
+                document.write(getImageTag());
+            </script>
+        </div>
+        <div class="prestonText">
+            <p class="text-center text-white m-md-5 mt-5" style="font-size: 22px">Com o <strong style="color: #ba8b00">Preston</strong>
+                vc pode<span class="text-center text-white" id="typed3"></span> seus funcionários</p>
         </div>
 
-    </form>
+        <form class="d-flex justify-content-center mt-md-5 text-center" method="post">
+
+            <div class="d-flex col-md-2 flex-column">
+
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+
+                <p class="m-md-5 mb-5 mt-5 loginPrestonText">Login Preston</p>
+                <div class="d-flex flex-row">
+                    <i class="text-white fa fa-user my-auto mr-2"></i>
+                    <input type="text" value="{{ last_username }}" name="login" id="inputLogin" class="form-control"
+                           placeholder="Login" required>
+                </div>
+                <br>
+                <div class="d-flex flex-row">
+                    <i class="text-white fa fa-lock my-auto mr-2"></i>
+                    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Senha"
+                           required>
+                </div>
+
+                <input type="hidden" name="_csrf_token"
+                       value="{{ csrf_token('authenticate') }}"
+                >
+
+
+                {#
+                    Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                    See https://symfony.com/doc/current/security/remember_me.html
+
+                    <div class="checkbox mb-3">
+                        <label>
+                            <input type="checkbox" name="_remember_me"> Remember me
+                        </label>
+                    </div>
+                #}
+
+                <div class="main">
+                    <button class="button btn btn-primary mt-4" type="submit">Entrar</button>
+
+                    <div class="loader">
+                        <div class="check">
+                            <span class="check-one"></span>
+                            <span class="check-two"></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <div class="area">
+        <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
 
 
 {% endblock %}

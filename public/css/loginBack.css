@@ -1,63 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Exo:400,700');
 
 body {
+    background: radial-gradient(ellipse at center, #1b2735 0%, #090a0f 100%);
     width: 100wh;
-    height: 90vh;
-    color: #fff;
-    background: linear-gradient(-45deg, #0c0c7a, #29496e, #532a7b, #6d3ed5);
-    background-size: 400% 400%;
-    -webkit-animation: Gradient 15s ease infinite;
-    -moz-animation: Gradient 15s ease infinite;
-    animation: Gradient 15s ease infinite;
-}
-
-@-webkit-keyframes Gradient {
-    0% {
-        background-position: 0% 50%
-    }
-    50% {
-        background-position: 100% 50%
-    }
-    100% {
-        background-position: 0% 50%
-    }
-}
-
-@-moz-keyframes Gradient {
-    0% {
-        background-position: 0% 50%
-    }
-    50% {
-        background-position: 100% 50%
-    }
-    100% {
-        background-position: 0% 50%
-    }
-}
-
-@keyframes Gradient {
-    0% {
-        background-position: 0% 50%
-    }
-    50% {
-        background-position: 100% 50%
-    }
-    100% {
-        background-position: 0% 50%
-    }
-}
-
-h1,
-h6 {
-    font-family: 'Open Sans';
-    font-weight: 300;
+    height: 100vh;
+    overflow: hidden;
 }
 
 .context {
     width: 100%;
     position: absolute;
     background: transparent;
-
 }
 
 .area{
@@ -171,7 +124,7 @@ h6 {
 @keyframes animate {
 
     0%{
-        transform: translateY(0) rotate(0deg);
+        transform: translateY(-350px) rotate(0deg);
         opacity: 1;
         border-radius: 0;
     }

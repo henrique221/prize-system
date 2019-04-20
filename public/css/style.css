@@ -2,6 +2,10 @@ i {
     color: white;
 }
 
+.fa.fa-navicon {
+    color:white;
+}
+
 p, a, h1, h2, h3, h4, strong, button, li {
     color: white;
     font-family: 'Roboto', sans-serif !important;
@@ -158,9 +162,10 @@ label {
 .dataTables_wrapper .dataTables_paginate .paginate_button{
     color: white !important;
 }
-table.dataTable.dtr-inline.collapsed>tbody>tr>td.child, table.dataTable.dtr-inline.collapsed>tbody>tr>th.child, table.dataTable.dtr-inline.collapsed>tbody>tr>td.dataTables_empty{
-    background: #343a40;
+table.dataTable tbody tr{
+    background: transparent;
 }
+
 .cell{
     cursor: cell;
 }

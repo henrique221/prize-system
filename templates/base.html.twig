@@ -35,13 +35,12 @@
     {% block javascriptStyles %}{% endblock %}
 
 </head>
-<body class="bg-dark z0">
-<nav class="navbar navbar-expand-sm navbar-light bg-dark text-white-50 bg-transparent">
+<nav class="navbar navbar-expand-sm navbar-light text-white-50">
     <a class="navbar-brand text-white-50" href="{{ path('index') }}">Antheia</a>
-    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+    <button class="navbar-toggler d-lg-none"  style="border-color: transparent; color: white; filter: opacity(50%); font-size: 30px;" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
             aria-controls="collapsibleNavId"
             aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <i class="fa fa-bars" aria-hidden="true"></i>
     </button>
     <div class="collapse navbar-collapse" id="collapsibleNavId">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -62,7 +61,6 @@
 
     </div>
 </nav>
-</body>
 {% block body %}{% endblock %}
 {% block javascripts %}{% endblock %}
 </html>
