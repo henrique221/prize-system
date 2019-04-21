@@ -3,61 +3,23 @@
 {% block stylesheets %}
     <style>
         body {
-            background: darkblue;
+            background: radial-gradient(ellipse at center, #1b2735 0%, #090a0f 100%);
+            background-size: 100% 100vh;
         }
     </style>
 {% endblock %}
 
 {% block body %}
+    <body>
+    <div class="jumbotron bg-transparent">
+        <h1 class="d-flex align-items-center mb-md-5 text-white">
+            <i class="fab fa-slack mr-md-4 mr-2" style="font-size: 60px; filter: opacity(60%)"></i>
+            All Slack users
+        </h1>
 
-    <table id="dtBasicExample" style="font-family: 'Roboto', sans-serif !important;"
-           class="table table-borderless text-white col-12 col-lg-12">
-        <thead>
-        </th>
-        <th>Id
-
-        </th>
-        <th>Username
-
-        </th>
-        <th> Full name
-
-        </th>
-        <th>Email
-        </th>
-
-        <th>Active on Slack
-        </th>
-        </thead>
-        <tbody class="table text-white">
-
-        {% for u in users %}
-            {% if u %}
-                <tr class="bg-transparent">
-                    <td>{{ u.id }}</td>
-                    <td class="username{{ u.id }}" name="{{ u.name }}">{{ u.name }}</td>
-                    {% if u.real_name is defined %}
-                        <td>{{ u.real_name }}</td>
-                    {% else %}
-                        <td>no full name set</td>
-                    {% endif %}
-                    {% if u.profile.email is defined %}
-                        <td>{{ u.profile.email }}</td>
-                    {% else %}
-                        <td>no email set</td>
-                    {% endif %}
-                    {% if u.deleted == 1 %}
-                        <td class="text-info">active</td>
-                    {% else %}
-                        <td><strong class="text-danger">not active</strong></td>
-                    {% endif %}
-                </tr>
-            {% endif %}
-        {% endfor %}
-        </tbody>
-
-        <tfoot>
-        <tr>
+        <table id="dtBasicExample" style="font-family: 'Roboto', sans-serif !important;"
+               class="table table-borderless text-white col-12 col-lg-12">
+            <thead>
             </th>
             <th>Id
 
@@ -73,11 +35,134 @@
 
             <th>Active on Slack
             </th>
-        </tr>
-        </tfoot>
-    </table>
 
+            <th>Action
+            </th>
+            </thead>
 
+            <tbody class="table text-white">
+            {% for u in users %}
+            {% if u %}
+                {% if u.deleted == 1 %}
+                    {% set status_text = '#dc3544' %}
+                {% else %}
+                    {% set status_text = '#129daf' %}
+                {% endif %}
+                <tr class="bg-transparent" style="color: {{ status_text }}">
+                    <td>{{ u.id }}</td>
+                    <td class="username{{ u.id }}" name="{{ u.name }}">{{ u.name }}</td>
+                    {% if u.real_name is defined %}
+                        <td>{{ u.real_name }}</td>
+                    {% else %}
+                        <td>no full name set</td>
+                    {% endif %}
+                    {% if u.profile.email is defined %}
+                        <td>{{ u.profile.email }}</td>
+                    {% else %}
+                        <td>no email set</td>
+                    {% endif %}
+                    {% if u.deleted == 0 %}
+                        <td class="text-info">active</td>
+                    {% else %}
+                        <td><strong class="text-danger">not active</strong></td>
+                    {% endif %}
+                    <td>
+                        <form id="{{ u.id }}" method="post">
+                            <input type="hidden" name="userId" value="{{ u.id }}">
+                            <button type="submit" class="pt-0 pb-0 border-0">add to database</button>
+                        </form>
+                    </td>
+                </tr>
+                <script>
+                    $("#{{ u.id }}").submit(function (e) {
+                        e.preventDefault();
+
+                        var inputs = $("#{{ u.id }} :input");
+                        var values = {};
+
+                        inputs.each(function () {
+                            values[this.name] = $(this).val();
+                        });
+
+                        $.ajax({
+                            type: 'POST',
+                            data: values,
+                            url: '{{ path('check_user_in_database') }}',
+                            success: function () {
+                                Command: toastr["success"]("User {{ u.name }} added to database");
+
+                                toastr.options = {
+                                    "closeButton": true,
+                                    "debug": false,
+                                    "newestOnTop": true,
+                                    "progressBar": true,
+                                    "positionClass": "toast-bottom-center",
+                                    "preventDuplicates": false,
+                                    "onclick": null,
+                                    "showDuration": "300",
+                                    "hideDuration": "1000",
+                                    "timeOut": "5000",
+                                    "extendedTimeOut": "1000",
+                                    "showEasing": "swing",
+                                    "hideEasing": "linear",
+                                    "showMethod": "fadeIn",
+                                    "hideMethod": "fadeOut"
+                                }
+                            },
+                            error: function () {
+                                Command: toastr["error"]("User already in database");
+
+                                toastr.options = {
+                                    "closeButton": true,
+                                    "debug": false,
+                                    "newestOnTop": true,
+                                    "progressBar": true,
+                                    "positionClass": "toast-bottom-center",
+                                    "preventDuplicates": false,
+                                    "onclick": null,
+                                    "showDuration": "300",
+                                    "hideDuration": "1000",
+                                    "timeOut": "5000",
+                                    "extendedTimeOut": "1000",
+                                    "showEasing": "swing",
+                                    "hideEasing": "linear",
+                                    "showMethod": "fadeIn",
+                                    "hideMethod": "fadeOut"
+                                }
+                            }
+                        });
+                    });
+                </script>
+            {% endif %}
+                {% endfor %}
+            </tbody>
+
+            <tfoot>
+            <tr>
+                </th>
+                <th>Id
+
+                </th>
+                <th>Username
+
+                </th>
+                <th> Full name
+
+                </th>
+                <th>Email
+                </th>
+
+                <th>Active on Slack
+                </th>
+
+                <th>Action
+                </th>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div id="test"></div>
+    </body>
 {% endblock %}
 {% block javascripts %}
     <script>
@@ -87,6 +172,8 @@
                 "pagingType": "simple"
             });
             $('.dataTables_length').addClass('bs-select');
-        })
+        });
+
+
     </script>
 {% endblock %}

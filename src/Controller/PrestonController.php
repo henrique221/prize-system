@@ -8,6 +8,7 @@ use App\Repository\SlackUserRepository;
 use App\Repository\UsuarioRepository;
 use App\Services\SlackService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -52,17 +53,11 @@ class PrestonController extends AbstractController
      * @Route("/update", name="update_trello_database", methods={"GET", "POST"})
      * @param Request $request
      */
-    public function updateDatabase(SlackService $slackService, Request $request){
+    public function updateDatabase(SlackService $slackService){
         $users = $slackService->getAllUsers();
         return $this->render('preston/updateDatabase.html.twig', [
             'users' => $users->members
         ]);
-//        $updateStatus = $slackService->updateTrelloDatabase();
-//        if($updateStatus == "ok"){
-//            return $this->redirectToRoute('preston', ['atualizado' => 'Atualizado']);
-//        }else{
-//            return $this->redirectToRoute('preston', ['atualizado' => 'Nao pode ser atualizado']);
-//        }
     }
 
     /**
@@ -79,5 +74,16 @@ class PrestonController extends AbstractController
             return $this->redirectToRoute('preston');
         }
         return $this->render("preston/accessForm.html.twig", ['form' => $form->createView()]);
+    }
+
+    /**
+     * @Route("check/user", name="check_user_in_database", methods={"POST"})
+     * @param Request $request
+     * @return Response
+     */
+    public function checkSlackUserInDatabase(Request $request, SlackService $slackService){
+        $userId = $request->request->get("userId");
+        $slackService->updateTrelloDatabase($userId);
+        return new JsonResponse($userId);
     }
 }
