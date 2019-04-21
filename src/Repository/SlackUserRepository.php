@@ -19,6 +19,19 @@ class SlackUserRepository extends ServiceEntityRepository
         parent::__construct($registry, SlackUser::class);
     }
 
+    public function persist(SlackUser $instance)
+    {
+        $em = $this->getEntityManager();
+        $em->persist($instance);
+        return $em->flush();
+    }
+
+    public function save(SlackUser $instance)
+    {
+        $em = $this->getEntityManager();
+        $em->merge($instance);
+        return $em->flush();
+    }
     // /**
     //  * @return SlackUser[] Returns an array of SlackUser objects
     //  */

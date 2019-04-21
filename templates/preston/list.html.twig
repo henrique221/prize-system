@@ -65,8 +65,8 @@
                         {% if u %}
 
                             <tr class="bg-transparent">
-                                <td>{{ u.id }}</td>
-                                <td class="username{{ u.id }}" name="{{ u.username }}">{{ u.username }}</td>
+                                <td><a href="{{ path("edit_user", {"id": u.id}) }}">{{ u.id }}</a></td>
+                                <td class="username{{ u.id }}"><a href="{{ path("edit_user", {"id" : u.id}) }}">{{ u.username }}</a></td>
                                 <td>{{ u.realName }}</td>
                                 <td>{{ u.email }}</td>
                                 {% if u.dataDeNascimento is null %}
@@ -135,8 +135,7 @@
                 {% if u %}
                 $(document).on("click", ".openModal{{ u.id }}", function () {
                     var id = $(".openModal{{ u.id }}").attr("name");
-                    console.log(id);
-                    var nome = $(".username{{ u.id }}").attr("name");
+                    var nome = $(".username{{ u.username }}").attr("name");
                     $('.formModal').attr("name", id);
                     $('.modal-title').text("Reward " + nome);
                 });

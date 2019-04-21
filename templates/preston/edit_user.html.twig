@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+    <style>
+        body {
+            background: #0f6674;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <form method="post">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_row(form.dataDeNascimento) }}
+        <button type="submit">save</button>
+    </form>
+{% endblock %}
