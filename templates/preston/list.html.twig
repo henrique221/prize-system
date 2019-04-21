@@ -6,7 +6,7 @@
         <div class="context">
             <div class="jumbotron bg-transparent">
 
-                <h1 class="mb-md-3">Preston control panel</h1>
+                <h5 class="mb-md-3">Preston control panel</h5>
 
                 <p class="mb-md-5">Welcome, {{ user.login }} !</p>
 
@@ -70,7 +70,7 @@
                                 <td>{{ u.realName }}</td>
                                 <td>{{ u.email }}</td>
                                 {% if u.dataDeNascimento is null %}
-                                    <td>sem data de nascimento</td>
+                                    <td>no birthdate</td>
                                 {% else %}
                                     <td>{{ u.dataDeNascimento|date("d/m/Y") }}</td>
                                 {% endif %}

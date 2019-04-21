@@ -13,6 +13,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Class PrestonController
+ * @package App\Controller
+ * @Route("/preston")
+ */
 class PrestonController extends AbstractController
 {
     /**
@@ -31,20 +36,14 @@ class PrestonController extends AbstractController
     }
 
     /**
-     * @Route("/preston", name="preston")
+     * @Route("/", name="preston")
      */
-    public function index(SlackService $slackService)
+    public function index()
     {
-        $users = $slackService->getAllUsers();
-
-        $userDatabase = [];
-        foreach ($users->members as $userForId){
-            $userDatabase[] = $this->slackUserRepository->findOneBy(["SlackId" => $userForId->id]);
-        }
+        $userDatabase = $this->slackUserRepository->findAll();
 
         return $this->render('preston/list.html.twig', [
             'user' => $this->getUser(),
-            'users' =>  $users->members,
             'userDatabase' => $userDatabase
         ]);
     }
@@ -83,7 +82,7 @@ class PrestonController extends AbstractController
      */
     public function checkSlackUserInDatabase(Request $request, SlackService $slackService){
         $userId = $request->request->get("userId");
-        $slackService->updateTrelloDatabase($userId);
-        return new JsonResponse($userId);
+        $status = $slackService->updateTrelloDatabase($userId);
+        return new JsonResponse($userId, $status->getStatusCode());
     }
 }

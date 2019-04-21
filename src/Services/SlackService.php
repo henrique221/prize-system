@@ -52,13 +52,13 @@ class SlackService
                         ->setSlackId($slackUser->id)
                         ->setUsername($slackUser->name);
 
-                    $realName = !empty($slackUser->real_name) ? $slackUser->real_name : "sem nome completo";
-                    $email = !empty($slackUser->profile->email) ? $slackUser->profile->email : "sem email";
+                    $realName = !empty($slackUser->real_name) ? $slackUser->real_name : "no full name";
+                    $email = !empty($slackUser->profile->email) ? $slackUser->profile->email : "no email";
 
                     $trelloUserObj->setRealName($realName);
                     $trelloUserObj->setEmail($email);
                     $trelloUserObj->setDataDeNascimento(null);
-                    $trelloUserObj->setPremios("sem premios");
+                    $trelloUserObj->setPremios("no rewards");
 
                     $em = $this->managerRegistry->getManager();
                     $em->persist($trelloUserObj);

@@ -53,7 +53,7 @@
 
         <form class="d-flex justify-content-center mt-md-5 text-center" method="post">
 
-            <div class="d-flex col-md-2 flex-column">
+            <div class="d-flex col-md-7 col-sm-8 col-12 col-lg-5 col-xl-3 flex-column">
 
                 {% if error %}
                     <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -62,14 +62,12 @@
                 <p class="m-md-5 mb-5 mt-5 loginPrestonText">Login Preston</p>
                 <div class="d-flex flex-row">
                     <i class="text-white fa fa-user my-auto mr-2"></i>
-                    <input type="text" value="{{ last_username }}" name="login" id="inputLogin" class="form-control"
-                           placeholder="Login" required>
+                    <input type="text" value="{{ last_username }}" name="login" id="inputLogin" class="form-control" placeholder="Login" required>
                 </div>
                 <br>
                 <div class="d-flex flex-row">
                     <i class="text-white fa fa-lock my-auto mr-2"></i>
-                    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Senha"
-                           required>
+                    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Senha" required>
                 </div>
 
                 <input type="hidden" name="_csrf_token"

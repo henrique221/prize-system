@@ -49,7 +49,7 @@
                     {% set status_text = '#129daf' %}
                 {% endif %}
                 <tr class="bg-transparent" style="color: {{ status_text }}">
-                    <td>{{ u.id }}</td>
+                    <td class="userIdTable">{{ u.id }}</td>
                     <td class="username{{ u.id }}" name="{{ u.name }}">{{ u.name }}</td>
                     {% if u.real_name is defined %}
                         <td>{{ u.real_name }}</td>
@@ -67,69 +67,75 @@
                         <td><strong class="text-danger">not active</strong></td>
                     {% endif %}
                     <td>
-                        <form id="{{ u.id }}" method="post">
+                        <form id="{{ u.id }}">
                             <input type="hidden" name="userId" value="{{ u.id }}">
-                            <button type="submit" class="pt-0 pb-0 border-0">add to database</button>
+                            <button class="pt-0 pb-0 border-0">add to database</button>
                         </form>
                     </td>
                 </tr>
                 <script>
-                    $("#{{ u.id }}").submit(function (e) {
-                        e.preventDefault();
+                    $(function () {
+                        $(document).on("submit","#{{ u.id }}",function (e) {
+                            e.preventDefault();
 
-                        var inputs = $("#{{ u.id }} :input");
-                        var values = {};
+                            var inputs = $("#{{ u.id }} :input");
+                            var values = {};
 
-                        inputs.each(function () {
-                            values[this.name] = $(this).val();
-                        });
+                            inputs.each(function () {
+                                values[this.name] = $(this).val();
+                            });
+                            $(function () {
+                                $.ajax({
+                                    type: 'POST',
+                                    data: values,
+                                    url: '{{ path('check_user_in_database') }}',
+                                    success: function () {
+                                        Command: toastr["success"]("User {{ u.name }} added to database")
 
-                        $.ajax({
-                            type: 'POST',
-                            data: values,
-                            url: '{{ path('check_user_in_database') }}',
-                            success: function () {
-                                Command: toastr["success"]("User {{ u.name }} added to database");
+                                        toastr.options = {
+                                            "closeButton": true,
+                                            "debug": false,
+                                            "newestOnTop": true,
+                                            "progressBar": true,
+                                            "positionClass": "toast-bottom-center",
+                                            "preventDuplicates": false,
+                                            "onclick": null,
+                                            "showDuration": "300",
+                                            "hideDuration": "1000",
+                                            "timeOut": "5000",
+                                            "extendedTimeOut": "1000",
+                                            "showEasing": "swing",
+                                            "hideEasing": "linear",
+                                            "showMethod": "fadeIn",
+                                            "hideMethod": "fadeOut",
+                                            "shadowColor": "none"
+                                        };
+                                        console.log("ok")
+                                    },
+                                    error: function () {
+                                        Command: toastr["error"]("User already in database")
 
-                                toastr.options = {
-                                    "closeButton": true,
-                                    "debug": false,
-                                    "newestOnTop": true,
-                                    "progressBar": true,
-                                    "positionClass": "toast-bottom-center",
-                                    "preventDuplicates": false,
-                                    "onclick": null,
-                                    "showDuration": "300",
-                                    "hideDuration": "1000",
-                                    "timeOut": "5000",
-                                    "extendedTimeOut": "1000",
-                                    "showEasing": "swing",
-                                    "hideEasing": "linear",
-                                    "showMethod": "fadeIn",
-                                    "hideMethod": "fadeOut"
-                                }
-                            },
-                            error: function () {
-                                Command: toastr["error"]("User already in database");
-
-                                toastr.options = {
-                                    "closeButton": true,
-                                    "debug": false,
-                                    "newestOnTop": true,
-                                    "progressBar": true,
-                                    "positionClass": "toast-bottom-center",
-                                    "preventDuplicates": false,
-                                    "onclick": null,
-                                    "showDuration": "300",
-                                    "hideDuration": "1000",
-                                    "timeOut": "5000",
-                                    "extendedTimeOut": "1000",
-                                    "showEasing": "swing",
-                                    "hideEasing": "linear",
-                                    "showMethod": "fadeIn",
-                                    "hideMethod": "fadeOut"
-                                }
-                            }
+                                        toastr.options = {
+                                            "closeButton": true,
+                                            "debug": false,
+                                            "newestOnTop": true,
+                                            "progressBar": true,
+                                            "positionClass": "toast-bottom-center",
+                                            "preventDuplicates": false,
+                                            "onclick": null,
+                                            "showDuration": "300",
+                                            "hideDuration": "1000",
+                                            "timeOut": "5000",
+                                            "extendedTimeOut": "1000",
+                                            "showEasing": "swing",
+                                            "hideEasing": "linear",
+                                            "showMethod": "fadeIn",
+                                            "hideMethod": "fadeOut",
+                                        };
+                                        console.log("user exists")
+                                    }
+                                })
+                            });
                         });
                     });
                 </script>
