@@ -48,10 +48,11 @@ class SlackService
         if (!$userFromDatabase) {
             $trelloUserObj = new SlackUser();
             foreach ($slackUsers as $slackUser) {
-                if($slackUser->id == $userId) {
+                if ($slackUser->id == $userId) {
+
                     $trelloUserObj
                         ->setSlackId($slackUser->id)
-                        ->setUsername($slackUser->name);
+                        ->setUsername($this->formatUserNameToName($slackUser->name));
 
                     $realName = !empty($slackUser->real_name) ? $slackUser->real_name : "no full name";
                     $email = !empty($slackUser->profile->email) ? $slackUser->profile->email : "no email";
@@ -67,7 +68,7 @@ class SlackService
                 }
             }
             return new Response("ok", 200);
-        }else{
+        } else {
             return new Response("user already exists", 409);
         }
     }
@@ -76,14 +77,28 @@ class SlackService
      * @Route("/validate", methods={"GET", "POST"})
      * @param Request $request
      */
-    public function validate(Request $request){
-        if($request->getMethod() == "POST"){
+    public function validate(Request $request)
+    {
+        if ($request->getMethod() == "POST") {
             $eventType = $request->request["events"]["type"];
             $response = new Response("ok", 200, "Application/Json");
             $openMessageSlackForUserUrl = "https://slack.com/api/im.open?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&pretty=1";
             $this->requestDispatcher->post($openMessageSlackForUserUrl);
             $channelId = $request->request['event']['channel'];
-            return $channelId."ESSE O CANAL";
+            return $channelId . "ESSE O CANAL";
         }
+    }
+
+    private function formatUserNameToName($username)
+    {
+        $sentences = preg_split('/([.?!]+)/', $username, -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
+        $sentences = str_replace(".", "", $sentences);
+        $new_string = '';
+        foreach ($sentences as $key => $sentence) {
+            $new_string .= ($key & 1) == 0 ?
+                ucfirst(strtolower(trim($sentence))) :
+                $sentence . ' ';
+        }
+        return trim($new_string);
     }
 }
