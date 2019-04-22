@@ -32,6 +32,23 @@ class SlackUserRepository extends ServiceEntityRepository
         $em->merge($instance);
         return $em->flush();
     }
+
+    public function appendReward(SlackUser $slackUser)
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQueryBuilder()->select("a.premios")
+            ->from(SlackUser::class, "a")
+            ->where("a.id = {$slackUser->getId()}")
+            ->getQuery();
+        $premios = $query->getResult()[0]["premios"];
+        $addedPremios = $slackUser->getPremios();
+        foreach ($addedPremios as $premio){
+            $premios[] = $premio;
+        }
+        $slackUser->setPremios($premios);
+        $em->merge($slackUser);
+        return $em->flush();
+    }
     // /**
     //  * @return SlackUser[] Returns an array of SlackUser objects
     //  */

@@ -1,168 +1,163 @@
 {% extends "base.html.twig" %}
 
  {% block body %}
-        <link rel="stylesheet" href="{{ asset('css/back.css') }}">
+     <link rel="stylesheet" href="{{ asset('css/back.css') }}">
 
-        <div class="context">
-            <div class="jumbotron bg-transparent">
+     <div class="context">
+         <div class="jumbotron bg-transparent">
 
-                <h5 class="mb-md-3">Preston control panel</h5>
+             <h5 class="mb-md-3">Preston control panel</h5>
 
-                <p class="mb-md-5">Welcome, {{ user.login }} !</p>
+             <p class="mb-md-5">Welcome, {{ user.login }} !</p>
 
-                <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
-                     aria-hidden="true">
-                    <form class="formModal" method="post" style="font-family: 'Roboto', sans-serif !important;">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title text-dark">Reward</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <input name="tags" type="text" id="tags">
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Save</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+             <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+                  aria-hidden="true">
+                 <form class="formModal" method="post" style="font-family: 'Roboto', sans-serif !important;">
+                     <div class="modal-dialog" role="document">
+                         <div class="modal-content">
+                             <div class="modal-header">
+                                 <h5 class="modal-title text-dark">Reward</h5>
+                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                     <span aria-hidden="true">&times;</span>
+                                 </button>
+                             </div>
+                             <div class="modal-body">
+                                 <input name="tags" type="text" id="tags">
+                             </div>
+                             <div class="modal-footer">
+                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                 <button type="submit" class="btn btn-primary">Save</button>
+                             </div>
+                         </div>
+                     </div>
+                 </form>
+             </div>
 
-                <table id="dtBasicExample" style="font-family: 'Roboto', sans-serif !important;" class="table table-borderless text-white col-12 col-lg-12">
-                    <thead>
+             <table id="dtBasicExample" style="font-family: 'Roboto', sans-serif !important;"
+                    class="table table-borderless text-white col-12 col-lg-12">
+                 <thead>
 
-                    </th>
-                    <th>Id
+                 </th>
+                 <th>Id
 
-                    </th>
-                    <th>Username
+                 </th>
+                 <th>Name
 
-                    </th>
-                    <th> Full name
+                 </th>
+                 <th>Email
 
-                    </th>
-                    <th>Email
+                 </th>
+                 <th>Birth date
 
-                    </th>
-                    <th>Birth date
+                 </th>
+                 <th>Rewards
 
-                    </th>
-                    <th>Rewards
+                 </th>
+                 <th>
+                     Actions
+                 </th>
+                 </tr>
+                 </thead>
+                 <tbody class="table text-white">
 
-                    </th>
-                    <th>
-                        Actions
-                    </th>
-                    </tr>
-                    </thead>
-                    <tbody class="table text-white">
+                 {% for u in userDatabase %}
+                     {% if u %}
 
-                    {% for u in userDatabase %}
-                        {% if u %}
+                         <tr class="bg-transparent">
+                             <td>{{ u.id }}</td>
+                             <td class="username{{ u.id }}">{{ u.username }}</td>
+                             <td>{{ u.email }}</td>
+                             {% if u.dataDeNascimento is null %}
+                                 <td>no birthdate</td>
+                             {% else %}
+                                 <td>{{ u.dataDeNascimento|date("d/m/Y") }}</td>
+                             {% endif %}
+                             <td>
+                                 {{ u.premios|length }}
+                                 <a id="rewardBalloon{{ u.id }}" class="openModal{{ u.id }}" data-toggle="modal" data-target="#modelId"
+                                    name="{{ u.id }}">
+                                     <i class="fas fa-plus-circle cell"></i>
+                                 </a>
+                             </td>
+                             <td>
+                                 <a href="{{ path("edit_user", {"id": u.id}) }}">edit</a>
+                             </td>
+                         </tr>
+                     {% endif %}
+                 {% endfor %}
+                 </tbody>
 
-                            <tr class="bg-transparent">
-                                <td>{{ u.id }}</td>
-                                <td class="username{{ u.id }}">{{ u.username }}</td>
-                                <td>{{ u.realName }}</td>
-                                <td>{{ u.email }}</td>
-                                {% if u.dataDeNascimento is null %}
-                                    <td>no birthdate</td>
-                                {% else %}
-                                    <td>{{ u.dataDeNascimento|date("d/m/Y") }}</td>
-                                {% endif %}
-                                <td>
-                                    {% for p in u.premios %}
-                                        {{ p }}
-                                    {% endfor %}
-                                    <a class="openModal{{ u.id }}" data-toggle="modal" data-target="#modelId"
-                                       name="{{ u.id }}">
-                                        <i class="fas fa-plus-circle cell"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="{{ path("edit_user", {"id": u.id}) }}">edit</a>
-                                </td>
-                            </tr>
-                        {% endif %}
-                    {% endfor %}
-                    </tbody>
+                 <tfoot>
+                 <tr>
+                     <th>Id
+                     <th>Name
+                     </th>
+                     <th>Email
+                     </th>
+                     <th>Birth date
+                     </th>
+                     <th>Rewards
+                     </th>
+                     <th>
+                         Actions
+                     </th>
+                 </tr>
+                 </tfoot>
+             </table>
+         </div>
+     </div>
+     <div class="area">
+         <ul class="circles">
+             <li></li>
+             <li></li>
+             <li></li>
+             <li></li>
+             <li></li>
+             <li></li>
+             <li></li>
+             <li></li>
+             <li></li>
+             <li></li>
+         </ul>
+     </div>
 
-                    <tfoot>
-                    <tr>
-                        <th>Id
-                        <th>Username
-                        </th>
-                        </th>
-                        <th>Full name
-                        </th>
-                        <th>Email
-                        </th>
-                        <th>Birth date
-                        </th>
-                        <th>Rewards
-                        </th>
-                        <th>
-                            Actions
-                        </th>
-                    </tr>
-                    </tfoot>
-                </table>
-            </div>
-        </div>
-        <div class="area" >
-            <ul class="circles">
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
-        </div >
+     <script src="{{ asset('js/tooltip.js') }}"></script>
+     <script>
+         // Basic example
+         $(document).ready(function () {
+             $('#dtBasicExample').DataTable({
+                 responsive: true
+             });
+             $('.dataTables_length').addClass('bs-select');
 
-        <script>
-            // Basic example
-            $(document).ready(function () {
-                $('#dtBasicExample').DataTable({
-                    responsive: true,
-                    "pagingType": "simple"
-                });
-                $('.dataTables_length').addClass('bs-select');
+             {% for u in userDatabase %}
+             {% if u %}
+             $(document).on("click", ".openModal{{ u.id }}", function () {
+                 var id = $(".openModal{{ u.id }}").attr("name");
+                 var nome = "{{ u.username }}";
+                 $('.formModal').attr("name", id);
+                 $('.formModal').attr("action", "{{ path('add_reward', {"id": u.id}) }}");
+                 $('.modal-title').text("Reward " + nome);
+             });
 
-                {% for u in userDatabase %}
-                {% if u %}
-                $(document).on("click", ".openModal{{ u.id }}", function () {
-                    var id = $(".openModal{{ u.id }}").attr("name");
-                    var nome = "{{ u.username }}";
-                    $('.formModal').attr("name", id);
-                    $('.formModal').attr("action", "{{ path('add_reward', {"id": u.id}) }}");
-                    $('.modal-title').text("Reward " + nome);
-                });
-                {% endif %}
-                {% endfor %}
+             $("#rewardBalloon{{ u.id }}").balloon({html: true, contents: $("<p style='font-family: `lato`, sans-serif; font-size: 15px; width: 150px'>{{ u.premios|join(", ")}}</p>")});
 
-            });
+             {% endif %}
+             {% endfor %}
 
-            var tagsdata = []
-            tagsdata.push({id: 1, name: "Faça", screen: "faca"});
-            tagsdata.push({id: 2, name: "Crie", screen: "crie"});
-            tagsdata.push({id: 3, name: "Ouse", screen: "ouse"});
-            tagsdata.push({id: 4, name: "Conecte", screen: "conecte"});
+         });
 
-            $("#tags").sTags({
-                data: tagsdata,
-                color: 1
-            })
+         var tagsdata = []
+         tagsdata.push({id: 1, name: "Faça", screen: "faca"});
+         tagsdata.push({id: 2, name: "Crie", screen: "crie"});
+         tagsdata.push({id: 3, name: "Ouse", screen: "ouse"});
+         tagsdata.push({id: 4, name: "Conecte", screen: "conecte"});
 
-        </script>
+         $("#tags").sTags({
+             data: tagsdata,
+             color: 1
+         });
 
-    {% endblock %}
+     </script>
+
+ {% endblock %}

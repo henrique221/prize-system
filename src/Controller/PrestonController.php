@@ -71,8 +71,9 @@ class PrestonController extends AbstractController
         foreach ($tags as $tag){
             $rewardsFilterSelected[] = $rewards[$tag];
         }
-        dump($rewardsFilterSelected);
-        dump($slackUser->getUsername());die;
+
+        $slackUser->setPremios($rewardsFilterSelected);
+        $this->slackUserRepository->appendReward($slackUser);
         return $this->redirectToRoute("preston");
     }
 
