@@ -38,34 +38,42 @@ class PrestonController extends AbstractController
     }
 
     /**
-     * @Route("/", name="preston", methods={"GET", "POST"})
+     * @Route("/", name="preston", methods={"GET"})
      * @param Request $request
      */
     public function index(Request $request)
     {
-        if($request->getMethod() == "POST") {
-            $rewards = [
-                1 => "faca",
-                2 => "crie",
-                3 => "ouse",
-                4 => "conecte"
-            ];
-
-            $tags = explode(",", $request->request->get("tags"));
-            $rewardsFilterSelected = [];
-
-            foreach ($tags as $tag){
-                $rewardsFilterSelected[] = $rewards[$tag];
-            }
-            dump($rewardsFilterSelected);
-            die;
-        }
         $userDatabase = $this->slackUserRepository->findAll();
 
         return $this->render('preston/list.html.twig', [
             'user' => $this->getUser(),
             'userDatabase' => $userDatabase
         ]);
+    }
+
+    /**
+     * @Route("/reward/{id}", name="add_reward", methods={"GET", "POST"})
+     * @param SlackUser $slackUser
+     * @param Request $request
+     * @return Response
+     */
+    public function addReward(Request $request, SlackUser $slackUser){
+        $rewards = [
+            1 => "faca",
+            2 => "crie",
+            3 => "ouse",
+            4 => "conecte"
+        ];
+
+        $tags = explode(",", $request->request->get("tags"));
+        $rewardsFilterSelected = [];
+
+        foreach ($tags as $tag){
+            $rewardsFilterSelected[] = $rewards[$tag];
+        }
+        dump($rewardsFilterSelected);
+        dump($slackUser->getUsername());die;
+        return $this->redirectToRoute("preston");
     }
 
     /**

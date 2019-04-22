@@ -10,7 +10,6 @@
 
                 <p class="mb-md-5">Welcome, {{ user.login }} !</p>
 
-                <!-- Modal -->
                 <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
                      aria-hidden="true">
                     <form class="formModal" method="post" style="font-family: 'Roboto', sans-serif !important;">
@@ -64,7 +63,6 @@
                     <tbody class="table text-white">
 
                     {% for u in userDatabase %}
-
                         {% if u %}
 
                             <tr class="bg-transparent">
@@ -146,6 +144,7 @@
                     var id = $(".openModal{{ u.id }}").attr("name");
                     var nome = "{{ u.username }}";
                     $('.formModal').attr("name", id);
+                    $('.formModal').attr("action", "{{ path('add_reward', {"id": u.id}) }}");
                     $('.modal-title').text("Reward " + nome);
                 });
                 {% endif %}
