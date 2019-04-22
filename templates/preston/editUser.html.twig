@@ -46,6 +46,11 @@
 
                 {{ form_end(form) }}
             </form>
+
+        </div>
+
+        <div class="float-md-right mt-5 mt-md-0">
+            <a class="text-danger" href="{{ path('remove_user', {"id": slackUser.id}) }}">delete user</a>
         </div>
 
     </section>

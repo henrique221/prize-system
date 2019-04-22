@@ -14,10 +14,11 @@ class UsuarioType extends AbstractType
     {
         $builder
             ->add('login')
-            ->add('senha')
+            ->add('senha', null, ["label" => "Password"])
             ->add('permissoes', ChoiceType::class, [
-                "multiple" => true,
-                "choices" => ["Admin" => "ROLE_ADMIN", "Funcionario" => "ROLE_FUNCIONARIO"]
+                "choices" => ["Admin" => "ROLE_ADMIN", "Funcionario" => "ROLE_FUNCIONARIO"],
+                "label" => "Permissions",
+                "attr" => ["class"=>"form-control", "style" => 'font-family:"lato", sans-serif;']
             ])
         ;
     }

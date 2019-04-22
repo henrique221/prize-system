@@ -1,10 +1,52 @@
-{% extends 'base.html.twig' %}
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+    <style>
+        body {
+            background: #0f6674;
+        }
+    </style>
+{% endblock %}
 
 {% block body %}
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        <div class="alert bg-success" role="alert">
+            <strong>
+                {{ flashMessage }}
+                <i class="far fa-check-circle"></i>
+            </strong>
+        </div>
+    {% endfor %}
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <button type="submit">salvar</button>
-    {{ form_end(form) }}
+    <section class="jumbotron" style="background: #1b2735">
+        <h1 class="text-white mb-md-5">Create new access</h1>
+        <div class="d-flex">
+            <form method="post" class="col-md-3">
+                {{ form_start(form) }}
 
+                <div class="d-flex flex-md-row flex-column justify-content-between mb-2">
+                    <div style="font-family: 'lato', sans-serif;">{{ form_label(form.login) }}</div>
+                    <div>{{ form_widget(form.login) }}</div>
+                </div>
+
+                <div class="d-flex flex-md-row flex-column justify-content-between mb-2">
+                    <div style="font-family: 'lato', sans-serif;">{{ form_label(form.senha) }}</div>
+                    <div>{{ form_widget(form.senha) }}</div>
+                </div>
+
+                <div class="d-flex flex-md-row flex-column justify-content-between mb-2">
+                    <div style="font-family: 'lato', sans-serif;">{{ form_label(form.permissoes) }}</div>
+                    <div>{{ form_widget(form.permissoes) }}</div>
+                </div>
+
+                <div class="d-flex flex-row justify-content-between">
+                    <a style="font-size: 30px" href="{{ path('preston') }}"><i class="fas fa-arrow-circle-left"></i></a>
+                    <button class="pt-1 pb-1" type="submit">save</button>
+                </div>
+
+                {{ form_end(form) }}
+            </form>
+        </div>
+
+    </section>
 {% endblock %}

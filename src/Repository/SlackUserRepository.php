@@ -33,6 +33,15 @@ class SlackUserRepository extends ServiceEntityRepository
         return $em->flush();
     }
 
+    public function remove(SlackUser $instance)
+    {
+        $em = $this->getEntityManager();
+        $em->beginTransaction();
+        $em->remove($instance);
+        $em->commit();
+        return $em->flush();
+    }
+
     public function appendReward(SlackUser $slackUser)
     {
         $em = $this->getEntityManager();

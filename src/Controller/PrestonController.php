@@ -151,4 +151,16 @@ class PrestonController extends AbstractController
     public function getAmountRewards(SlackUser $slackUser){
         return new Response(count($slackUser->getPremios()));
     }
+
+    /**
+     * @Route("/{id}/remove", name="remove_user")
+     * @param SlackUser $slackUser
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+
+    public function removeSlackUser(SlackUser $slackUser){
+        $this->slackUserRepository->remove($slackUser);
+        $this->addFlash('notice', "User deleted");
+        return $this->redirectToRoute("preston");
+    }
 }
