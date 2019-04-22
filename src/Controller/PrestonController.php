@@ -38,10 +38,28 @@ class PrestonController extends AbstractController
     }
 
     /**
-     * @Route("/", name="preston")
+     * @Route("/", name="preston", methods={"GET", "POST"})
+     * @param Request $request
      */
-    public function index()
+    public function index(Request $request)
     {
+        if($request->getMethod() == "POST") {
+            $rewards = [
+                1 => "faca",
+                2 => "crie",
+                3 => "ouse",
+                4 => "conecte"
+            ];
+
+            $tags = explode(",", $request->request->get("tags"));
+            $rewardsFilterSelected = [];
+
+            foreach ($tags as $tag){
+                $rewardsFilterSelected[] = $rewards[$tag];
+            }
+            dump($rewardsFilterSelected);
+            die;
+        }
         $userDatabase = $this->slackUserRepository->findAll();
 
         return $this->render('preston/list.html.twig', [
@@ -106,10 +124,11 @@ class PrestonController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->slackUserRepository->save($slackUser);
 
+            $this->addFlash('notice', "User edited sucessfully");
             return $this->redirectToRoute('edit_user', array('id' => $slackUser->getId()));
         }
 
-        return $this->render("preston/edit_user.html.twig", array(
+        return $this->render("preston/editUser.html.twig", array(
             'form' => $form->createView(),
             'slackUser' => $slackUser
         ));

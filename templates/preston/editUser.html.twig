@@ -9,6 +9,15 @@
 {% endblock %}
 
 {% block body %}
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        <div class="alert bg-success" role="alert">
+            <strong>
+                {{ flashMessage }}
+                <i class="far fa-check-circle"></i>
+            </strong>
+        </div>
+    {% endfor %}
+
     <section class="jumbotron" style="background: #1b2735">
         <h1 class="text-white mb-md-5">{{ slackUser.username }}</h1>
         <div class="d-flex">
@@ -29,9 +38,15 @@
                     <div style="font-family: 'lato', sans-serif;">{{ form_label(form.email) }}</div>
                     <div>{{ form_widget(form.email) }}</div>
                 </div>
-                <button class="float-right pt-1 pb-1 col-md-2 mt-md-5" type="submit">save</button>
+
+                <div class="d-flex flex-row justify-content-between">
+                    <a style="font-size: 30px" href="{{ path('preston') }}"><i class="fas fa-arrow-circle-left"></i></a>
+                    <button class="pt-1 pb-1" type="submit">save</button>
+                </div>
+
                 {{ form_end(form) }}
             </form>
         </div>
+
     </section>
 {% endblock %}
