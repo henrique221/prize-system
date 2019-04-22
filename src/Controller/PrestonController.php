@@ -142,4 +142,13 @@ class PrestonController extends AbstractController
             'slackUser' => $slackUser
         ));
     }
+
+    /**
+     * @Route("/{id}/rewards", name="amount_rewards")
+     * @param SlackUser $slackUser
+     * @return Response
+     */
+    public function getAmountRewards(SlackUser $slackUser){
+        return new Response(count($slackUser->getPremios()));
+    }
 }

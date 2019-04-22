@@ -40,18 +40,18 @@
 		})
 
 		var list = function(target){//列出数据 target目标div指 定义选择数据的div
-			if(o.screen){//如果启用筛选
-				//定义筛选框
-				$("<input>",o.screenInput).keyup(function(){
-					var skey = $(this).val().replace(/[^a-zA-Z]/g,"")
-					if(skey==""){
-						$(target+">"+o.tagName+"[screen]").show()
-					}else{
-						$(target+">"+o.tagName+"[screen]").hide()
-						$(target+">"+o.tagName+"[screen^='"+skey+"']").show()
-					}
-				}).appendTo(target)
-			}
+			// if(o.screen){//如果启用筛选
+			// 	//定义筛选框
+			// 	$("<input>",o.screenInput).keyup(function(){
+			// 		var skey = $(this).val().replace(/[^a-zA-Z]/g,"")
+			// 		if(skey==""){
+			// 			$(target+">"+o.tagName+"[screen]").show()
+			// 		}else{
+			// 			$(target+">"+o.tagName+"[screen]").hide()
+			// 			$(target+">"+o.tagName+"[screen^='"+skey+"']").show()
+			// 		}
+			// 	}).appendTo(target)
+			// }
 
 			var color = 0 //颜色内容
 			var color_i = 0 //颜色计数
@@ -61,7 +61,7 @@
 
 				for(var i in o.data){//循环标签数据
 
-					var attr = {}
+					var attr = {"class": "pl-md-4 pr-md-4 pb-md-2 pt-md-2 pl-3 pr-3 pt-2 pb-2"};
 					for(var j in o.tagAttr){
 						attr[j] = o.tagAttr[j].replace('{name}',o.data[i].name).replace('{id}',o.data[i].id)
 					}
@@ -74,7 +74,7 @@
 
 					if(o.color==1 && o.data[i].screen){ //按照筛选首字母换色
 						if(color_s==""){
-							color_s=o.data[i].screen.substr(0,1)
+							color_s=o.data[i].screen.substr(0,1);
 							color = o.colorData[color_i]
 						}else{
 							if(color_s!=o.data[i].screen.substr(0,1)){
@@ -86,7 +86,7 @@
 								color = o.colorData[color_i]
 							}
 						}
-						attr.style="background:"+color[0]+";color:"+color[1]+";"
+						attr.style="background:"+color[0]+";color:"+color[1]+"; border-radius: 5px"
 					}
 
 					if(o.color==2){//随机换色
@@ -276,11 +276,11 @@
 			],//标签列表颜色，0不使用，1按screen的首字母，按顺序循环数组内颜色，2随机颜色，数组内颜色，值0为背景色，1为字色
 		screen:true,//是否启用筛选功能
 		screenInput:{
-					type:"text",
-					size:8,
-					placeholder:"find tag"
+					// type:"text",
+					// size:8,
+					// placeholder:"find tag"
 				},//筛选输入框属性,
-		tagTXT:"Tags:",//标签列表前缀
+		tagTXT:"",//标签列表前缀
 		//click:function(e){console.log(e.attr("tagid"))},//当目标元素为div时，列表的点击事件。e为点击元素自身
 		tagName:"",//标签列表使用的html标签，默认为div，如要改为div和a之外的其他标签则需要修改css
 		tagHtml:"",//自定义标签列表中的html内容。{name} 替换为 tag.name {id}将转换为 tag.id,
