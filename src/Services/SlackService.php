@@ -6,6 +6,7 @@ namespace App\Services;
 use App\Entity\SlackUser;
 use App\Repository\SlackUserRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class SlackService
@@ -68,6 +69,21 @@ class SlackService
             return new Response("ok", 200);
         }else{
             return new Response("user already exists", 409);
+        }
+    }
+
+    /**
+     * @Route("/validate", methods={"GET", "POST"})
+     * @param Request $request
+     */
+    public function validate(Request $request){
+        if($request->getMethod() == "POST"){
+            $eventType = $request->request["events"]["type"];
+            $response = new Response("ok", 200, "Application/Json");
+            $openMessageSlackForUserUrl = "https://slack.com/api/im.open?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&pretty=1";
+            $this->requestDispatcher->post($openMessageSlackForUserUrl);
+            $channelId = $request->request['event']['channel'];
+            return $channelId."ESSE O CANAL";
         }
     }
 }
