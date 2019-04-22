@@ -16,6 +16,7 @@ class UsuarioType extends AbstractType
             ->add('login')
             ->add('senha', null, ["label" => "Password"])
             ->add('permissoes', ChoiceType::class, [
+                "multiple" => true,
                 "choices" => ["Admin" => "ROLE_ADMIN", "Funcionario" => "ROLE_FUNCIONARIO"],
                 "label" => "Permissions",
                 "attr" => ["class"=>"form-control", "style" => 'font-family:"lato", sans-serif;']
