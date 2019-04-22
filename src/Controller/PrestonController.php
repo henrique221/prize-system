@@ -110,7 +110,8 @@ class PrestonController extends AbstractController
         }
 
         return $this->render("preston/edit_user.html.twig", array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'slackUser' => $slackUser
         ));
     }
 }

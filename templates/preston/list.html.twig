@@ -56,6 +56,9 @@
                     <th>Rewards
 
                     </th>
+                    <th>
+                        Actions
+                    </th>
                     </tr>
                     </thead>
                     <tbody class="table text-white">
@@ -65,8 +68,8 @@
                         {% if u %}
 
                             <tr class="bg-transparent">
-                                <td><a href="{{ path("edit_user", {"id": u.id}) }}">{{ u.id }}</a></td>
-                                <td class="username{{ u.id }}"><a href="{{ path("edit_user", {"id" : u.id}) }}">{{ u.username }}</a></td>
+                                <td>{{ u.id }}</td>
+                                <td class="username{{ u.id }}">{{ u.username }}</td>
                                 <td>{{ u.realName }}</td>
                                 <td>{{ u.email }}</td>
                                 {% if u.dataDeNascimento is null %}
@@ -82,6 +85,9 @@
                                        name="{{ u.id }}">
                                         <i class="fas fa-plus-circle cell"></i>
                                     </a>
+                                </td>
+                                <td>
+                                    <a href="{{ path("edit_user", {"id": u.id}) }}">edit</a>
                                 </td>
                             </tr>
                         {% endif %}
@@ -101,6 +107,9 @@
                         <th>Birth date
                         </th>
                         <th>Rewards
+                        </th>
+                        <th>
+                            Actions
                         </th>
                     </tr>
                     </tfoot>
@@ -135,7 +144,7 @@
                 {% if u %}
                 $(document).on("click", ".openModal{{ u.id }}", function () {
                     var id = $(".openModal{{ u.id }}").attr("name");
-                    var nome = $(".username{{ u.username }}").attr("name");
+                    var nome = "{{ u.username }}";
                     $('.formModal').attr("name", id);
                     $('.modal-title').text("Reward " + nome);
                 });
