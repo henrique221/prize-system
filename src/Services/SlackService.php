@@ -60,7 +60,6 @@ class SlackService
                     $trelloUserObj->setRealName($realName);
                     $trelloUserObj->setEmail($email);
                     $trelloUserObj->setDataDeNascimento(null);
-                    $trelloUserObj->setPremios(null);
 
                     $em = $this->managerRegistry->getManager();
                     $em->persist($trelloUserObj);
