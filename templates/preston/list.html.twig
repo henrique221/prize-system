@@ -156,6 +156,7 @@
                  $('.formModal').attr("id", "form" + id);
                  $('.formModal').attr("action", "{{ path('add_reward', {"id": u.id}) }}");
                  $('.modal-title').text("Reward " + nome);
+                 $('#descriptionLabel').text("Why are you rewarding {{ u.username }} ?");
              });
 
              {#$("#rewardBalloon{{ u.id }}").balloon({#}
