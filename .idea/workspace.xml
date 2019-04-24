@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9619f130-f45f-4468-bcdc-0db50da68777" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/preston/editUser.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/preston/editUser.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/preston/accessForm.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/preston/accessForm.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/preston/list.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/preston/list.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,40 +18,13 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Form/UsuarioType.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="16" column="57" selection-start-line="16" selection-start-column="57" selection-end-line="16" selection-end-column="57" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/preston/list.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="7" selection-start-line="7" selection-end-line="7" />
-              <folding>
-                <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/preston/editUser.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="18" column="127" selection-start-line="18" selection-start-column="127" selection-end-line="18" selection-end-column="127" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/preston/accessForm.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
-              <caret line="35" selection-start-line="35" selection-end-line="35" />
+            <state relative-caret-position="294">
+              <caret line="14" column="8" lean-forward="true" selection-start-line="14" selection-start-column="8" selection-end-line="21" selection-end-column="20" />
+              <folding>
+                <element signature="e#521#606#0#HTML" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -61,24 +34,43 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="147">
               <caret line="7" column="9" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
+              <folding>
+                <element signature="e#3237#3259#0#Twig" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Services/SlackService.php">
+        <entry file="file://$PROJECT_DIR$/templates/index/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="798">
-              <caret line="42" column="4" selection-start-line="42" selection-start-column="4" selection-end-line="42" selection-end-column="4" />
+            <state relative-caret-position="336">
+              <caret line="16" column="8" lean-forward="true" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/PrestonController.php">
+        <entry file="file://$PROJECT_DIR$/templates/preston/accessForm.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2205">
-              <caret line="116" column="43" selection-start-line="116" selection-start-column="43" selection-end-line="116" selection-end-column="43" />
+            <state relative-caret-position="378">
+              <caret line="18" column="16" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
+              <folding>
+                <element signature="e#12#26#0#Twig" expanded="true" />
+                <element signature="e#455#540#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/preston/list.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="378">
+              <caret line="62" column="47" lean-forward="true" selection-start-line="62" selection-start-column="47" selection-end-line="62" selection-end-column="47" />
+              <folding>
+                <element signature="n#style#0;n#img#0;n#strong#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -167,14 +159,14 @@
         <option value="$PROJECT_DIR$/templates/base.html.twig" />
         <option value="$PROJECT_DIR$/public/css/jquery.sTags.css" />
         <option value="$PROJECT_DIR$/public/js/jquery.sTags.js" />
-        <option value="$PROJECT_DIR$/templates/preston/accessForm.html.twig" />
         <option value="$PROJECT_DIR$/src/Repository/SlackUserRepository.php" />
         <option value="$PROJECT_DIR$/src/Controller/PrestonController.php" />
         <option value="$PROJECT_DIR$/src/Form/UsuarioType.php" />
         <option value="$PROJECT_DIR$/src/Form/SlackUserType.php" />
         <option value="$PROJECT_DIR$/src/Services/SlackService.php" />
-        <option value="$PROJECT_DIR$/templates/preston/list.html.twig" />
         <option value="$PROJECT_DIR$/templates/preston/editUser.html.twig" />
+        <option value="$PROJECT_DIR$/templates/preston/accessForm.html.twig" />
+        <option value="$PROJECT_DIR$/templates/preston/list.html.twig" />
       </list>
     </option>
   </component>
@@ -279,6 +271,17 @@
             <path>
               <item name="prestonsy" type="b2602c69:ProjectViewProjectNode" />
               <item name="prestonsy" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="prestonsy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="prestonsy" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="packages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="prestonsy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="prestonsy" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -286,21 +289,6 @@
               <item name="prestonsy" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
               <item name="img" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="prestonsy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="prestonsy" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="img" type="462c0819:PsiDirectoryNode" />
-              <item name="animat-essential" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="prestonsy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="prestonsy" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="img" type="462c0819:PsiDirectoryNode" />
-              <item name="animat-essential" type="462c0819:PsiDirectoryNode" />
-              <item name="checkmark" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="prestonsy" type="b2602c69:ProjectViewProjectNode" />
@@ -317,7 +305,19 @@
               <item name="prestonsy" type="b2602c69:ProjectViewProjectNode" />
               <item name="prestonsy" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="prestonsy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="prestonsy" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Form" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="prestonsy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="prestonsy" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Repository" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="prestonsy" type="b2602c69:ProjectViewProjectNode" />
@@ -419,12 +419,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="148150000" />
+    <option name="totallyTimeSpent" value="148797000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="105" width="1920" height="1045" extended-state="6" />
+    <frame x="0" y="26" width="2560" height="1014" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1629393" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16109785" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -579,13 +580,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/typejs.js">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/index/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="30" column="25" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/css/loginBack.css">
       <provider selected="true" editor-type-id="text-editor">
@@ -750,33 +744,50 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
           <caret line="7" column="9" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/preston/accessForm.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="35" selection-start-line="35" selection-end-line="35" />
+          <folding>
+            <element signature="e#3237#3259#0#Twig" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/img/animat-essential/checkmark/animat-checkmark-color.gif">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/preston/list.html.twig">
+    <entry file="file://$PROJECT_DIR$/templates/preston/editUser.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        <state relative-caret-position="294">
+          <caret line="14" column="8" lean-forward="true" selection-start-line="14" selection-start-column="8" selection-end-line="21" selection-end-column="20" />
           <folding>
-            <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#521#606#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/preston/editUser.html.twig">
+    <entry file="file://$PROJECT_DIR$/templates/index/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="16" column="8" lean-forward="true" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/preston/accessForm.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
-          <caret line="18" column="127" selection-start-line="18" selection-start-column="127" selection-end-line="18" selection-end-column="127" />
+          <caret line="18" column="16" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
+          <folding>
+            <element signature="e#12#26#0#Twig" expanded="true" />
+            <element signature="e#455#540#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/preston/list.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="62" column="47" lean-forward="true" selection-start-line="62" selection-start-column="47" selection-end-line="62" selection-end-column="47" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#strong#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
