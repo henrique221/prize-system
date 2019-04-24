@@ -71,10 +71,10 @@ class PrestonController extends AbstractController
         $slackUser = $this->slackUserRepository->find($id);
         $reward = new Reward();
         $rewards = [
-            1 => "faca",
-            2 => "crie",
-            3 => "ouse",
-            4 => "conecte"
+            1 => "dare",
+            2 => "create",
+            3 => "do it",
+            4 => "conect"
         ];
 
         $tags = explode(",", $request->request->get("tags"));

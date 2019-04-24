@@ -45,23 +45,27 @@ class RewardRepository extends ServiceEntityRepository
 
     public function appendReward(Reward $reward)
     {
+        dump($reward);
         $em = $this->getEntityManager();
-        $query = $em->createQueryBuilder()->select("a.rewards")
-            ->from(Reward::class, "a")
-            ->where("a.slackUser = {$reward->getSlackUser()->getId()}")
-            ->getQuery();
+//        $query = $em->createQueryBuilder()->select("a.rewards")
+//            ->from(Reward::class, "a")
+//            ->where("a.slackUser = {$reward->getSlackUser()->getId()}")
+//            ->getQuery();
 
+//
+//        if(!empty($query->getResult())){
+//            $rewards = $query->getResult()[0]["rewards"];
+//            $addedRewards = $reward->getRewards();
+//            foreach ($addedRewards as $r) {
+//                $rewards[] = $r;
+//            }
+//
+//            dump($query->getResult());die;
+//            $reward->setRewards($rewards);
+//        }else {
+//        }
 
-        if(!empty($query->getResult())){
-            $rewards = $query->getResult()[0]["rewards"];
-            $addedRewards = $reward->getRewards();
-            foreach ($addedRewards as $r) {
-                $rewards[] = $r;
-            }
-            $reward->setRewards($rewards);
-        }else {
-            $reward->setRewards($reward->getRewards());
-        }
+        $reward->setRewards($reward->getRewards());
 
         $em->persist($reward);
         return $em->flush();
