@@ -61,7 +61,7 @@
 
 				for(var i in o.data){//循环标签数据
 
-					var attr = {"class": "pl-md-4 pr-md-4 pb-md-2 pt-md-2 pl-3 pr-3 pt-2 pb-2"};
+					var attr = {"class": "pl-md-4 pr-md-4 pb-md-2 pt-md-2 pl-3 pr-3 pt-2 pb-2 mt-1"};
 					for(var j in o.tagAttr){
 						attr[j] = o.tagAttr[j].replace('{name}',o.data[i].name).replace('{id}',o.data[i].id)
 					}
@@ -86,12 +86,12 @@
 								color = o.colorData[color_i]
 							}
 						}
-						attr.style="background:"+color[0]+";color:"+color[1]+"; border-radius: 5px"
+						attr.style="background:"+color[0]+";color:"+color[1]+"; border-radius: 5px;"+"cursor: "+"pointer;font-family: \"lato\", sans-serif !important;";
 					}
 
 					if(o.color==2){//随机换色
 						color = o.colorData[Math.floor(Math.random()*o.colorData.length)]
-						attr.style="background:"+color[0]+";color:"+color[1]+";"
+						attr.style="background:"+color[0]+";color:"+color[1]+";";
 					}
 					
 					

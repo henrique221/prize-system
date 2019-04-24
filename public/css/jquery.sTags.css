@@ -1,6 +1,8 @@
 .sTags-input{
-	border: 1px solid #ccc;
-	height: 100px;
+	border: 0;
+	height: 20%;
+	font-family: "lato", sans-serif !important;
+	margin-bottom: 10px;
 }
 .sTags-input>div{
 	display: inline-block;
