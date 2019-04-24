@@ -10,7 +10,7 @@
                  <div class="alert bg-success" role="alert">
                      <strong>
                          {{ flashMessage }}
-                         <i class="far fa-check-circle"></i>
+                         <img src="{{ asset('img/animat-essential/checkmark/animat-checkmark.gif') }}" style="height: 60px; width: 60px; -webkit-filter: invert(100%);filter: invert(100%);" alt="ok">
                      </strong>
                  </div>
              {% endfor %}
@@ -62,6 +62,7 @@
                                              </button>
                                          </div>
                                          <div class="modal-body">
+                                             <textarea class="w-100" name="rewardDescription" placeholder="Reward's description"></textarea>
                                              <input name="tags" type="text" id="tags">
                                          </div>
                                          <div class="modal-footer">
