@@ -89,7 +89,7 @@
                                     type: 'POST',
                                     data: values,
                                     url: '{{ path('check_user_in_database') }}',
-                                    success: function () {
+                                    success: function (response) {
                                         Command: toastr["success"]("User {{ u.name }} added to database")
 
                                         toastr.options = {
@@ -110,9 +110,9 @@
                                             "hideMethod": "fadeOut",
                                             "shadowColor": "none"
                                         };
-                                        console.log("ok")
+                                        console.log(response)
                                     },
-                                    error: function () {
+                                    error: function (response) {
                                         Command: toastr["error"]("User already in database")
 
                                         toastr.options = {
@@ -132,7 +132,7 @@
                                             "showMethod": "fadeIn",
                                             "hideMethod": "fadeOut",
                                         };
-                                        console.log("user exists")
+                                        console.log(response)
                                     }
                                 })
                             });
