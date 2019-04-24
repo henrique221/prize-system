@@ -10,7 +10,9 @@
                  <div class="alert bg-success" role="alert">
                      <strong>
                          {{ flashMessage }}
-                         <img src="{{ asset('img/animat-essential/checkmark/animat-checkmark.gif') }}" style="height: 60px; width: 60px; -webkit-filter: invert(100%);filter: invert(100%);" alt="ok">
+                         <img src="{{ asset('img/animat-essential/checkmark/animat-checkmark.gif') }}"
+                              style="height: 60px; width: 60px; -webkit-filter: invert(100%);filter: invert(100%);"
+                              alt="ok">
                      </strong>
                  </div>
              {% endfor %}
@@ -50,8 +52,7 @@
                      {% if u %}
                          <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
                               aria-hidden="true">
-                             <form class="formModal" id="form{{ u.id }}" method="post"
-                                   style="font-family: 'Roboto', sans-serif !important;">
+                             <form class="formModal" id="form{{ u.id }}" method="post" style="font-family: 'Roboto', sans-serif !important;">
                                  <div class="modal-dialog" role="document">
                                      <div class="modal-content">
                                          <div class="modal-header">
@@ -62,7 +63,8 @@
                                              </button>
                                          </div>
                                          <div class="modal-body">
-                                             <textarea class="w-100" name="rewardDescription" placeholder="Reward's description"></textarea>
+                                             <label id="descriptionLabel" class="text-dark" for="description"></label>
+                                             <textarea id="description" name="description" class="w-100" placeholder="type here ..."></textarea>
                                              <input name="tags" type="text" id="tags">
                                          </div>
                                          <div class="modal-footer">
@@ -86,10 +88,11 @@
                                  <td>{{ u.dataDeNascimento|date("d/m/Y") }}</td>
                              {% endif %}
                              <td>
-                                 <span id="rewards{{ u.id }}">{{ u.premios|length }}</span>
-                                 <a id="rewardBalloon{{ u.id }}" class="openModal{{ u.id }}" data-toggle="modal"
-                                    data-target="#modelId"
-                                    name="{{ u.id }}">
+{#                                 <span id="rewards{{ u.id }}">{{ u.id|length }}</span>#}
+{#                                 <a id="rewardBalloon{{ u.id }}" class="openModal{{ u.id }}" data-toggle="modal"#}
+{#                                    data-target="#modelId"#}
+{#                                    name="{{ u.id }}">#}
+                                 <a class="openModal{{ u.id }}" data-toggle="modal" data-target="#modelId">
                                      <i class="fas fa-plus-circle cell"></i>
                                  </a>
                              </td>
@@ -155,10 +158,10 @@
                  $('.modal-title').text("Reward " + nome);
              });
 
-             $("#rewardBalloon{{ u.id }}").balloon({
-                 html: true,
-                 contents: $("<p style='font-family: `lato`, sans-serif; font-size: 15px; width: 150px'>{{ u.premios|join(", ") }}</p>")
-             });
+             {#$("#rewardBalloon{{ u.id }}").balloon({#}
+             {#    html: true,#}
+             {#    contents: $("<p style='font-family: `lato`, sans-serif; font-size: 15px; width: 150px'>{{ u.id|join(", ") }}</p>")#}
+             {#});#}
 
              {% endif %}
              {% endfor %}
@@ -171,7 +174,9 @@
 
                  e.preventDefault();
 
+                 var description = $("#description");
                  var inputs = $("#tags");
+
                  var values = {};
 
                  inputs.each(function () {
@@ -180,7 +185,7 @@
                  $(function () {
                      $.ajax({
                          type: 'POST',
-                         data: values,
+                         data: {values, description},
                          url: '{{ path('add_reward', {"id": u.id}) }}',
                          success: function () {
                              Command: toastr["success"]("User {{ u.username }} rewarded");

@@ -40,6 +40,14 @@ button {
     box-sizing: border-box;
 }
 
+#descriptionLabel{
+    font-family: "lato", sans-serif !important;
+}
+
+#description{
+    height: 100px;
+    font-family: "lato", sans-serif !important;
+}
 
 .button {
     cursor: pointer;
@@ -187,7 +195,7 @@ table.dataTable tbody tr{
 }
 
 .cell{
-    cursor: cell;
+    cursor: pointer;
 }
 @media only screen and (max-width: 600px) {
     #dtBasicExample {

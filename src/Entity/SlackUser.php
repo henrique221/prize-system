@@ -27,11 +27,6 @@ class SlackUser
     private $username;
 
     /**
-     * @ORM\Column(type="array", nullable=true, unique=false)
-     */
-    private $premios;
-
-    /**
      * @ORM\Column(type="date", nullable=true, unique=false)
      */
     private $dataDeNascimento;
@@ -104,22 +99,6 @@ class SlackUser
     public function setUsername($username): void
     {
         $this->username = $username;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPremios()
-    {
-        return $this->premios;
-    }
-
-    /**
-     * @param mixed $premios
-     */
-    public function setPremios($premios): void
-    {
-        $this->premios = $premios;
     }
 
     /**

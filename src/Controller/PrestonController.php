@@ -2,10 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Reward;
 use App\Entity\SlackUser;
 use App\Entity\Usuario;
 use App\Form\SlackUserType;
 use App\Form\UsuarioType;
+use App\Repository\RewardRepository;
 use App\Repository\SlackUserRepository;
 use App\Repository\UsuarioRepository;
 use App\Services\SlackService;
@@ -30,11 +32,16 @@ class PrestonController extends AbstractController
      * @var SlackUserRepository
      */
     private $slackUserRepository;
+    /**
+     * @var RewardRepository
+     */
+    private $rewardRepository;
 
-    public function __construct(UsuarioRepository $usuarioRepository, SlackUserRepository $slackUserRepository)
+    public function __construct(UsuarioRepository $usuarioRepository, SlackUserRepository $slackUserRepository, RewardRepository $rewardRepository)
     {
         $this->usuarioRepository = $usuarioRepository;
         $this->slackUserRepository = $slackUserRepository;
+        $this->rewardRepository = $rewardRepository;
     }
 
     /**
@@ -44,20 +51,25 @@ class PrestonController extends AbstractController
     public function index(Request $request)
     {
         $userDatabase = $this->slackUserRepository->findAll();
+        $reward = $this->rewardRepository->findAll();
 
         return $this->render('preston/list.html.twig', [
             'user' => $this->getUser(),
-            'userDatabase' => $userDatabase
+            'userDatabase' => $userDatabase,
+            'reward' => $reward
         ]);
     }
 
     /**
      * @Route("/reward/{id}", name="add_reward", methods={"GET", "POST"})
-     * @param SlackUser $slackUser
+     * @param $id
      * @param Request $request
      * @return Response
      */
-    public function addReward(Request $request, SlackUser $slackUser){
+    public function addReward(Request $request, $id){
+
+        $slackUser = $this->slackUserRepository->find($id);
+        $reward = new Reward();
         $rewards = [
             1 => "faca",
             2 => "crie",
@@ -72,8 +84,20 @@ class PrestonController extends AbstractController
             $rewardsFilterSelected[] = $rewards[$tag];
         }
 
-        $slackUser->setPremios($rewardsFilterSelected);
-        $this->slackUserRepository->appendReward($slackUser);
+        $now = new \DateTime();
+        $now->setTimezone(new \DateTimeZone('Brazil/East'));
+
+
+        $reward->setSlackUser($slackUser);
+        $reward->setRewards($rewardsFilterSelected);
+        $reward->setDescription($request->request->get("description"));
+        $reward->setDate($now);
+
+
+        $this->rewardRepository->appendReward($reward);
+
+        $this->addFlash('notice', "User rewarded ");
+
         return $this->redirectToRoute("preston");
     }
 
