@@ -91,7 +91,14 @@
                              {% endif %}
                              <td>
                                  <span id="rewards{{ u.id }}">{{ u.rewardsJoined|length }}</span>
-                                 <a id="rewardBalloon{{ u.id }}" href="{{ path('show_user_rewards', {'id' : u.id}) }}" class="mr-md-4 ml-md-4"><i class="far fa-eye"></i></a>
+                                 {% if u.rewardsJoined|length == 0 %}
+                                     <a id="rewardBalloon{{ u.id }}" class="mr-md-4 ml-md-4"><i
+                                                 class="far fa-eye"></i></a>
+                                 {% else %}
+                                     <a id="rewardBalloon{{ u.id }}"
+                                        href="{{ path('show_user_rewards', {'id' : u.id}) }}"
+                                        class="mr-md-4 ml-md-4"><i class="far fa-eye"></i></a>
+                                 {% endif %}
                                  <a class="openModal{{ u.id }}" data-toggle="modal"
                                     data-target="#modelId"
                                     name="{{ u.id }}">
@@ -164,8 +171,7 @@
              });
 
              {% if u.rewardsJoined|length == 0 %}
-                {% set rewards = "no rewards" %}
-             $("#rewardBalloon{{ u.id }}").removeAttr("href");
+             {% set rewards = "no rewards" %}
              {% else %}
              {% set rewards = u.rewardsJoined|join(", ") %}
              {% endif %}
@@ -183,7 +189,7 @@
          {% if u %}
          $(function () {
              $(document).on("submit", "#form{{ u.id }}", function () {
-                 
+
                  var description = $("#description");
                  var inputs = $("#tags");
 
