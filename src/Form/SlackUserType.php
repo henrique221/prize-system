@@ -16,13 +16,14 @@ class SlackUserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username', null, [
-                'attr' => ['style' => 'font-family:"lato", sans-serif;', 'class' => 'col-12']
-            ])
-            ->add('dataDeNascimento', null, ["widget" => "single_text", "html5" => false, 'format' => "dd/MM/yyyy", "attr" => ['data-date-time' => true,"placeholder" => "DD/MM/AAAA" ,'style' => 'font-family:"lato", sans-serif;', 'class' => 'col-12 date']])
+            ->add('username', null,
+                ['label' => 'Name', 'attr' => ['style' => 'font-family:"lato", sans-serif;', 'class' => 'col-12']]
+            )
+            ->add('dataDeNascimento', null, ["label" => "Birthdate", "widget" => "single_text", "html5" => false, 'format' => "dd/MM/yyyy", "attr" => ['data-date-time' => true,"placeholder" => "DD/MM/AAAA" ,'style' => 'font-family:"lato", sans-serif;', 'class' => 'col-12 date']])
             ->add('email', EmailType::class, [
                 'attr' => ['style' => 'font-family:"lato", sans-serif;', 'class' => 'col-12']
             ])
+            ->add('startDate', null, ["widget" => "single_text", "html5" => false, 'format' => "dd/MM/yyyy", "attr" => ['data-date-time' => true,"placeholder" => "DD/MM/AAAA" ,'style' => 'font-family:"lato", sans-serif;', 'class' => 'col-12 date']])
         ;
     }
 

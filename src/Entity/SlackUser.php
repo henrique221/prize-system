@@ -45,6 +45,11 @@ class SlackUser implements JsonSerializable
 
     private $email;
 
+    /**
+     * @ORM\Column(type="date", nullable=true, unique=false)
+     */
+    private $startDate;
+
 
     public function getId(): ?int
     {
@@ -139,5 +144,21 @@ class SlackUser implements JsonSerializable
        return [
            "id" => $this->id
        ];
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStartDate()
+    {
+        return $this->startDate;
+    }
+
+    /**
+     * @param mixed $startDate
+     */
+    public function setStartDate($startDate): void
+    {
+        $this->startDate = $startDate;
     }
 }
