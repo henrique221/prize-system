@@ -48,11 +48,20 @@
                  </thead>
                  <tbody class="table text-white">
 
-                 {% for u in userDatabase %}
+                 {% for u in userAndRewards %}
+                     <p>Hello</p>
+                     {{ u.birthdate|date("d/m/Y") }}
+                     {{ u.id }}
+                     {{ u.username }}
+                     {{ u.rewardsJoined|join(",") }}
+                 {% endfor %}
+
+                 {% for u in userAndRewards %}
                      {% if u %}
                          <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
                               aria-hidden="true">
-                             <form class="formModal" id="form{{ u.id }}" method="post" style="font-family: 'Roboto', sans-serif !important;">
+                             <form class="formModal" id="form{{ u.id }}" method="post"
+                                   style="font-family: 'Roboto', sans-serif !important;">
                                  <div class="modal-dialog" role="document">
                                      <div class="modal-content">
                                          <div class="modal-header">
@@ -64,7 +73,8 @@
                                          </div>
                                          <div class="modal-body">
                                              <label id="descriptionLabel" class="text-dark" for="description"></label>
-                                             <textarea id="description" name="description" class="w-100" placeholder="type here ..."></textarea>
+                                             <textarea id="description" name="description" class="w-100"
+                                                       placeholder="type here ..."></textarea>
                                              <input name="tags" type="text" id="tags">
                                          </div>
                                          <div class="modal-footer">
@@ -82,19 +92,19 @@
                              <td>{{ u.id }}</td>
                              <td class="username{{ u.id }}">{{ u.username }}</td>
                              <td>{{ u.email }}</td>
-                             {% if u.dataDeNascimento is null %}
+                             {% if u.birthdate is null %}
                                  <td>no birthdate</td>
                              {% else %}
-                                 <td>{{ u.dataDeNascimento|date("d/m/Y") }}</td>
+                                 <td>{{ u.birthdate|date("d/m/Y") }}</td>
                              {% endif %}
                              <td>
-{#                                 <span id="rewards{{ u.id }}">{{ u.id|length }}</span>#}
-{#                                 <a id="rewardBalloon{{ u.id }}" class="openModal{{ u.id }}" data-toggle="modal"#}
-{#                                    data-target="#modelId"#}
-{#                                    name="{{ u.id }}">#}
-                                 <a class="openModal{{ u.id }}" data-toggle="modal" data-target="#modelId">
-                                     <i class="fas fa-plus-circle cell"></i>
-                                 </a>
+                                 <span id="rewards{{ u.id }}">{{ u.rewardsJoined|length }}</span>
+                                 <a id="rewardBalloon{{ u.id }}" class="openModal{{ u.id }}" data-toggle="modal"
+                                    data-target="#modelId"
+                                    name="{{ u.id }}"></a>
+                                     <a class="openModal{{ u.id }}" data-toggle="modal" data-target="#modelId">
+                                         <i class="fas fa-plus-circle cell"></i>
+                                     </a>
                              </td>
                              <td>
                                  <a href="{{ path("edit_user", {"id": u.id}) }}">edit</a>
@@ -147,8 +157,9 @@
              });
              $('.dataTables_length').addClass('bs-select');
 
-             {% for u in userDatabase %}
+             {% for u in userAndRewards %}
              {% if u %}
+
              $(document).on("click", ".openModal{{ u.id }}", function () {
                  var id = $(".openModal{{ u.id }}").attr("name");
                  var nome = "{{ u.username }}";
@@ -159,10 +170,11 @@
                  $('#descriptionLabel').text("Why are you rewarding {{ u.username }} ?");
              });
 
-             {#$("#rewardBalloon{{ u.id }}").balloon({#}
-             {#    html: true,#}
-             {#    contents: $("<p style='font-family: `lato`, sans-serif; font-size: 15px; width: 150px'>{{ u.id|join(", ") }}</p>")#}
-             {#});#}
+             $("#rewardBalloon{{ u.id }}").balloon({
+                 html: true,
+                 contents: $("<p style='font-family: `lato`, sans-serif; font-size: 15px; width: 150px'>{{ u.rewardsJoined|join(", ") }}</p>")
+             });
+
 
              {% endif %}
              {% endfor %}

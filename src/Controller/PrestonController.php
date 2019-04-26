@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\DTO\UserRewardsDto;
 use App\Entity\Reward;
 use App\Entity\SlackUser;
 use App\Entity\Usuario;
@@ -11,6 +12,7 @@ use App\Repository\RewardRepository;
 use App\Repository\SlackUserRepository;
 use App\Repository\UsuarioRepository;
 use App\Services\SlackService;
+use App\Services\UserRewardsService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -36,12 +38,17 @@ class PrestonController extends AbstractController
      * @var RewardRepository
      */
     private $rewardRepository;
+    /**
+     * @var UserRewardsService
+     */
+    private $userRewardsService;
 
-    public function __construct(UsuarioRepository $usuarioRepository, SlackUserRepository $slackUserRepository, RewardRepository $rewardRepository)
+    public function __construct(UsuarioRepository $usuarioRepository, SlackUserRepository $slackUserRepository, RewardRepository $rewardRepository, UserRewardsService $userRewardsService)
     {
         $this->usuarioRepository = $usuarioRepository;
         $this->slackUserRepository = $slackUserRepository;
         $this->rewardRepository = $rewardRepository;
+        $this->userRewardsService = $userRewardsService;
     }
 
     /**
@@ -50,12 +57,20 @@ class PrestonController extends AbstractController
      */
     public function index(Request $request)
     {
+        $slackUsers = $this->slackUserRepository->findAll();
+
+        $usersAndRewards = [];
+        foreach ($slackUsers as $slackUser) {
+            $usersAndRewards[] = $this->userRewardsService->generateSlackUserRewardDto($slackUser);
+        }
+
         $userDatabase = $this->slackUserRepository->findAll();
         $reward = $this->rewardRepository->findAll();
 
         return $this->render('preston/list.html.twig', [
             'user' => $this->getUser(),
             'userDatabase' => $userDatabase,
+            'userAndRewards' => $usersAndRewards,
             'reward' => $reward
         ]);
     }

@@ -3,11 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JsonSerializable;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\SlackUserRepository")
  */
-class SlackUser
+class SlackUser implements JsonSerializable
 {
     /**
      * @ORM\Id()
@@ -131,5 +132,12 @@ class SlackUser
     public function setEmail($email)
     {
         $this->email = $email;
+    }
+
+    public function jsonSerialize()
+    {
+       return [
+           "id" => $this->id
+       ];
     }
 }
