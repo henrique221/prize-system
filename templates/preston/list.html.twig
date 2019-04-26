@@ -49,14 +49,6 @@
                  <tbody class="table text-white">
 
                  {% for u in userAndRewards %}
-                     <p>Hello</p>
-                     {{ u.birthdate|date("d/m/Y") }}
-                     {{ u.id }}
-                     {{ u.username }}
-                     {{ u.rewardsJoined|join(",") }}
-                 {% endfor %}
-
-                 {% for u in userAndRewards %}
                      {% if u %}
                          <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
                               aria-hidden="true">
@@ -101,10 +93,10 @@
                                  <span id="rewards{{ u.id }}">{{ u.rewardsJoined|length }}</span>
                                  <a id="rewardBalloon{{ u.id }}" class="openModal{{ u.id }}" data-toggle="modal"
                                     data-target="#modelId"
-                                    name="{{ u.id }}"></a>
-                                     <a class="openModal{{ u.id }}" data-toggle="modal" data-target="#modelId">
-                                         <i class="fas fa-plus-circle cell"></i>
-                                     </a>
+                                    name="{{ u.id }}">
+                                     <i class="fas fa-plus-circle cell"></i>
+                                 </a>
+
                              </td>
                              <td>
                                  <a href="{{ path("edit_user", {"id": u.id}) }}">edit</a>
