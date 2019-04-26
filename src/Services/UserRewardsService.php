@@ -20,27 +20,36 @@ class UserRewardsService
         $this->rewardRepository = $rewardRepository;
     }
 
-    public function generateSlackUserRewardDto(SlackUser $slackUser){
+    public function generateSlackUserRewardDto(SlackUser $slackUser)
+    {
         $rewardsRepository = $this->rewardRepository->findBy(["slackUser" => $slackUser->getId()]);
-        return new UserRewardsDto($slackUser, $slackUser->getId(), $slackUser->getUsername(), $this->getAllUserRewards($slackUser), $slackUser->getDataDeNascimento(), $slackUser->getEmail());
+        return new UserRewardsDto(
+            $slackUser,
+            $slackUser->getId(),
+            $slackUser->getUsername(),
+            $this->getAllUserRewards($slackUser),
+            $slackUser->getDataDeNascimento(),
+            $slackUser->getEmail()
+        );
     }
 
-    public function getAllUserRewards(SlackUser $slackUser){
+    public function getAllUserRewards(SlackUser $slackUser)
+    {
         $rewardsRepository = $this->rewardRepository->findBy(["slackUser" => $slackUser->getId()]);
         $allRewards = [];
         $dates = [];
         $rewards = [];
         $description = [];
 
-        foreach ($rewardsRepository as $reward){
-                $dates[] = $reward->getDate();
-                $rewards[] = $reward->getRewards();
-                $description[] = $reward->getDescription();
+        foreach ($rewardsRepository as $reward) {
+            $dates[] = $reward->getDate();
+            $rewards[] = $reward->getRewards();
+            $description[] = $reward->getDescription();
 
-                $allRewards["dates"] = $dates;
-                $allRewards["rewards"] = $rewards;
-                $allRewards["description"] = $description;
-            }
+            $allRewards["dates"] = $dates;
+            $allRewards["rewards"] = $rewards;
+            $allRewards["description"] = $description;
+        }
 
         return $allRewards;
     }
