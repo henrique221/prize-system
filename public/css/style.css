@@ -11,7 +11,7 @@ html, body{
     overflow-x: hidden;
 }
 
-p, a, strong, button, li {
+p, a, strong, button, li, ul {
     color: white;
     font-family: 'Roboto', sans-serif;
 }

@@ -64,12 +64,10 @@ class PrestonController extends AbstractController
             $usersAndRewards[] = $this->userRewardsService->generateSlackUserRewardDto($slackUser);
         }
 
-        $userDatabase = $this->slackUserRepository->findAll();
         $reward = $this->rewardRepository->findAll();
 
         return $this->render('preston/list.html.twig', [
             'user' => $this->getUser(),
-            'userDatabase' => $userDatabase,
             'userAndRewards' => $usersAndRewards,
             'reward' => $reward
         ]);
@@ -201,5 +199,18 @@ class PrestonController extends AbstractController
         $this->slackUserRepository->remove($slackUser);
         $this->addFlash('notice', "User deleted");
         return $this->redirectToRoute("preston");
+    }
+
+    /**
+     * @Route("/{id}/rewards/show", name="show_user_rewards")
+     * @param SlackUser $slackUser
+     */
+    public function showRewardsSlackUser(SlackUser $slackUser){
+
+        $usersAndRewards = $this->userRewardsService->generateSlackUserRewardDto($slackUser);
+
+        return $this->render("preston/userRewards.html.twig", [
+            'userAndRewards' => $usersAndRewards
+        ]);
     }
 }

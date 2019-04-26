@@ -21,6 +21,7 @@ class UserRewardsService
     }
 
     public function generateSlackUserRewardDto(SlackUser $slackUser){
+        $rewardsRepository = $this->rewardRepository->findBy(["slackUser" => $slackUser->getId()]);
         return new UserRewardsDto($slackUser, $slackUser->getId(), $slackUser->getUsername(), $this->getAllUserRewards($slackUser), $slackUser->getDataDeNascimento(), $slackUser->getEmail());
     }
 
@@ -29,12 +30,16 @@ class UserRewardsService
         $allRewards = [];
         $dates = [];
         $rewards = [];
+        $description = [];
 
         foreach ($rewardsRepository as $reward){
                 $dates[] = $reward->getDate();
                 $rewards[] = $reward->getRewards();
+                $description[] = $reward->getDescription();
+
                 $allRewards["dates"] = $dates;
                 $allRewards["rewards"] = $rewards;
+                $allRewards["description"] = $description;
             }
 
         return $allRewards;
