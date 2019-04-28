@@ -190,8 +190,8 @@
          $(function () {
              $(document).on("submit", "#form{{ u.id }}", function () {
 
-                 $("#btnSubmit").attr("disabled", true);
-                 $("#btnSubmit").html("wait");
+                 $("#btnSubmit").attr("disabled", true).html("wait").cursor("default");
+
                  var description = $("#description");
                  var inputs = $("#tags");
 
