@@ -73,7 +73,7 @@
                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">
                                                  Close
                                              </button>
-                                             <button type="submit" class="btn btn-primary">Save</button>
+                                             <button type="submit" id="btnSubmit" class="btn btn-primary">Save</button>
                                          </div>
                                      </div>
                                  </div>
@@ -190,6 +190,8 @@
          $(function () {
              $(document).on("submit", "#form{{ u.id }}", function () {
 
+                 $("#btnSubmit").attr("disabled", true);
+                 $("#btnSubmit").html("wait");
                  var description = $("#description");
                  var inputs = $("#tags");
 

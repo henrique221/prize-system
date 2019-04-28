@@ -5,9 +5,7 @@
       <change beforePath="$PROJECT_DIR$/../4you2/alunosFerias.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../4you2/alunosFerias.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../4you2/dumps/dump-4you2-12-04-2019.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../4you2/dumps/dump-4you2-12-04-2019.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../4you2/src/AppBundle/Command/UpdateVacationClassesFromCsv.php" beforeDir="false" afterPath="$PROJECT_DIR$/../4you2/src/AppBundle/Command/UpdateVacationClassesFromCsv.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/UsuarioType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/UsuarioType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/preston/accessForm.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/preston/accessForm.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/preston/list.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/preston/list.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,11 +19,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/preston/list.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="301">
-              <caret line="21" column="53" selection-start-line="21" selection-start-column="53" selection-end-line="21" selection-end-column="53" />
+            <state relative-caret-position="448">
+              <caret line="190" column="46" selection-start-line="190" selection-start-column="46" selection-end-line="190" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -57,11 +55,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/preston/accessForm.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="679">
-              <caret line="92" column="19" selection-start-line="92" selection-start-column="19" selection-end-line="92" selection-end-column="19" />
+            <state relative-caret-position="70">
+              <caret line="63" column="22" selection-start-line="63" selection-start-column="22" selection-end-line="63" selection-end-column="22" />
               <folding>
                 <element signature="e#439#524#0#HTML" expanded="true" />
                 <element signature="e#946#986#0#HTML" expanded="true" />
@@ -219,13 +217,13 @@
         <option value="$PROJECT_DIR$/templates/preston/updateDatabase.html.twig" />
         <option value="$PROJECT_DIR$/src/Repository/SlackUserRepository.php" />
         <option value="$PROJECT_DIR$/src/Services/SlackService.php" />
-        <option value="$PROJECT_DIR$/templates/preston/list.html.twig" />
         <option value="$PROJECT_DIR$/src/Repository/RewardRepository.php" />
         <option value="$PROJECT_DIR$/src/Services/UserRewardsService.php" />
         <option value="$PROJECT_DIR$/src/Controller/PrestonController.php" />
         <option value="$PROJECT_DIR$/src/Form/UsuarioType.php" />
         <option value="$PROJECT_DIR$/templates/base.html.twig" />
         <option value="$PROJECT_DIR$/templates/preston/accessForm.html.twig" />
+        <option value="$PROJECT_DIR$/templates/preston/list.html.twig" />
       </list>
     </option>
   </component>
@@ -475,7 +473,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="167213000" />
+    <option name="totallyTimeSpent" value="167988000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="26" width="2560" height="1014" extended-state="6" />
@@ -745,13 +743,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/preston/list.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="21" column="53" selection-start-line="21" selection-start-column="53" selection-end-line="21" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/preston/editUser.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="343">
@@ -837,8 +828,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/preston/accessForm.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="679">
-          <caret line="92" column="19" selection-start-line="92" selection-start-column="19" selection-end-line="92" selection-end-column="19" />
+        <state relative-caret-position="70">
+          <caret line="63" column="22" selection-start-line="63" selection-start-column="22" selection-end-line="63" selection-end-column="22" />
           <folding>
             <element signature="e#439#524#0#HTML" expanded="true" />
             <element signature="e#946#986#0#HTML" expanded="true" />
@@ -848,6 +839,13 @@
             <element signature="e#1762#1785#0#HTML" expanded="true" />
             <element signature="e#1801#1808#0#Twig" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/preston/list.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="190" column="46" selection-start-line="190" selection-start-column="46" selection-end-line="190" selection-end-column="46" />
         </state>
       </provider>
     </entry>
