@@ -5,6 +5,28 @@
         body {
             background: #0f6674;
         }
+        input {
+            font-family:"lato", sans-serif;
+        }
+
+        @media only screen and (min-width: 1335px) {
+            #slack_user_username {
+                margin-left: -100%;
+                width: 200%;
+            }
+            #slack_user_dataDeNascimento{
+                margin-left: -100%;
+                width: 200%;
+            }
+            #slack_user_startDate{
+                margin-left: -100%;
+                width: 200%;
+            }
+            #slack_user_email{
+                margin-left: -100%;
+                width: 200%;
+            }
+        }
     </style>
 {% endblock %}
 
@@ -23,7 +45,7 @@
         
         <h1 class="text-white mb-md-5">{{ slackUser.username }}</h1>
         <div class="d-flex">
-            <form method="post" class="col-md-3">
+            <form method="post" class="col-md-5">
                 {{ form_start(form) }}
 
                 <div class="d-flex flex-md-row flex-column justify-content-between mb-2">

@@ -17,13 +17,13 @@ class SlackUserType extends AbstractType
     {
         $builder
             ->add('username', null,
-                ['label' => 'Name', 'attr' => ['style' => 'font-family:"lato", sans-serif;', 'class' => 'col-12']]
+                ['label' => 'Name', 'attr' => ['style' => 'font-family:"lato", sans-serif;', 'class' => 'p-1']]
             )
-            ->add('dataDeNascimento', null, ["label" => "Birthdate", "widget" => "single_text", "html5" => false, 'format' => "dd/MM/yyyy", "attr" => ['data-date-time' => true,"placeholder" => "DD/MM/AAAA" ,'style' => 'font-family:"lato", sans-serif;', 'class' => 'col-12 date']])
+            ->add('dataDeNascimento', null, ["label" => "Birthdate", "widget" => "single_text", "html5" => false, 'format' => "dd/MM/yyyy", "attr" => ['data-date-time' => true,"placeholder" => "DD/MM/AAAA" ,'style' => 'font-family:"lato", sans-serif;', 'class' => 'p-1 date']])
             ->add('email', EmailType::class, [
-                'attr' => ['style' => 'font-family:"lato", sans-serif;', 'class' => 'col-12']
+                'attr' => ['style' => 'font-family:"lato", sans-serif;', 'class' => 'p-1']
             ])
-            ->add('startDate', null, ["widget" => "single_text", "html5" => false, 'format' => "dd/MM/yyyy", "attr" => ['data-date-time' => true,"placeholder" => "DD/MM/AAAA" ,'style' => 'font-family:"lato", sans-serif;', 'class' => 'col-12 date']])
+            ->add('startDate', null, ["widget" => "single_text", "html5" => false, 'format' => "dd/MM/yyyy", "attr" => ['data-date-time' => true,"placeholder" => "DD/MM/AAAA" ,'style' => 'font-family:"lato", sans-serif;', 'class' => 'p-1 date']])
         ;
     }
 

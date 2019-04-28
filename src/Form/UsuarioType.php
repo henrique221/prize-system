@@ -16,9 +16,9 @@ class UsuarioType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('login', null, ["trim" => true])
-            ->add('senha', null, ["label" => "Password"])
-            ->add('name', null, ["label" => "Full name"])
+            ->add('login', null, ["trim" => true, "attr" => ["placeholder" => "login", "class" => "p-1"]])
+            ->add('senha', null, ["label" => "Password", "attr" => ["placeholder" => "password", "class" => "p-1"]])
+            ->add('name', null, ["label" => "Full name", "attr" => ["placeholder" => "full name", "class" => "p-1"]])
             ->add('permissoes', ChoiceType::class, array(
                 "label" => "Permissions",
                 "multiple" => true,
