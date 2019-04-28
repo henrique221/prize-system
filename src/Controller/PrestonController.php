@@ -79,7 +79,8 @@ class PrestonController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function addReward(Request $request, $id){
+    public function addReward(Request $request, $id)
+    {
 
         $slackUser = $this->slackUserRepository->find($id);
         $reward = new Reward();
@@ -93,7 +94,7 @@ class PrestonController extends AbstractController
         $tags = explode(",", $request->request->get("tags"));
         $rewardsFilterSelected = [];
 
-        foreach ($tags as $tag){
+        foreach ($tags as $tag) {
             $rewardsFilterSelected[] = $rewards[$tag];
         }
 
@@ -185,7 +186,8 @@ class PrestonController extends AbstractController
      * @param SlackUser $slackUser
      * @return Response
      */
-    public function getAmountRewards(SlackUser $slackUser){
+    public function getAmountRewards(SlackUser $slackUser)
+    {
         return new Response(count($slackUser->getPremios()));
     }
 
@@ -195,7 +197,8 @@ class PrestonController extends AbstractController
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
 
-    public function removeSlackUser(SlackUser $slackUser){
+    public function removeSlackUser(SlackUser $slackUser)
+    {
         $this->slackUserRepository->remove($slackUser);
         $this->addFlash('notice', "User deleted");
         return $this->redirectToRoute("preston");
@@ -205,7 +208,8 @@ class PrestonController extends AbstractController
      * @Route("/{id}/rewards/show", name="show_user_rewards")
      * @param SlackUser $slackUser
      */
-    public function showRewardsSlackUser(SlackUser $slackUser){
+    public function showRewardsSlackUser(SlackUser $slackUser)
+    {
 
         $usersAndRewards = $this->userRewardsService->generateSlackUserRewardDto($slackUser);
 
