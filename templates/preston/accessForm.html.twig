@@ -84,3 +84,14 @@
 
     </section>
 {% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            $("#usuario_login").keyup(function () {
+                $(this).val(function(_, v){
+                    return v.replace(/\s+/g, '');
+                });
+            })
+        });
+    </script>
+{% endblock %}

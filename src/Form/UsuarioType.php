@@ -25,8 +25,7 @@ class UsuarioType extends AbstractType
                 "choices" => array("admin" => "ROLE_ADMIN", "user" => "ROLE_USER"),
                 "expanded" => true,
                 "attr" => ["class" => "d-flex","style" => 'font-family:"lato", sans-serif;']
-            ))
-        ;
+            ));
     }
 
     public function configureOptions(OptionsResolver $resolver)
