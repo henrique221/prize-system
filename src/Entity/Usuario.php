@@ -26,6 +26,12 @@ class Usuario implements UserInterface
      * @ORM\Column(type="array")
      */
     private $permissoes;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $name;
+
     /**
      * @return mixed
      */
@@ -149,5 +155,21 @@ class Usuario implements UserInterface
     public function eraseCredentials()
     {
         // método para remover dados sensiveis durante a autenticação
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name): void
+    {
+        $this->name = $name;
     }
 }
