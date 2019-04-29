@@ -21,22 +21,22 @@
                class="table table-borderless text-white col-12 col-lg-12">
             <thead>
             </th>
-            <th>Id
+            <th class="text-center">Id
 
             </th>
-            <th>Username
+            <th class="text-center">Username
 
             </th>
-            <th> Full name
+            <th class="text-center"> Full name
 
             </th>
-            <th>Email
+            <th class="text-center">Email
             </th>
 
-            <th>Active on Slack
+            <th class="text-center">Active on Slack
             </th>
 
-            <th>Action
+            <th class="text-center">Action
             </th>
             </thead>
 
@@ -48,25 +48,26 @@
                 {% else %}
                     {% set status_text = '#129daf' %}
                 {% endif %}
-                <tr class="bg-transparent" style="color: {{ status_text }}">
-                    <td class="userIdTable">{{ u.id }}</td>
-                    <td class="username{{ u.id }}" name="{{ u.name }}">{{ u.name }}</td>
+                <div style="color: #2457ff">
+                <tr class="bg-transparent" onmouseover="style='filter: drop-shadow(1px 1px 5px #2457FF); cursor: default; color: {{ status_text }}'" onmouseleave="style= 'filter: none; color: {{ status_text }}'" style="color: {{ status_text }}">
+                    <td class="userIdTable text-center">{{ u.id }}</td>
+                    <td class="text-center username{{ u.id }}" name="{{ u.name }}">{{ u.name }}</td>
                     {% if u.real_name is defined %}
-                        <td>{{ u.real_name }}</td>
+                        <td class="text-center">{{ u.real_name }}</td>
                     {% else %}
-                        <td>no full name set</td>
+                        <td class="text-center">no full name set</td>
                     {% endif %}
                     {% if u.profile.email is defined %}
-                        <td>{{ u.profile.email }}</td>
+                        <td class="text-center">{{ u.profile.email }}</td>
                     {% else %}
-                        <td>no email set</td>
+                        <td class="text-center">no email set</td>
                     {% endif %}
                     {% if u.deleted == 0 %}
-                        <td class="text-info">active</td>
+                        <td class="text-info text-center">active</td>
                     {% else %}
-                        <td><strong class="text-danger">not active</strong></td>
+                        <td class="text-center"><strong class="text-danger">not active</strong></td>
                     {% endif %}
-                    <td>
+                    <td class="text-center">
                         <form id="{{ u.id }}">
                             <input type="hidden" name="userId" value="{{ u.id }}">
                             <button class="pt-0 pb-0 border-0">add to database</button>
@@ -146,22 +147,22 @@
             <tfoot>
             <tr>
                 </th>
-                <th>Id
+                <th class="text-center">Id
 
                 </th>
-                <th>Username
+                <th class="text-center">Username
 
                 </th>
-                <th> Full name
+                <th class="text-center"> Full name
 
                 </th>
-                <th>Email
+                <th class="text-center">Email
                 </th>
 
-                <th>Active on Slack
+                <th class="text-center">Active on Slack
                 </th>
 
-                <th>Action
+                <th class="text-center">Action
                 </th>
             </tr>
             </tfoot>

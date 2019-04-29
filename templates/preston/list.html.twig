@@ -1,5 +1,13 @@
 {% extends "base.html.twig" %}
 
+{% block stylesheets %}
+    <style>
+        h5{
+            font-size: 35px;
+        }
+    </style>
+{% endblock %}
+
  {% block body %}
      <link rel="stylesheet" href="{{ asset('css/back.css') }}">
 
@@ -17,36 +25,36 @@
                  </div>
              {% endfor %}
 
-             <h5 class="mb-md-3">Preston control panel</h5>
+             <h5 class="mb-md-5">Preston control panel</h5>
 
-             <p class="mb-md-5">Welcome, {{ user.name }} !</p>
+             <p style="font-size: 20px" class="mb-md-5">Welcome, {{ user.name }} !</p>
 
              <table id="dtBasicExample" style="font-family: 'Roboto', sans-serif !important;"
                     class="table table-borderless text-white col-12 col-lg-12">
-                 <thead>
+                 <thead style="background: rgba(245,248,255,0.07);">
 
                  </th>
-                 <th>Id
+                 <th class="border-0 text-center">Id
 
                  </th>
-                 <th>Name
+                 <th class="border-0 text-center">Name
 
                  </th>
-                 <th>Email
+                 <th class="border-0 text-center">Email
 
                  </th>
-                 <th>Birth date
+                 <th class="border-0 text-center">Birth date
 
                  </th>
-                 <th>Rewards
+                 <th class="border-0 text-center">Rewards
 
                  </th>
-                 <th>
+                 <th class="border-0 text-center">
                      Actions
                  </th>
                  </tr>
                  </thead>
-                 <tbody class="table text-white">
+                 <tbody class="text-white">
 
                  {% for u in userAndRewards %}
                      {% if u %}
@@ -80,33 +88,39 @@
                              </form>
                          </div>
 
-                         <tr class="bg-transparent">
-                             <td>{{ u.id }}</td>
-                             <td class="username{{ u.id }}">{{ u.username }}</td>
-                             <td>{{ u.email }}</td>
+                         <tr onmouseover="style='filter: drop-shadow(0px 0px 3px yellow); cursor: default'" onmouseleave="style= 'filter: none;'">
+                             <td class="text-center">{{ u.id }}</td>
+                             <td class="text-center username{{ u.id }}">{{ u.username }}</td>
+                             <td class="text-center">{{ u.email }}</td>
                              {% if u.birthdate is null %}
-                                 <td>no birthdate</td>
+                                 <td class="text-center">no birthdate</td>
                              {% else %}
-                                 <td>{{ u.birthdate|date("d/m/Y") }}</td>
+                                 <td class="text-center">{{ u.birthdate|date("d/m/Y") }}</td>
                              {% endif %}
-                             <td>
-                                 <span id="rewards{{ u.id }}">{{ u.rewardsJoined|length }}</span>
-                                 {% if u.rewardsJoined|length == 0 %}
-                                     <a id="rewardBalloon{{ u.id }}" class="mr-md-4 ml-md-4"><i
-                                                 class="far fa-eye"></i></a>
-                                 {% else %}
-                                     <a id="rewardBalloon{{ u.id }}"
-                                        href="{{ path('show_user_rewards', {'id' : u.id}) }}"
-                                        class="mr-md-4 ml-md-4"><i class="far fa-eye"></i></a>
-                                 {% endif %}
-                                 <a class="openModal{{ u.id }}" data-toggle="modal"
-                                    data-target="#modelId"
-                                    name="{{ u.id }}">
-                                     <i class="fas fa-plus-circle cell"></i>
-                                 </a>
 
+                             <td class="">
+                                 <div class="d-flex justify-content-lg-center ">
+                                     <a onmouseover="style='filter: drop-shadow(1px 1px 5px green); '" onmouseleave="style= 'filter: none;'" class=" openModal{{ u.id }} mr-md-4 ml-md-4"
+                                        data-toggle="modal"
+                                        data-target="#modelId"
+                                        name="{{ u.id }}">
+                                         <i class="fas fa-plus-circle cell"></i>
+                                     </a>
+                                     <span id="rewards{{ u.id }}">{{ u.rewardsJoined|length }}</span>
+                                     {% if u.rewardsJoined|length == 0 %}
+                                         <a id="rewardBalloon{{ u.id }}" class="mr-md-4 ml-md-4"><i
+                                                     class="far fa-eye"></i></a>
+                                     {% else %}
+                                         <a id="rewardBalloon{{ u.id }}"
+                                            href="{{ path('show_user_rewards', {'id' : u.id}) }}"
+                                            class="mr-md-4 ml-md-4"><i class="far fa-eye"></i></a>
+                                     {% endif %}
+
+                                     <div style="filter: drop-shadow(60px 60px white)"></div>
+
+                                 </div>
                              </td>
-                             <td>
+                             <td class="text-center">
                                  <a href="{{ path("edit_user", {"id": u.id}) }}">edit</a>
                              </td>
                          </tr>
@@ -114,18 +128,18 @@
                  {% endfor %}
                  </tbody>
 
-                 <tfoot>
+                 <tfoot style="background: rgba(245,248,255,0.07);">
                  <tr>
-                     <th>Id
-                     <th>Name
+                     <th class="border-0 text-center">Id</th>
+                     <th class="border-0 text-center">Name
                      </th>
-                     <th>Email
+                     <th class="border-0 text-center">Email
                      </th>
-                     <th>Birth date
+                     <th class="border-0 text-center">Birth date
                      </th>
-                     <th>Rewards
+                     <th class="border-0 text-center">Rewards
                      </th>
-                     <th>
+                     <th class="border-0 text-center">
                          Actions
                      </th>
                  </tr>
