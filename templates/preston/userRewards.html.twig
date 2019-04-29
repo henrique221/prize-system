@@ -2,7 +2,11 @@
 {% block stylesheets %}
     <style>
         body {
-            background: #0f6674;
+            background: linear-gradient(332deg, #1b1d7b, #1f5b8c);
+            background-size: 400% 400%;
+            -webkit-animation: AnimationName 10s ease infinite;
+            -moz-animation: AnimationName 10s ease infinite;
+            animation: AnimationName 10s ease infinite;
         }
     </style>
 {% endblock %}
@@ -10,17 +14,21 @@
 {% block body %}
 
     <div class="jumbotron bg-dark">
-    <h1 class="text-white">{{ userAndRewards.username }}</h1>
-    <ul class="text-white list-group bg-dark">
-        <h4 class="pt-md-4 pb-md-4">Rewards :</h4>
-    {% for i in range(0, userAndRewards.rewards["dates"]|length-1) %}
-        <li class="list-group-item bg-dark pt-md-4 border-0">
-            <p>Reward date : {{ userAndRewards.rewards["dates"][i]|date("d/m/Y") }}</p>
-            <p>Rewards : {{ userAndRewards.rewards["rewards"][i]|join(", ") }} </p>
-            <p>Description : {{ userAndRewards.rewards['description'][i]|join("") }}</p>
-        </li>
-    {% endfor %}
-    </ul>
+        <h1 class="text-white">{{ userAndRewards.username }}</h1>
+        <ul class="text-white list-group bg-dark">
+            <h4 class="pt-md-4 pb-md-4">Rewards :</h4>
+            <div class="d-flex flex-wrap">
+                {% for i in range(0, userAndRewards.rewards["dates"]|length-1) %}
+                    <div onmouseover="style='filter: drop-shadow(0px 0px 5px rgba(255, 215, 133, 0.90));width: 500px; cursor: default'" onmouseleave="style= 'width: 500px'" class="d-flex flex-column offset-0 p-4" style="width: 500px">
+                        <h4 class="">Reward from {{ userAndRewards.rewards["dates"][i]|date("d/m/Y") }}</h4>
+                        <p class="">{{ userAndRewards.rewards["rewards"][i]|join(", ") }}</p>
+                        <h6 class="">Description</h6>
+                        <p class="">{{ userAndRewards.rewards['description'][i]|join("") }}</p>
+                    </div>
+
+                {% endfor %}
+            </div>
+        </ul>
         <a style="font-size: 30px" href="{{ path('preston') }}"><i class="fas fa-arrow-circle-left"></i></a>
     </div>
 
