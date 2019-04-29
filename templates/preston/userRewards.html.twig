@@ -19,11 +19,19 @@
             <h4 class="pt-md-4 pb-md-4">Rewards :</h4>
             <div class="d-flex flex-wrap">
                 {% for i in range(0, userAndRewards.rewards["dates"]|length-1) %}
-                    <div onmouseover="style='filter: drop-shadow(0px 0px 5px rgba(255, 215, 133, 0.90));width: 500px; cursor: default'" onmouseleave="style= 'width: 500px'" class="d-flex flex-column offset-0 p-4" style="width: 500px">
-                        <h4 class="">Reward from {{ userAndRewards.rewards["dates"][i]|date("d/m/Y") }}</h4>
-                        <p class="">{{ userAndRewards.rewards["rewards"][i]|join(", ") }}</p>
-                        <h6 class="">Description</h6>
-                        <p class="">{{ userAndRewards.rewards['description'][i]|join("") }}</p>
+                    <div onmouseover="style='filter: drop-shadow(0px 0px 2px rgba(255, 215, 133, 0.90));width: 500px; cursor: default'"
+                         onmouseleave="style= 'width: 500px'" class="d-flex flex-column offset-0 p-4"
+                         style="width: 500px">
+                        <h4>Rewarded on {{ userAndRewards.rewards["dates"][i]|date("d/m/Y") }}</h4>
+                        <div class="p-4" style="background: rgba(13,8,38,0.05)">
+                            {% if userAndRewards.rewards['whoRewarded'][i].name is defined %}
+                                <p style="font-style: italic">Rewarded By {{ userAndRewards.rewards['whoRewarded'][i].name }}</p>
+                            {% endif %}
+                            <h6 class="mt-md-5">Rewards :</h6>
+                            <p style="font-style: italic">{{ userAndRewards.rewards["rewards"][i]|join(", ") }}</p>
+                            <h6 class="mt-md-5">Description</h6>
+                            <p>{{ userAndRewards.rewards['description'][i] }}</p>
+                        </div>
                     </div>
 
                 {% endfor %}

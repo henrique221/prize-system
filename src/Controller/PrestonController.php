@@ -115,6 +115,7 @@ class PrestonController extends AbstractController
         $reward->setRewards($rewardsFilterSelected);
         $reward->setDescription($description);
         $reward->setDate($now);
+        $reward->setIdWhoRewarded($this->getUser()->getId());
 
 
         $this->rewardRepository->appendReward($reward);

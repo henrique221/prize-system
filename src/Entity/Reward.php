@@ -39,6 +39,11 @@ class Reward
      */
     private $rewards = [];
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $idWhoRewarded;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,5 +95,21 @@ class Reward
         $this->rewards = $rewards;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdWhoRewarded()
+    {
+        return $this->idWhoRewarded;
+    }
+
+    /**
+     * @param mixed $idWhoRewarded
+     */
+    public function setIdWhoRewarded($idWhoRewarded): void
+    {
+        $this->idWhoRewarded = $idWhoRewarded;
     }
 }
