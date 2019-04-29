@@ -130,6 +130,19 @@
                              </td>
                              </tr>
                          {% endif %}
+                         <script>
+                             $(document).ready(function () {
+                                 {% if u.rewardsJoined|length == 0 %}
+                                 {% set rewards = "no rewards" %}
+                                 {% else %}
+                                 {% set rewards = u.rewardsJoined|join(", ") %}
+                                 {% endif %}
+                                 $("#rewardBalloon{{ u.id }}").balloon({
+                                     html: true,
+                                     contents: $("<p style='font-family: `lato`, sans-serif; font-size: 15px; width: 150px'>{{ rewards }}</p>")
+                                 });
+                             })
+                         </script>
                      {% endif %}
                  {% endfor %}
                  </tbody>
@@ -190,16 +203,6 @@
                  $('.formModal').attr("action", "{{ path('add_reward', {"id": u.id}) }}");
                  $('.modal-title').text("Reward " + nome);
                  $('#descriptionLabel').text("Why are you rewarding {{ u.username }} ?");
-             });
-
-             {% if u.rewardsJoined|length == 0 %}
-             {% set rewards = "no rewards" %}
-             {% else %}
-             {% set rewards = u.rewardsJoined|join(", ") %}
-             {% endif %}
-             $("#rewardBalloon{{ u.id }}").balloon({
-                 html: true,
-                 contents: $("<p style='font-family: `lato`, sans-serif; font-size: 15px; width: 150px'>{{ rewards }}</p>")
              });
 
 
