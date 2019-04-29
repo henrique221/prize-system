@@ -42,18 +42,24 @@ class PrestonController extends AbstractController
      * @var UserRewardsService
      */
     private $userRewardsService;
+    /**
+     * @var SlackService
+     */
+    private $slackService;
 
-    public function __construct(UsuarioRepository $usuarioRepository, SlackUserRepository $slackUserRepository, RewardRepository $rewardRepository, UserRewardsService $userRewardsService)
+    public function __construct(UsuarioRepository $usuarioRepository, SlackUserRepository $slackUserRepository, RewardRepository $rewardRepository, UserRewardsService $userRewardsService, SlackService $slackService)
     {
         $this->usuarioRepository = $usuarioRepository;
         $this->slackUserRepository = $slackUserRepository;
         $this->rewardRepository = $rewardRepository;
         $this->userRewardsService = $userRewardsService;
+        $this->slackService = $slackService;
     }
 
     /**
      * @Route("/list", name="preston", methods={"GET"})
      * @param Request $request
+     * @return Response
      */
     public function index(Request $request)
     {
@@ -75,14 +81,14 @@ class PrestonController extends AbstractController
 
     /**
      * @Route("/reward/{id}", name="add_reward", methods={"GET", "POST"})
-     * @param $id
      * @param Request $request
+     * @param SlackUser $slackUser
      * @return Response
+     * @throws \Exception
      */
-    public function addReward(Request $request, $id)
+    public function addReward(Request $request, SlackUser $slackUser)
     {
 
-        $slackUser = $this->slackUserRepository->find($id);
         $reward = new Reward();
         $rewards = [
             1 => "dare",
@@ -98,17 +104,22 @@ class PrestonController extends AbstractController
             $rewardsFilterSelected[] = $rewards[$tag];
         }
 
+        dump($rewardsFilterSelected);
+
         $now = new \DateTime();
         $now->setTimezone(new \DateTimeZone('Brazil/East'));
 
+        $description = $request->request->get("description");
 
         $reward->setSlackUser($slackUser);
         $reward->setRewards($rewardsFilterSelected);
-        $reward->setDescription($request->request->get("description"));
+        $reward->setDescription($description);
         $reward->setDate($now);
 
 
         $this->rewardRepository->appendReward($reward);
+
+        $this->slackService->sendMessageToUser($slackUser, $rewardsFilterSelected, $description, $this->getUser());
 
         $this->addFlash('notice', "User rewarded ");
 

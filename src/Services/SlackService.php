@@ -72,20 +72,17 @@ class SlackService
         }
     }
 
-    /**
-     * @Route("/validate", methods={"GET", "POST"})
-     * @param Request $request
-     */
-    public function validate(Request $request)
+    public function sendMessageToUser(SlackUser $slackUser, $rewardsFilterSelected, $description, $user)
     {
-        if ($request->getMethod() == "POST") {
-            $eventType = $request->request["events"]["type"];
-            $response = new Response("ok", 200, "Application/Json");
-            $openMessageSlackForUserUrl = "https://slack.com/api/im.open?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&pretty=1";
-            $this->requestDispatcher->post($openMessageSlackForUserUrl);
-            $channelId = $request->request['event']['channel'];
-            return $channelId . "ESSE O CANAL";
-        }
+        $slackId = $slackUser->getSlackId();
+        $rewards = implode(", ", $rewardsFilterSelected);
+        $text = rawurlencode("*CONGRATULATIONS!*\nYou have just been rewarded by {$user->getName()}\n\n_Rewarding message :_ \n```{$description}```\nRewards you have received :\n_{$rewards}_");
+
+        $urlOpenChat = "https://slack.com/api/im.open?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&user={$slackId}&pretty=1";
+        $openChatRequest = $this->requestDispatcher->post($urlOpenChat);
+        $channelId = $openChatRequest->channel->id;
+        $sendMessageUrl = "https://slack.com/api/chat.postMessage?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&channel={$channelId}&text={$text}&pretty=1";
+        $this->requestDispatcher->post($sendMessageUrl);
     }
 
     private function formatUserNameToName($username)
