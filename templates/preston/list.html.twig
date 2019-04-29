@@ -2,7 +2,7 @@
 
 {% block stylesheets %}
     <style>
-        h5{
+        h5 {
             font-size: 35px;
         }
     </style>
@@ -49,9 +49,11 @@
                  <th class="border-0 text-center">Rewards
 
                  </th>
-                 <th class="border-0 text-center">
-                     Actions
-                 </th>
+                 {% if is_granted('ROLE_ADMIN') %}
+                     <th class="border-0 text-center">
+                         Actions
+                     </th>
+                 {% endif %}
                  </tr>
                  </thead>
                  <tbody class="text-white">
@@ -88,42 +90,46 @@
                              </form>
                          </div>
 
-                         <tr onmouseover="style='filter: drop-shadow(0px 0px 3px yellow); cursor: default'" onmouseleave="style= 'filter: none;'">
-                             <td class="text-center">{{ u.id }}</td>
-                             <td class="text-center username{{ u.id }}">{{ u.username }}</td>
-                             <td class="text-center">{{ u.email }}</td>
-                             {% if u.birthdate is null %}
-                                 <td class="text-center">no birthdate</td>
-                             {% else %}
-                                 <td class="text-center">{{ u.birthdate|date("d/m/Y") }}</td>
-                             {% endif %}
+                         <tr onmouseover="style='filter: drop-shadow(0px 0px 3px yellow); cursor: default'"
+                             onmouseleave="style= 'filter: none;'">
+                         <td class="text-center">{{ u.id }}</td>
+                         <td class="text-center username{{ u.id }}">{{ u.username }}</td>
+                         <td class="text-center">{{ u.email }}</td>
+                         {% if u.birthdate is null %}
+                             <td class="text-center">no birthdate</td>
+                         {% else %}
+                             <td class="text-center">{{ u.birthdate|date("d/m/Y") }}</td>
+                         {% endif %}
 
-                             <td class="">
-                                 <div class="d-flex justify-content-lg-center ">
-                                     <a onmouseover="style='filter: drop-shadow(1px 1px 5px green); '" onmouseleave="style= 'filter: none;'" class=" openModal{{ u.id }} mr-md-4 ml-md-4"
-                                        data-toggle="modal"
-                                        data-target="#modelId"
-                                        name="{{ u.id }}">
-                                         <i class="fas fa-plus-circle cell"></i>
-                                     </a>
-                                     <span id="rewards{{ u.id }}">{{ u.rewardsJoined|length }}</span>
-                                     {% if u.rewardsJoined|length == 0 %}
-                                         <a id="rewardBalloon{{ u.id }}" class="mr-md-4 ml-md-4"><i
-                                                     class="far fa-eye"></i></a>
-                                     {% else %}
-                                         <a id="rewardBalloon{{ u.id }}"
-                                            href="{{ path('show_user_rewards', {'id' : u.id}) }}"
-                                            class="mr-md-4 ml-md-4"><i class="far fa-eye"></i></a>
-                                     {% endif %}
+                         <td class="">
+                             <div class="d-flex justify-content-lg-center ">
+                                 <a onmouseover="style='filter: drop-shadow(1px 1px 5px green); '"
+                                    onmouseleave="style= 'filter: none;'" class=" openModal{{ u.id }} mr-md-4 ml-md-4"
+                                    data-toggle="modal"
+                                    data-target="#modelId"
+                                    name="{{ u.id }}">
+                                     <i class="fas fa-plus-circle cell"></i>
+                                 </a>
+                                 <span id="rewards{{ u.id }}">{{ u.rewardsJoined|length }}</span>
+                                 {% if u.rewardsJoined|length == 0 %}
+                                     <a id="rewardBalloon{{ u.id }}" class="mr-md-4 ml-md-4"><i
+                                                 class="far fa-eye"></i></a>
+                                 {% else %}
+                                     <a id="rewardBalloon{{ u.id }}"
+                                        href="{{ path('show_user_rewards', {'id' : u.id}) }}"
+                                        class="mr-md-4 ml-md-4"><i class="far fa-eye"></i></a>
+                                 {% endif %}
 
-                                     <div style="filter: drop-shadow(60px 60px white)"></div>
+                                 <div style="filter: drop-shadow(60px 60px white)"></div>
 
-                                 </div>
-                             </td>
+                             </div>
+                         </td>
+                         {% if is_granted('ROLE_ADMIN') %}
                              <td class="text-center">
                                  <a href="{{ path("edit_user", {"id": u.id}) }}">edit</a>
                              </td>
-                         </tr>
+                             </tr>
+                         {% endif %}
                      {% endif %}
                  {% endfor %}
                  </tbody>
@@ -139,9 +145,11 @@
                      </th>
                      <th class="border-0 text-center">Rewards
                      </th>
-                     <th class="border-0 text-center">
-                         Actions
-                     </th>
+                     {% if is_granted('ROLE_ADMIN') %}
+                         <th class="border-0 text-center">
+                             Actions
+                         </th>
+                     {% endif %}
                  </tr>
                  </tfoot>
              </table>

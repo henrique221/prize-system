@@ -52,7 +52,7 @@ class PrestonController extends AbstractController
     }
 
     /**
-     * @Route("/", name="preston", methods={"GET"})
+     * @Route("/list", name="preston", methods={"GET"})
      * @param Request $request
      */
     public function index(Request $request)
@@ -157,7 +157,7 @@ class PrestonController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="edit_user", methods={"GET", "POST"})
+     * @Route("/edit/user/{id}", name="edit_user", methods={"GET", "POST"})
      * @param SlackUser $slackUser
      * @param Request $request
      * @return Response
