@@ -13,8 +13,10 @@ use App\Repository\SlackUserRepository;
 use App\Repository\UsuarioRepository;
 use App\Services\SlackService;
 use App\Services\UserRewardsService;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -57,11 +59,18 @@ class PrestonController extends AbstractController
     }
 
     /**
+     * @Route("/", name="prestonIndex")
+     * @return RedirectResponse
+     */
+    public function index(){
+        return $this->redirectToRoute("preston");
+    }
+
+    /**
      * @Route("/list", name="preston", methods={"GET"})
-     * @param Request $request
      * @return Response
      */
-    public function index(Request $request)
+    public function preston()
     {
         $slackUsers = $this->slackUserRepository->findAll();
 
@@ -84,7 +93,7 @@ class PrestonController extends AbstractController
      * @param Request $request
      * @param SlackUser $slackUser
      * @return Response
-     * @throws \Exception
+     * @throws Exception
      */
     public function addReward(Request $request, SlackUser $slackUser)
     {
@@ -142,7 +151,7 @@ class PrestonController extends AbstractController
     /**
      * @Route("/create/access", name="create_access", methods={"GET", "POST"})
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @return RedirectResponse|Response
      */
     public function createAccessUser(Request $request)
     {
@@ -206,7 +215,7 @@ class PrestonController extends AbstractController
     /**
      * @Route("/{id}/remove", name="remove_user")
      * @param SlackUser $slackUser
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return RedirectResponse
      */
 
     public function removeSlackUser(SlackUser $slackUser)
