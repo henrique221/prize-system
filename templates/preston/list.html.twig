@@ -62,7 +62,7 @@
                      {% if u %}
                          <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
                               aria-hidden="true">
-                             <form class="formModal" id="form{{ u.id }}" method="post"
+                             <form class="formModal" action="{{ path('add_reward', {"id" : u.id}) }}" id="form{{ u.id }}" method="post"
                                    style="font-family: 'Roboto', sans-serif !important;">
                                  <div class="modal-dialog" role="document">
                                      <div class="modal-content">
@@ -75,9 +75,9 @@
                                          </div>
                                          <div class="modal-body">
                                              <label id="descriptionLabel" class="text-dark" for="description"></label>
-                                             <textarea id="description" name="description" class="w-100"
+                                             <textarea id="description" minlength="10" required name="description" class="w-100"
                                                        placeholder="type here ..."></textarea>
-                                             <input name="tags" type="text" id="tags">
+                                             <input name="tags" required type="text" id="tags">
                                          </div>
                                          <div class="modal-footer">
                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -212,83 +212,83 @@
          });
          {% for u in userAndRewards %}
          {% if u %}
-         $(function () {
-             $(document).on("submit", "#form{{ u.id }}", function () {
+         {#$(function () {#}
+         {#    $(document).on("submit", "#form{{ u.id }}", function () {#}
 
-                 $("#btnSubmit").attr("disabled", true).html("wait").cursor("default");
+         {#        $("#btnSubmit").attr("disabled", true).html("wait").cursor("default");#}
 
-                 var description = $("#description");
-                 var inputs = $("#tags");
+         {#        var description = $("#description");#}
+         {#        var inputs = $("#tags");#}
 
-                 var values = {};
+         {#        var values = {};#}
 
-                 inputs.each(function () {
-                     values[this.name] = $(this).val();
-                 });
-                 $(function () {
-                     $.ajax({
-                         type: 'POST',
-                         data: {values, description},
-                         url: '{{ path('add_reward', {"id": u.id}) }}',
-                         success: function () {
-                             Command: toastr["success"]("User {{ u.username }} rewarded");
+         {#        inputs.each(function () {#}
+         {#            values[this.name] = $(this).val();#}
+         {#        });#}
+         {#        $(function () {#}
+         {#            $.ajax({#}
+         {#                type: 'POST',#}
+         {#                data: {values, description},#}
+         {#                url: '{{ path('add_reward', {"id": u.id}) }}',#}
+         {#                success: function () {#}
+         {#                    Command: toastr["success"]("User {{ u.username }} rewarded");#}
 
-                             toastr.options = {
-                                 "closeButton": true,
-                                 "debug": false,
-                                 "newestOnTop": true,
-                                 "progressBar": true,
-                                 "positionClass": "toast-bottom-center",
-                                 "preventDuplicates": false,
-                                 "onclick": null,
-                                 "showDuration": "300",
-                                 "hideDuration": "1000",
-                                 "timeOut": "5000",
-                                 "extendedTimeOut": "1000",
-                                 "showEasing": "swing",
-                                 "hideEasing": "linear",
-                                 "showMethod": "fadeIn",
-                                 "hideMethod": "fadeOut",
-                                 "shadowColor": "none"
-                             };
-                             console.log("ok")
-                         },
-                         error: function () {
-                             Command: toastr["error"]("User {{ u.username }} cannot be rewarded");
+         {#                    toastr.options = {#}
+         {#                        "closeButton": true,#}
+         {#                        "debug": false,#}
+         {#                        "newestOnTop": true,#}
+         {#                        "progressBar": true,#}
+         {#                        "positionClass": "toast-bottom-center",#}
+         {#                        "preventDuplicates": false,#}
+         {#                        "onclick": null,#}
+         {#                        "showDuration": "300",#}
+         {#                        "hideDuration": "1000",#}
+         {#                        "timeOut": "5000",#}
+         {#                        "extendedTimeOut": "1000",#}
+         {#                        "showEasing": "swing",#}
+         {#                        "hideEasing": "linear",#}
+         {#                        "showMethod": "fadeIn",#}
+         {#                        "hideMethod": "fadeOut",#}
+         {#                        "shadowColor": "none"#}
+         {#                    };#}
+         {#                    console.log("ok")#}
+         {#                },#}
+         {#                error: function () {#}
+         {#                    Command: toastr["error"]("User {{ u.username }} cannot be rewarded");#}
 
-                             toastr.options = {
-                                 "closeButton": true,
-                                 "debug": false,
-                                 "newestOnTop": true,
-                                 "progressBar": true,
-                                 "positionClass": "toast-bottom-center",
-                                 "preventDuplicates": false,
-                                 "onclick": null,
-                                 "showDuration": "300",
-                                 "hideDuration": "1000",
-                                 "timeOut": "5000",
-                                 "extendedTimeOut": "1000",
-                                 "showEasing": "swing",
-                                 "hideEasing": "linear",
-                                 "showMethod": "fadeIn",
-                                 "hideMethod": "fadeOut",
-                             };
-                             console.log(`{{ path('add_reward', {"id": u.id}) }}`)
-                         }
-                     });
-                 });
-                 $(function () {
-                     $.ajax({
-                         type: 'GET',
-                         data: values,
-                         url: '{{ path('amount_rewards', {"id": u.id}) }}',
-                         success: function (response) {
-                             $("#rewards{{ u.id }}").html("<span>" + response + "</span>");
-                         }
-                     });
-                 })
-             });
-         });
+         {#                    toastr.options = {#}
+         {#                        "closeButton": true,#}
+         {#                        "debug": false,#}
+         {#                        "newestOnTop": true,#}
+         {#                        "progressBar": true,#}
+         {#                        "positionClass": "toast-bottom-center",#}
+         {#                        "preventDuplicates": false,#}
+         {#                        "onclick": null,#}
+         {#                        "showDuration": "300",#}
+         {#                        "hideDuration": "1000",#}
+         {#                        "timeOut": "5000",#}
+         {#                        "extendedTimeOut": "1000",#}
+         {#                        "showEasing": "swing",#}
+         {#                        "hideEasing": "linear",#}
+         {#                        "showMethod": "fadeIn",#}
+         {#                        "hideMethod": "fadeOut",#}
+         {#                    };#}
+         {#                    console.log(`{{ path('add_reward', {"id": u.id}) }}`)#}
+         {#                }#}
+         {#            });#}
+         {#        });#}
+         {#        $(function () {#}
+         {#            $.ajax({#}
+         {#                type: 'GET',#}
+         {#                data: values,#}
+         {#                url: '{{ path('amount_rewards', {"id": u.id}) }}',#}
+         {#                success: function (response) {#}
+         {#                    $("#rewards{{ u.id }}").html("<span>" + response + "</span>");#}
+         {#                }#}
+         {#            });#}
+         {#        })#}
+         {#    });#}
+         {#});#}
          {% endif %}
          {% endfor %}
 

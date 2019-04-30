@@ -75,14 +75,28 @@ class SlackService
     public function sendMessageToUser(SlackUser $slackUser, $rewardsFilterSelected, $description, $user)
     {
         $slackId = $slackUser->getSlackId();
-        $rewards = implode(", ", $rewardsFilterSelected);
-        $text = rawurlencode("*CONGRATULATIONS!*\nYou have just been rewarded by {$user->getName()}\n\n_Rewarding message :_ \n```{$description}```\nRewards you have received :\n_{$rewards}_");
+
+        $rewards = explode(",", implode(",", $rewardsFilterSelected));
+
+        $rewardsWithTrophyArray = [];
+
+        for($i = 0; $i <= sizeof($rewards)-1; $i++) {
+            $rewardsWithTrophyArray[] = ":trophy: ".$rewards[$i];
+        }
+
+        $rewardsWithTrophy = implode(" ", $rewardsWithTrophyArray);
+        $textToUser = rawurlencode("*CONGRATULATIONS ".strtoupper($slackUser->getUsername())."!* :wink: <@{$slackUser->getSlackId()}> \nYou have just been rewarded by {$user->getName()}\n\n_Rewarding message :_ \n```{$description}```\nRewards you have received :\n_{$rewardsWithTrophy}_");
+        $textToGeneral = "*CONGRATULATIONS ".strtoupper($slackUser->getUsername())."!* :wink: <@{$slackUser->getSlackId()}> \nYou have just been rewarded by {$user->getName()}\n\n_Rewarding message :_ \n```{$description}```\nRewards you have received :\n_{$rewardsWithTrophy}_";
 
         $urlOpenChat = "https://slack.com/api/im.open?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&user={$slackId}&pretty=1";
         $openChatRequest = $this->requestDispatcher->post($urlOpenChat);
         $channelId = $openChatRequest->channel->id;
-        $sendMessageUrl = "https://slack.com/api/chat.postMessage?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&channel={$channelId}&text={$text}&pretty=1";
-        $this->requestDispatcher->post($sendMessageUrl);
+
+        $sendMessageUrlToUser = "https://slack.com/api/chat.postMessage?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&channel={$channelId}&text={$textToUser}&pretty=1";
+        $sendMessageUrlToGeneral = "https://hooks.slack.com/services/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";
+
+        $this->requestDispatcher->post($sendMessageUrlToUser);
+        $this->requestDispatcher->postJson($sendMessageUrlToGeneral, "{'attachments': [{'color':'#ffd700','text':'{$textToGeneral}', 'image_url':'https://i2.wp.com/www.wakeed.org/wp-content/uploads/2016/07/award-icon-06.png'}]}" );
     }
 
     private function formatUserNameToName($username)
