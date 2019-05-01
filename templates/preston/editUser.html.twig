@@ -48,9 +48,9 @@
 
         <h1 class="text-white mb-md-5">{{ slackUser.username }}</h1>
         {% if slackUser.userAccess.login is defined %}
-            <p class="text-white float-right">login : {{ slackUser.userAccess.login }}</p>
+            <p class="text-white float-md-right d-inline-flex">login : {{ slackUser.userAccess.login }}</p>
         {% else %}
-            <a onclick="alert('create user access is under construction')" class="text-white float-right" style="background: #133514; padding: 25px; border-radius: 35px" href="#">create access to user</a>
+            <a onclick="alert('create user access is under construction')" class="text-white float-md-right d-inline-flex pt-1 pb-1 pt-md-3 pb-md-3 mt-4 mb-4 mt-md-0 mb-md-0" style="background: #133514; padding: 25px; border-radius: 35px" href="#">create access to user</a>
         {% endif %}
         <div class="d-flex">
             <form method="post" class="col-md-5">

@@ -6,17 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="9619f130-f45f-4468-bcdc-0db50da68777" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/../4you2/src/AppBundle/Service/checkIfUserHasAccess.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Services/CheckIfUserHasAccess.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../4you2/alunosFerias.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../4you2/alunosFerias.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../4you2/dumps/dump-4you2-12-04-2019.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../4you2/dumps/dump-4you2-12-04-2019.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../4you2/src/AppBundle/Command/UpdateVacationClassesFromCsv.php" beforeDir="false" afterPath="$PROJECT_DIR$/../4you2/src/AppBundle/Command/UpdateVacationClassesFromCsv.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/preston.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/preston.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/PrestonController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PrestonController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/SlackUser.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/SlackUser.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Usuario.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Usuario.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Services/SlackService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/SlackService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/preston/editUser.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/preston/editUser.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -94,8 +86,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/preston/editUser.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="427">
-              <caret line="52" column="52" selection-start-line="52" selection-start-column="52" selection-end-line="52" selection-end-column="52" />
+            <state relative-caret-position="385">
+              <caret line="52" column="173" selection-start-line="52" selection-start-column="173" selection-end-line="52" selection-end-column="173" />
               <folding>
                 <element signature="e#1549#1612#0#HTML" expanded="true" />
                 <element signature="e#3080#3087#0#Twig" expanded="true" />
@@ -437,12 +429,12 @@
       <workItem from="1556122612659" duration="1886000" />
       <workItem from="1556288745795" duration="477000" />
       <workItem from="1556587890830" duration="11732000" />
-      <workItem from="1556672844404" duration="10349000" />
+      <workItem from="1556672844404" duration="10783000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="214649000" />
+    <option name="totallyTimeSpent" value="215083000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="26" width="2560" height="1014" extended-state="6" />
@@ -862,8 +854,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/preston/editUser.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="52" column="52" selection-start-line="52" selection-start-column="52" selection-end-line="52" selection-end-column="52" />
+        <state relative-caret-position="385">
+          <caret line="52" column="173" selection-start-line="52" selection-start-column="173" selection-end-line="52" selection-end-column="173" />
           <folding>
             <element signature="e#1549#1612#0#HTML" expanded="true" />
             <element signature="e#3080#3087#0#Twig" expanded="true" />
