@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="theme-color" content="#1b2735">
     <link rel="manifest" href="{{ asset('/manifest.json') }}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
     <link rel="description" content="Preston">
     <link rel="icon" sizes="192x192" href="{{ asset('img/anthicon.png') }}">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
@@ -76,14 +79,14 @@
 
 </body>
 {% block javascripts %}{% endblock %}
-<script>
+<script type="text/javascript">
     if ('serviceWorker' in navigator) {
         console.log("Will the service worker register?");
         navigator.serviceWorker.register('service-worker.js')
             .then(function(reg){
                 console.log("Yes, it did.");
             }).catch(function(err) {
-            console.log("No it didn't. This happened: ", err)
+            console.log("No it didn't. This happened:", err)
         });
     }
 </script>
