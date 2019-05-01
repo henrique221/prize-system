@@ -83,7 +83,5 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="4you2" />
-    <orderEntry type="module" module-name="4you2" />
   </component>
 </module>

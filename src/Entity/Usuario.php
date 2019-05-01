@@ -15,6 +15,18 @@ class Usuario implements UserInterface
      */
     private $id;
     /**
+     * @ORM\OneToOne(targetEntity="App\Entity\SlackUser", orphanRemoval=true)
+     * @ORM\JoinColumns(value={@ORM\JoinColumn(name="slackId", referencedColumnName="slack_id")})
+     */
+    private $slackId;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\SlackUser", orphanRemoval=true)
+     * @ORM\JoinColumns(value={@ORM\JoinColumn(name="userId", referencedColumnName="id")})
+     */
+    private $userId;
+
+    /**
      * @ORM\Column(type="string")
      */
     private $login;
@@ -171,5 +183,37 @@ class Usuario implements UserInterface
     public function setName($name): void
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSlackId()
+    {
+        return $this->slackId;
+    }
+
+    /**
+     * @param mixed $slackId
+     */
+    public function setSlackId($slackId): void
+    {
+        $this->slackId = $slackId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+
+    /**
+     * @param mixed $userId
+     */
+    public function setUserId($userId): void
+    {
+        $this->userId = $userId;
     }
 }

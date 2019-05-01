@@ -39,34 +39,34 @@ class SlackService
         return $request;
     }
 
-    public function updateTrelloDatabase($userId)
+    public function updateSlackDatabase($userId)
     {
         $slackUsers = $this->getAllUsers()->members;
 
         $userFromDatabase = $this->slackUserRepository->findBy(["SlackId" => $userId]);
 
         if (!$userFromDatabase) {
-            $trelloUserObj = new SlackUser();
+            $slackUserObj = new SlackUser();
             foreach ($slackUsers as $slackUser) {
                 if ($slackUser->id == $userId) {
 
-                    $trelloUserObj
+                    $slackUserObj
                         ->setSlackId($slackUser->id)
                         ->setUsername($this->formatUserNameToName($slackUser->name));
 
                     $realName = !empty($slackUser->real_name) ? $slackUser->real_name : "no full name";
                     $email = !empty($slackUser->profile->email) ? $slackUser->profile->email : "no email";
 
-                    $trelloUserObj->setRealName($realName);
-                    $trelloUserObj->setEmail($email);
-                    $trelloUserObj->setDataDeNascimento(null);
+                    $slackUserObj->setRealName($realName);
+                    $slackUserObj->setEmail($email);
+                    $slackUserObj->setDataDeNascimento(null);
 
                     $em = $this->managerRegistry->getManager();
-                    $em->persist($trelloUserObj);
+                    $em->persist($slackUserObj);
                     $em->flush();
                 }
             }
-            return new Response("ok", 200);
+            return $slackUserObj;
         } else {
             return new Response("user already exists", 409);
         }

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Repository\UsuarioRepository;
 use Doctrine\ORM\Mapping as ORM;
 use JsonSerializable;
 
@@ -49,6 +50,17 @@ class SlackUser implements JsonSerializable
      * @ORM\Column(type="date", nullable=true, unique=false)
      */
     private $startDate;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $hasAccess;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Usuario", mappedBy="id")
+     * @ORM\JoinColumns({@ORM\JoinColumn(name="userAccess", referencedColumnName="id")})
+     */
+    private $userAccess;
 
 
     public function getId(): ?int
@@ -141,9 +153,9 @@ class SlackUser implements JsonSerializable
 
     public function jsonSerialize()
     {
-       return [
-           "id" => $this->id
-       ];
+        return [
+            "id" => $this->id
+        ];
     }
 
     /**
@@ -160,5 +172,29 @@ class SlackUser implements JsonSerializable
     public function setStartDate($startDate): void
     {
         $this->startDate = $startDate;
+    }
+
+    /**
+     * @param $hasAccess
+     */
+    public function setHasAccess($hasAccess)
+    {
+        $this->hasAccess = $hasAccess;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHasAccess()
+    {
+        return $this->hasAccess;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUserAccess()
+    {
+        return $this->userAccess;
     }
 }

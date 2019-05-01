@@ -13,6 +13,7 @@ use App\Repository\SlackUserRepository;
 use App\Repository\UsuarioRepository;
 use App\Services\SlackService;
 use App\Services\UserRewardsService;
+use App\Services\CheckIfUserHasAccess;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -138,7 +139,8 @@ class PrestonController extends AbstractController
 
     /**
      * @Route("/update", name="update_trello_database", methods={"GET", "POST"})
-     * @param Request $request
+     * @param SlackService $slackService
+     * @return Response
      */
     public function updateDatabase(SlackService $slackService)
     {
@@ -168,13 +170,23 @@ class PrestonController extends AbstractController
     /**
      * @Route("check/user", name="check_user_in_database", methods={"POST"})
      * @param Request $request
+     * @param SlackService $slackService
+     * @param CheckIfUserHasAccess $checkIfUserHasAccess
      * @return Response
      */
-    public function checkSlackUserInDatabase(Request $request, SlackService $slackService)
+    public function checkSlackUserInDatabaseAndAddToDatabase(Request $request, SlackService $slackService, CheckIfUserHasAccess $checkIfUserHasAccess)
     {
         $userId = $request->request->get("userId");
-        $status = $slackService->updateTrelloDatabase($userId);
-        return new JsonResponse($userId, $status->getStatusCode());
+
+        $updateSlackDatabase = $slackService->updateSlackDatabase($userId);
+
+        $status = gettype($updateSlackDatabase) == SlackUser::class ? new Response("User added", 200) : new Response("User already exists", 409);
+
+        if(gettype($updateSlackDatabase == SlackUser::class)){
+            $checkIfUserHasAccess->checkAndSetEntityHasAccess($updateSlackDatabase);
+        }
+
+        return new JsonResponse($userId, $status);
     }
 
     /**
@@ -183,11 +195,14 @@ class PrestonController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function editUser(Request $request, SlackUser $slackUser)
+    public function editUser(Request $request, SlackUser $slackUser, CheckIfUserHasAccess $checkIfUserHasAccess)
     {
+
+        $checkIfUserHasAccess->checkAndSetEntityHasAccess($slackUser);
 
         $form = $this->createForm(SlackUserType::class, $slackUser);
         $form->handleRequest($request);
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->slackUserRepository->save($slackUser);
@@ -228,6 +243,7 @@ class PrestonController extends AbstractController
     /**
      * @Route("/{id}/rewards/show", name="show_user_rewards")
      * @param SlackUser $slackUser
+     * @return Response
      */
     public function showRewardsSlackUser(SlackUser $slackUser)
     {
