@@ -6,6 +6,14 @@
             font-family: "lato", sans-serif;
         }
 
+        .formUserAccess label {
+            color: #1b1e21 !important;
+        }
+
+        #usuario_permissoes label {
+            color: #1b1e21 !important;
+        }
+
         @media only screen and (min-width: 1335px) {
             #slack_user_username {
                 margin-left: -100%;
@@ -48,9 +56,130 @@
 
         <h1 class="text-white mb-md-5">{{ slackUser.username }}</h1>
         {% if slackUser.userAccess.login is defined %}
-            <p class="text-white float-md-right d-inline-flex">login : {{ slackUser.userAccess.login }}</p>
+
+            <!-- Button trigger modal -->
+            <button type="button" class="button" data-toggle="modal" data-target="#modelId">
+                User access
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-dark">Access to {{ slackUser.username }}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form id="submitUserAccess" method="post" action="{{ path('save_user_access', {"id": slackUser.id}) }}">
+                            <div class="modal-body">
+                                <div class="container-fluid">
+
+                                    <p class="formUserAccess">{{ form_label(userSaveForm.login) }}</p>
+                                    <p>{{ form_widget(userSaveForm.login) }}</p>
+
+                                    <p class="formUserAccess">{{ form_label(userSaveForm.name) }}</p>
+                                    <p>{{ form_widget(userSaveForm.name) }}</p>
+
+                                    <p class="formUserAccess">{{ form_label(userSaveForm.senha) }}</p>
+                                    <p>{{ form_widget(userSaveForm.senha) }}</p>
+
+                                    <p class="formUserAccess">{{ form_label(userSaveForm.permissoes) }}</p>
+                                    <p>{{ form_widget(userSaveForm.permissoes) }}</p>
+
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                $(document).ready(function () {
+                    $('#exampleModal').on('show.bs.modal', event => {
+                        var button = $(event.relatedTarget);
+                        var modal = $(this);
+                        // Use above variables to manipulate the DOM
+
+                    });
+
+                    $(document).on("submit", "#submitUserAccess", function () {
+                        // e.preventDefault();
+
+                        var inputs = $("#submitUserAccess :input");
+                        var values = {};
+
+                        inputs.each(function () {
+                            values[this.name] = $(this).val();
+                        });
+
+                        $(function () {
+
+                            $.ajax({
+                                type: "POST",
+                                url: "{{ path('save_user_access', {"id" : slackUser.id}) }}",
+                                data: values,
+                                success: function (response) {
+                                    Command: toastr["success"]("User {{ slackUser.username }} added to database");
+
+                                    toastr.options = {
+                                        "closeButton": true,
+                                        "debug": false,
+                                        "newestOnTop": true,
+                                        "progressBar": true,
+                                        "positionClass": "toast-bottom-center",
+                                        "preventDuplicates": false,
+                                        "onclick": null,
+                                        "showDuration": "300",
+                                        "hideDuration": "1000",
+                                        "timeOut": "5000",
+                                        "extendedTimeOut": "1000",
+                                        "showEasing": "swing",
+                                        "hideEasing": "linear",
+                                        "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut",
+                                        "shadowColor": "none"
+                                    };
+                                    console.log(response)
+                                },
+                                error: function (response) {
+                                    Command: toastr["error"]("User already in database")
+
+                                    toastr.options = {
+                                        "closeButton": true,
+                                        "debug": false,
+                                        "newestOnTop": true,
+                                        "progressBar": true,
+                                        "positionClass": "toast-bottom-center",
+                                        "preventDuplicates": false,
+                                        "onclick": null,
+                                        "showDuration": "300",
+                                        "hideDuration": "1000",
+                                        "timeOut": "5000",
+                                        "extendedTimeOut": "1000",
+                                        "showEasing": "swing",
+                                        "hideEasing": "linear",
+                                        "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut",
+                                    };
+                                    console.log(response)
+                                }
+                            })
+                        })
+                    })
+                })
+            </script>
+
         {% else %}
-            <a onclick="alert('create user access is under construction')" class="text-white float-md-right d-inline-flex pt-1 pb-1 pt-md-3 pb-md-3 mt-4 mb-4 mt-md-0 mb-md-0" style="background: #133514; padding: 25px; border-radius: 35px" href="#">create access to user</a>
+            <a onclick="alert('create user access is under construction')"
+               class="text-white float-md-right d-inline-flex pt-1 pb-1 pt-md-3 pb-md-3 mt-4 mb-4 mt-md-0 mb-md-0"
+               style="background: #133514; padding: 25px; border-radius: 35px" href="#">create access to user</a>
         {% endif %}
         <div class="d-flex">
             <form method="post" class="col-md-5">

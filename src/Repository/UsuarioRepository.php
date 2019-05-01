@@ -24,6 +24,22 @@ class UsuarioRepository extends ServiceEntityRepository
         $em->persist($usuario);
         return $em->flush();
     }
+
+    public function save(Usuario $instance)
+    {
+        $em = $this->getEntityManager();
+        $em->merge($instance);
+        return $em->flush();
+    }
+
+    public function remove(Usuario $instance)
+    {
+        $em = $this->getEntityManager();
+        $em->beginTransaction();
+        $em->remove($instance);
+        $em->commit();
+        return $em->flush();
+    }
     // /**
     //  * @return Usuario[] Returns an array of Usuario objects
     //  */

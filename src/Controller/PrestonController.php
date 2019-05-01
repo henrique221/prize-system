@@ -203,6 +203,11 @@ class PrestonController extends AbstractController
         $form = $this->createForm(SlackUserType::class, $slackUser);
         $form->handleRequest($request);
 
+        if(!empty($slackUser->getUserAccess())){
+            $usuario = $slackUser->getUserAccess();
+            $userSaveForm = $this->createForm(UsuarioType::class, $usuario);
+        }
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->slackUserRepository->save($slackUser);
@@ -211,6 +216,13 @@ class PrestonController extends AbstractController
             return $this->redirectToRoute('edit_user', array('id' => $slackUser->getId()));
         }
 
+        if(isset($userSaveForm)) {
+            return $this->render("preston/editUser.html.twig", array(
+                'form' => $form->createView(),
+                'slackUser' => $slackUser,
+                'userSaveForm' => $userSaveForm->createView()
+            ));
+        }
         return $this->render("preston/editUser.html.twig", array(
             'form' => $form->createView(),
             'slackUser' => $slackUser
