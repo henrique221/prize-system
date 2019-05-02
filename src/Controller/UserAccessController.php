@@ -17,11 +17,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class UserAccess
+ * Class UserAccessController
  * @Route("/preston/user/access")
  * @package App\Controller
  */
-class UserAccess extends AbstractController
+class UserAccessController extends AbstractController
 {
     /**
      * @var UsuarioRepository
@@ -37,7 +37,7 @@ class UserAccess extends AbstractController
     private $slackUserRepository;
 
     /**
-     * UserAccess constructor.
+     * UserAccessController constructor.
      * @param UsuarioRepository $usuarioRepository
      * @param CheckIfUserHasAccess $checkIfUserHasAccess
      * @param SlackUserRepository $slackUserRepository
@@ -85,7 +85,8 @@ class UserAccess extends AbstractController
             $this->checkIfUserHasAccess->checkAndSetEntityHasAccess($slackUser);
             $check = $slackUser->getHasAccess();
             if ($check == false) {
-                $this->checkIfUserHasAccess->addAccessToSlackUser($slackUser);
+                $user = $this->checkIfUserHasAccess->addAccessToSlackUser($slackUser);
+                $this->addFlash("notice", "User access added to {$slackUser->getUsername()} with the login {$user->getLogin()} and password {$user->getPassword()}");
             }
         }
         return $this->redirectToRoute("edit_user", ["id" => $slackUser->getId()]);

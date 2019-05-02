@@ -49,8 +49,7 @@ class CheckIfUserHasAccess
 
     /**
      * @param SlackUser $slackUser
-     * @param UsuarioType $userForm
-     * @return SlackUser
+     * @return Usuario
      */
     public function addAccessToSlackUser(SlackUser $slackUser)
     {
@@ -68,14 +67,16 @@ class CheckIfUserHasAccess
 
         $usuario->setPermissoes(array("ROLE_USER"));
 
+        //Persiste o usuario novo
         $this->usuarioRepository->persist($usuario);
 
         $returnUser = $this->usuarioRepository->findBy(["userId" => $slackUser]);
 
+        //Salva o usuario no slackUser
         $slackUser->setUserAccess($returnUser[0]);
 
         $this->slackUserRepository->save($slackUser);
 
-        return $slackUser;
+        return $usuario;
     }
 }
