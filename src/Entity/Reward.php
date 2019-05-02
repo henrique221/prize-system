@@ -19,7 +19,7 @@ class Reward
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\SlackUser")
      * @ORM\JoinColumns({
-     *      @ORM\JoinColumn(name="slackUser", referencedColumnName="id", nullable=true)
+     *      @ORM\JoinColumn(name="slackUser", referencedColumnName="id", nullable=true, onDelete="CASCADE")
      * })
      */
     private $slackUser;

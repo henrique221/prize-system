@@ -5,6 +5,9 @@ namespace App\Services;
 
 
 use App\Entity\SlackUser;
+use App\Entity\Usuario;
+use App\Form\UsuarioType;
+use App\Repository\SlackUserRepository;
 use App\Repository\UsuarioRepository;
 
 class CheckIfUserHasAccess
@@ -13,14 +16,20 @@ class CheckIfUserHasAccess
      * @var UsuarioRepository
      */
     private $usuarioRepository;
+    /**
+     * @var SlackUserRepository
+     */
+    private $slackUserRepository;
 
     /**
      * checkIfUserHasAccess constructor.
      * @param UsuarioRepository $usuarioRepository
+     * @param SlackUserRepository $slackUserRepository
      */
-    public function __construct(UsuarioRepository $usuarioRepository)
+    public function __construct(UsuarioRepository $usuarioRepository, SlackUserRepository $slackUserRepository)
     {
         $this->usuarioRepository = $usuarioRepository;
+        $this->slackUserRepository = $slackUserRepository;
     }
 
     /**
@@ -29,10 +38,44 @@ class CheckIfUserHasAccess
     public function checkAndSetEntityHasAccess(SlackUser $slackUser)
     {
         $user = $this->usuarioRepository->findBy(["userId" => $slackUser->getId()]);
-        if(!empty($user)){
+        if (!empty($user)) {
             $slackUser->setHasAccess(true);
-        }else {
+            $this->slackUserRepository->save($slackUser);
+        } else {
             $slackUser->setHasAccess(false);
+            $this->slackUserRepository->save($slackUser);
         }
+    }
+
+    /**
+     * @param SlackUser $slackUser
+     * @param UsuarioType $userForm
+     * @return SlackUser
+     */
+    public function addAccessToSlackUser(SlackUser $slackUser)
+    {
+        $usuario = new Usuario();
+
+        $login = (strtolower(str_replace(" ", ".", $slackUser->getUsername())));
+        $password = ($slackUser->getDataDeNascimento()->format("dmY"));
+
+        $usuario
+            ->setLogin($login)
+            ->setSenha($password)
+            ->setUserId($slackUser);
+
+        $usuario->setName($slackUser->getUsername());
+
+        $usuario->setPermissoes(array("ROLE_USER"));
+
+        $this->usuarioRepository->persist($usuario);
+
+        $returnUser = $this->usuarioRepository->findBy(["userId" => $slackUser]);
+
+        $slackUser->setUserAccess($returnUser[0]);
+
+        $this->slackUserRepository->save($slackUser);
+
+        return $slackUser;
     }
 }

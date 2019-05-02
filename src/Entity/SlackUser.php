@@ -58,7 +58,7 @@ class SlackUser implements JsonSerializable
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Usuario", mappedBy="id")
-     * @ORM\JoinColumns({@ORM\JoinColumn(name="userAccess", referencedColumnName="id")})
+     * @ORM\JoinColumns({@ORM\JoinColumn(name="userAccess", referencedColumnName="id", onDelete="CASCADE")})
      */
     private $userAccess;
 
@@ -196,5 +196,13 @@ class SlackUser implements JsonSerializable
     public function getUserAccess()
     {
         return $this->userAccess;
+    }
+
+    /**
+     * @param mixed $userAccess
+     */
+    public function setUserAccess($userAccess): void
+    {
+        $this->userAccess = $userAccess;
     }
 }

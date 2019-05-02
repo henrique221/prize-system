@@ -66,7 +66,7 @@ class SlackService
                     $em->flush();
                 }
             }
-            return $slackUserObj;
+            return new Response("user added", 200);
         } else {
             return new Response("user already exists", 409);
         }

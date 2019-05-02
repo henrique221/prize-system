@@ -178,15 +178,9 @@ class PrestonController extends AbstractController
     {
         $userId = $request->request->get("userId");
 
-        $updateSlackDatabase = $slackService->updateSlackDatabase($userId);
+        $status = $slackService->updateSlackDatabase($userId);
 
-        $status = gettype($updateSlackDatabase) == SlackUser::class ? new Response("User added", 200) : new Response("User already exists", 409);
-
-        if(gettype($updateSlackDatabase == SlackUser::class)){
-            $checkIfUserHasAccess->checkAndSetEntityHasAccess($updateSlackDatabase);
-        }
-
-        return new JsonResponse($userId, $status);
+        return new JsonResponse($userId, $status->getStatusCode());
     }
 
     /**
