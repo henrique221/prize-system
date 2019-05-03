@@ -1,18 +1,138 @@
 {% extends "base.html.twig" %}
 
-{% block stylesheets %}
-    <style>
-        h5 {
-            font-size: 35px;
-        }
-    </style>
-{% endblock %}
-
  {% block body %}
      <link rel="stylesheet" href="{{ asset('css/back.css') }}">
 
+     <style>
+         h5 {
+             font-size: 35px;
+         }
+     </style>
+
      <div class="context">
-         <div class="jumbotron bg-transparent">
+
+         <div class="jumbotron bg-transparent d-md-none" id="users">
+
+             <div class="d-flex justify-content-center pb-3 pt-3"
+                  style="position: fixed; top: 0; width:100%; height:80px; left:0; background: #1b2735">
+                 <input class="search border-0 pl-3" style="border-radius: 25px!important; width: 75%" type="search" placeholder="Search"/>
+
+                 <!-- class="sort" automagically makes an element a sort buttons. The date-sort value decides what to sort by. -->
+                 <div class="d-flex justify-content-center align-items-center">
+                     <button class="sort pb-3 pt-3 pl-3 pr-3 border-0 ml-2" style="background: #1e4b87"
+                             data-sort="name">
+                         <i id="sortIcon" class="fas fa-sort-alpha-down" style="font-size: 25px"></i>
+                         <script>
+                             $(document).ready(function () {
+                                 $('#sortIcon').click(function () {
+                                     $(this).toggleClass('fas fa-sort-alpha-up');
+                                     $(this).toggleClass('fas fa-sort-alpha-down');
+                                 });
+
+                             })
+                         </script>
+                     </button>
+                 </div>
+             </div>
+
+             <!-- class="search" automagically makes an input a search field. -->
+
+             <!-- Child elements of container with class="list" becomes list items -->
+             <ul class="list mt-5">
+
+                 {% for u in userAndRewards %}
+                     {% if u %}
+
+                         <li>
+                             <!-- The innerHTML of children with class="name" becomes this items "name" value -->
+                             <div class="d-flex">
+                                 <h4 id="rewardBalloonMobile{{ u.id }}" class="name mt-5">{{ u.username }}</h4>
+                                 <p class="rewards ml-3 mr-1 mt-5">
+                                     {% if u.rewardsJoined|length == 0 %}
+                                         <a class=""><i class="far fa-eye text-white-50"
+                                                        style="font-size: 30px"></i></a>
+                                     {% else %}
+                                         <a href="{{ path('show_user_rewards', {'id' : u.id}) }}" class=""><i
+                                                     class="far fa-eye" style="font-size: 30px"></i></a>
+                                     {% endif %}
+                                 </p>
+                                 <p class="ml-3 mr-2 mt-5">
+                                     <a onmouseover="style='filter: drop-shadow(1px 1px 5px green); '"
+                                        onmouseleave="style= 'filter: none;'"
+                                        class=" openModal{{ u.id }} mr-md-4 ml-md-4"
+                                        data-toggle="modal"
+                                        data-target="#modelId"
+                                        name="{{ u.id }}">
+                                         <i style="font-size: 30px" class="fas fa-trophy"></i>
+                                     </a>
+                                 </p>
+                             </div>
+
+                             <div class="d-inline-flex">
+                                 <p class="born">
+                                     {% if u.birthdate is null %}
+                                         <span class="text-center">no birthdate</span>
+                                     {% else %}
+                                         <span class="text-center">{{ u.birthdate|date("d/m/Y") }}</span>
+                                     {% endif %}
+                                 </p>
+                                 {% if is_granted('ROLE_ADMIN') %}
+                                     <a class="ml-2" href="{{ path("edit_user", {"id": u.id}) }}">edit</a>
+                                 {% endif %}
+                             </div>
+                         </li>
+                     {% endif %}
+                 {% endfor %}
+             </ul>
+         </div>
+
+
+         {% for u in userAndRewards %}
+             {% if u %}
+
+                 <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+                      aria-hidden="true">
+                     <form class="formModal" action="{{ path('add_reward', {"id" : u.id}) }}"
+                           id="form{{ u.id }}" method="post"
+                           style="font-family: 'Roboto', sans-serif !important;">
+                         <div class="modal-dialog" role="document">
+                             <div class="modal-content">
+                                 <div class="modal-header">
+                                     <h5 class="modal-title text-dark">Reward</h5>
+                                     <button type="button" class="close" data-dismiss="modal"
+                                             aria-label="Close">
+                                         <span aria-hidden="true">&times;</span>
+                                     </button>
+                                 </div>
+                                 <div class="modal-body">
+                                     <label id="descriptionLabel" class="text-dark" for="description"></label>
+                                     <textarea id="description" minlength="10" required name="description"
+                                               class="w-100"
+                                               placeholder="type here ..."></textarea>
+                                     <input name="tags" required type="text" id="tags">
+                                 </div>
+                                 <div class="modal-footer">
+                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                         Close
+                                     </button>
+                                     <button type="submit" id="btnSubmit" class="btn btn-primary">Save</button>
+                                 </div>
+                             </div>
+                         </div>
+                     </form>
+                 </div>
+
+             {% endif %}
+         {% endfor %}
+
+         <script>
+             var options = {
+                 valueNames: ['name', 'born', 'rewards']
+             };
+             var userList = new List('users', options);
+         </script>
+
+         <div class="jumbotron bg-transparent d-none d-md-block">
 
              {% for flashMessage in app.session.flashbag.get('notice') %}
                  <div class="alert bg-success" role="alert">
@@ -25,7 +145,7 @@
                  </div>
              {% endfor %}
 
-             <h5 class="mb-md-5">Preston control panel</h5>
+             <h5 class="mb-md-5"><i id="userBot" class="fas fa-robot"></i> Preston control panel</h5>
 
              <p style="font-size: 20px" class="mb-md-5">Welcome, {{ user.name }} !</p>
 
@@ -62,7 +182,8 @@
                      {% if u %}
                          <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
                               aria-hidden="true">
-                             <form class="formModal" action="{{ path('add_reward', {"id" : u.id}) }}" id="form{{ u.id }}" method="post"
+                             <form class="formModal" action="{{ path('add_reward', {"id" : u.id}) }}"
+                                   id="form{{ u.id }}" method="post"
                                    style="font-family: 'Roboto', sans-serif !important;">
                                  <div class="modal-dialog" role="document">
                                      <div class="modal-content">
@@ -75,7 +196,8 @@
                                          </div>
                                          <div class="modal-body">
                                              <label id="descriptionLabel" class="text-dark" for="description"></label>
-                                             <textarea id="description" minlength="10" required name="description" class="w-100"
+                                             <textarea id="description" minlength="10" required name="description"
+                                                       class="w-100"
                                                        placeholder="type here ..."></textarea>
                                              <input name="tags" required type="text" id="tags">
                                          </div>
@@ -92,55 +214,189 @@
 
                          <tr onmouseover="style='filter: drop-shadow(0px 0px 3px yellow); cursor: default'"
                              onmouseleave="style= 'filter: none;'">
-                         <td class="text-center">{{ u.id }}</td>
-                         <td class="text-center username{{ u.id }}">{{ u.username }}</td>
-                         <td class="text-center">{{ u.email }}</td>
-                         {% if u.birthdate is null %}
-                             <td class="text-center">no birthdate</td>
-                         {% else %}
-                             <td class="text-center">{{ u.birthdate|date("d/m/Y") }}</td>
-                         {% endif %}
+                             <td class="text-center">{{ u.id }}</td>
+                             <td class="text-center username{{ u.id }}">{{ u.username }}</td>
+                             <td class="text-center">{{ u.email }}</td>
+                             {% if u.birthdate is null %}
+                                 <td class="text-center">no birthdate</td>
+                             {% else %}
+                                 <td class="text-center">{{ u.birthdate|date("d/m/Y") }}</td>
+                             {% endif %}
 
-                         <td class="">
-                             <div class="d-flex justify-content-lg-center ">
-                                 <a onmouseover="style='filter: drop-shadow(1px 1px 5px green); '"
-                                    onmouseleave="style= 'filter: none;'" class=" openModal{{ u.id }} mr-md-4 ml-md-4"
-                                    data-toggle="modal"
-                                    data-target="#modelId"
-                                    name="{{ u.id }}">
-                                     <i class="fas fa-plus-circle cell"></i>
-                                 </a>
-                                 <span id="rewards{{ u.id }}">{{ u.rewardsJoined|length }}</span>
-                                 {% if u.rewardsJoined|length == 0 %}
-                                     <a id="rewardBalloon{{ u.id }}" class="mr-md-4 ml-md-4"><i
-                                                 class="far fa-eye"></i></a>
-                                 {% else %}
-                                     <a id="rewardBalloon{{ u.id }}"
-                                        href="{{ path('show_user_rewards', {'id' : u.id}) }}"
-                                        class="mr-md-4 ml-md-4"><i class="far fa-eye"></i></a>
-                                 {% endif %}
+                             <td class="">
+                                 <div class="d-flex justify-content-lg-center ">
+                                     <a onmouseover="style='filter: drop-shadow(1px 1px 5px green); '"
+                                        onmouseleave="style= 'filter: none;'"
+                                        class=" openModal{{ u.id }} mr-md-4 ml-md-4"
+                                        data-toggle="modal"
+                                        data-target="#modelId"
+                                        name="{{ u.id }}">
+                                         <i id="addRewardTrophy{{ u.id }}" style="font-size: 30px; cursor: pointer;" class="fas fa-trophy"></i>
+                                     </a>
+                                     <span id="rewards{{ u.id }}" hidden>{{ u.rewardsJoined|length }}</span>
+                                     {% if u.rewardsJoined|length == 0 %}
+                                         <a id="rewardBalloon{{ u.id }}" class="mr-md-4 ml-md-4"><i
+                                                     class="far fa-eye text-white-50" style="font-size: 30px"></i></a>
+                                     {% else %}
+                                         <a id="rewardBalloon{{ u.id }}"
+                                            href="{{ path('show_user_rewards', {'id' : u.id}) }}"
+                                            class="mr-md-4 ml-md-4"><i style="font-size: 30px"
+                                                                       class="far fa-eye"></i></a>
+                                     {% endif %}
 
-                                 <div style="filter: drop-shadow(60px 60px white)"></div>
+                                     <div style="filter: drop-shadow(60px 60px white)"></div>
 
-                             </div>
-                         </td>
-                         {% if is_granted('ROLE_ADMIN') %}
-                             <td class="text-center">
-                                 <a href="{{ path("edit_user", {"id": u.id}) }}">edit</a>
+                                 </div>
                              </td>
-                             </tr>
-                         {% endif %}
+                             {% if is_granted('ROLE_ADMIN') %}
+                                 <td class="text-center">
+                                     <a href="{{ path("edit_user", {"id": u.id}) }}">edit</a>
+                                 </td>
+                             {% endif %}
+                         </tr>
+
                          <script>
                              $(document).ready(function () {
                                  {% if u.rewardsJoined|length == 0 %}
                                  {% set rewards = "no rewards" %}
-                                 {% else %}
-                                 {% set rewards = u.rewardsJoined|join(", ") %}
-                                 {% endif %}
                                  $("#rewardBalloon{{ u.id }}").balloon({
                                      html: true,
-                                     contents: $("<p style='font-family: `lato`, sans-serif; font-size: 15px; width: 150px'>{{ rewards }}</p>")
+                                     tipSize: 25,
+                                     css: {
+                                         border: 'solid 2px #5baec0',
+                                         borderRadius: '15px',
+                                         paddingTop: '15px',
+                                         textAlign: 'center',
+                                         fontSize: '15px',
+                                         fontWeight: 'bold',
+                                         lineHeight: '1',
+                                         backgroundColor: '#666',
+                                         color: '#fff'
+                                     },
+                                     contents: $("<p style='font-family: `lato`, sans-serif; width: 120px'>{{ rewards }}</p>")
                                  });
+                                 $("#rewardBalloonMobile{{ u.id }}").balloon({
+                                     html: true,
+                                     tipSize: 25,
+                                     css: {
+                                         border: 'solid 2px #5baec0',
+                                         borderRadius: '15px',
+                                         paddingTop: '15px',
+                                         fontSize: '15px',
+                                         textAlign: 'center',
+                                         fontWeight: 'bold',
+                                         lineHeight: '1',
+                                         backgroundColor: '#666',
+                                         color: '#fff'
+                                     },
+                                     contents: $("<p style='font-family: `lato`, sans-serif; width: 150px'>{{ rewards }}</p>")
+                                 });
+                                 {% elseif u.rewardsJoined|length <= 10 %}
+                                 {% set rewards = u.rewardsJoined|join(", ") %}
+                                 $("#rewardBalloon{{ u.id }}").balloon({
+                                     html: true,
+                                     tipSize: 25,
+                                     css: {
+                                         border: 'solid 2px #5baec0',
+                                         borderRadius: '15px',
+                                         paddingTop: '15px',
+                                         padding: '5px',
+                                         fontSize: '15px',
+                                         textAlign: 'center',
+                                         fontWeight: 'bold',
+                                         width: '180px',
+                                         lineHeight: '1',
+                                         backgroundColor: '#666',
+                                         color: '#fff'
+                                     },
+                                     contents: $("<p style='font-family: `lato`, sans-serif;'>{{ rewards }}</p><p>total rewards : {{ u.rewardsJoined|length }}</p>")
+                                 });
+                                 $("#rewardBalloonMobile{{ u.id }}").balloon({
+                                     html: true,
+                                     tipSize: 25,
+                                     css: {
+                                         border: 'solid 2px #5baec0',
+                                         borderRadius: '15px',
+                                         paddingTop: '15px',
+                                         fontSize: '15px',
+                                         textAlign: 'center',
+                                         fontWeight: 'bold',
+                                         lineHeight: '1',
+                                         backgroundColor: '#666',
+                                         color: '#fff'
+                                     },
+                                     contents: $("<p style='font-family: `lato`, sans-serif; width: 150px'>{{ rewards }}</p><p>total rewards : {{ u.rewardsJoined|length }}</p>")
+                                 });
+                                 {% else %}
+
+                                 $("#rewardBalloon{{ u.id }}").balloon({
+                                     html: true,
+                                     tipSize: 25,
+                                     css: {
+                                         border: 'solid 2px #5baec0',
+                                         borderRadius: '15px',
+                                         paddingTop: '15px',
+                                         fontSize: '15px',
+                                         textAlign: 'center',
+                                         fontWeight: 'bold',
+                                         lineHeight: '1',
+                                         backgroundColor: '#666',
+                                         color: '#fff'
+                                     },
+                                     contents: $("<p style='font-family: `lato`, sans-serif; width: 150px'>total rewards : {{ u.rewardsJoined|length }}</p>")
+                                 });
+                                 $("#rewardBalloonMobile{{ u.id }}").balloon({
+                                     html: true,
+                                     tipSize: 25,
+                                     css: {
+                                         border: 'solid 2px #5baec0',
+                                         borderRadius: '15px',
+                                         paddingTop: '15px',
+                                         fontSize: '15px',
+                                         textAlign: 'center',
+                                         fontWeight: 'bold',
+                                         lineHeight: '1',
+                                         backgroundColor: '#666',
+                                         color: '#fff'
+                                     },
+                                     contents: $("<p style='font-family: `lato`, sans-serif; width: 150px'>total rewards : {{ u.rewardsJoined|length }}</p>")
+                                 });
+
+                                 {% endif %}
+                                 $("#userBot").balloon({
+                                     html: true,
+                                     position: 'top-right',
+                                     css: {
+                                         border: 'solid 2px #5baec0',
+                                         borderRadius: '15px',
+                                         padding: '1px',
+                                         fontSize: '150%',
+                                         textAlign: 'center',
+                                         fontWeight: 'bold',
+                                         lineHeight: '1',
+                                         backgroundColor: '#666',
+                                         color: '#fff'
+                                     },
+                                     contents: $("<p style='margin-top: 15px; font-family: `lato`, sans-serif; font-size: 15px; width: 150px;'>{{ user.name }}</p>")
+                                 });
+
+                                 $("#addRewardTrophy{{ u.id }}").balloon({
+                                     html: true,
+                                     tipSize: 25,
+                                     css: {
+                                         border: 'solid 2px #5baec0',
+                                         borderRadius: '15px',
+                                         paddingTop: '15px',
+                                         fontSize: '15px',
+                                         textAlign: 'center',
+                                         fontWeight: 'bold',
+                                         lineHeight: '1.5',
+                                         backgroundColor: '#666',
+                                         color: '#fff'
+                                     },
+                                     contents: $("<p style='font-family: `lato`, sans-serif; width: 150px'>Add reward to {{ u.username }}</p>")
+                                 });
+
                              })
                          </script>
                      {% endif %}
@@ -183,7 +439,6 @@
          </ul>
      </div>
 
-     <script src="{{ asset('js/tooltip.js') }}"></script>
      <script>
          // Basic example
          $(document).ready(function () {
@@ -210,87 +465,6 @@
              {% endfor %}
 
          });
-         {% for u in userAndRewards %}
-         {% if u %}
-         {#$(function () {#}
-         {#    $(document).on("submit", "#form{{ u.id }}", function () {#}
-
-         {#        $("#btnSubmit").attr("disabled", true).html("wait").cursor("default");#}
-
-         {#        var description = $("#description");#}
-         {#        var inputs = $("#tags");#}
-
-         {#        var values = {};#}
-
-         {#        inputs.each(function () {#}
-         {#            values[this.name] = $(this).val();#}
-         {#        });#}
-         {#        $(function () {#}
-         {#            $.ajax({#}
-         {#                type: 'POST',#}
-         {#                data: {values, description},#}
-         {#                url: '{{ path('add_reward', {"id": u.id}) }}',#}
-         {#                success: function () {#}
-         {#                    Command: toastr["success"]("User {{ u.username }} rewarded");#}
-
-         {#                    toastr.options = {#}
-         {#                        "closeButton": true,#}
-         {#                        "debug": false,#}
-         {#                        "newestOnTop": true,#}
-         {#                        "progressBar": true,#}
-         {#                        "positionClass": "toast-bottom-center",#}
-         {#                        "preventDuplicates": false,#}
-         {#                        "onclick": null,#}
-         {#                        "showDuration": "300",#}
-         {#                        "hideDuration": "1000",#}
-         {#                        "timeOut": "5000",#}
-         {#                        "extendedTimeOut": "1000",#}
-         {#                        "showEasing": "swing",#}
-         {#                        "hideEasing": "linear",#}
-         {#                        "showMethod": "fadeIn",#}
-         {#                        "hideMethod": "fadeOut",#}
-         {#                        "shadowColor": "none"#}
-         {#                    };#}
-         {#                    console.log("ok")#}
-         {#                },#}
-         {#                error: function () {#}
-         {#                    Command: toastr["error"]("User {{ u.username }} cannot be rewarded");#}
-
-         {#                    toastr.options = {#}
-         {#                        "closeButton": true,#}
-         {#                        "debug": false,#}
-         {#                        "newestOnTop": true,#}
-         {#                        "progressBar": true,#}
-         {#                        "positionClass": "toast-bottom-center",#}
-         {#                        "preventDuplicates": false,#}
-         {#                        "onclick": null,#}
-         {#                        "showDuration": "300",#}
-         {#                        "hideDuration": "1000",#}
-         {#                        "timeOut": "5000",#}
-         {#                        "extendedTimeOut": "1000",#}
-         {#                        "showEasing": "swing",#}
-         {#                        "hideEasing": "linear",#}
-         {#                        "showMethod": "fadeIn",#}
-         {#                        "hideMethod": "fadeOut",#}
-         {#                    };#}
-         {#                    console.log(`{{ path('add_reward', {"id": u.id}) }}`)#}
-         {#                }#}
-         {#            });#}
-         {#        });#}
-         {#        $(function () {#}
-         {#            $.ajax({#}
-         {#                type: 'GET',#}
-         {#                data: values,#}
-         {#                url: '{{ path('amount_rewards', {"id": u.id}) }}',#}
-         {#                success: function (response) {#}
-         {#                    $("#rewards{{ u.id }}").html("<span>" + response + "</span>");#}
-         {#                }#}
-         {#            });#}
-         {#        })#}
-         {#    });#}
-         {#});#}
-         {% endif %}
-         {% endfor %}
 
          var tagsdata = []
          tagsdata.push({id: 1, name: "Dare", screen: "dare"});
@@ -305,5 +479,4 @@
          $(".sTags").attr({"class": "d-flex justify-content-between"});
 
      </script>
-
  {% endblock %}

@@ -4,7 +4,7 @@ body {
     height: 90vh;
     color: #fff;
     background: linear-gradient(332deg, #1b1d7b, #1f5b8c);
-    background-size: 400% 400%;
+    background-size: 1000% 1000%;
 
     -webkit-animation: AnimationName 10s ease infinite;
     -moz-animation: AnimationName 10s ease infinite;
