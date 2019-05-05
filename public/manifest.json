@@ -5,7 +5,8 @@
   "background_color": "#2196f3",
   "display": "standalone",
   "orientation": "portrait",
-  "start_url": "/login",
+  "Scope": "/preston",
+  "start_url": "/preston",
   "icons": [
     {
       "src": "images/icons/icon-72x72.png",
