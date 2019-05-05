@@ -9,9 +9,15 @@
       <change beforePath="$PROJECT_DIR$/../4you2/alunosFerias.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../4you2/alunosFerias.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../4you2/dumps/dump-4you2-12-04-2019.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../4you2/dumps/dump-4you2-12-04-2019.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../4you2/src/AppBundle/Command/UpdateVacationClassesFromCsv.php" beforeDir="false" afterPath="$PROJECT_DIR$/../4you2/src/AppBundle/Command/UpdateVacationClassesFromCsv.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/manifest.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/icons/icon-128x128.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/icons/icon-144x144.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/icons/icon-152x152.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/icons/icon-192x192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/icons/icon-384x384.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/icons/icon-512x512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/icons/icon-72x72.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/icons/icon-96x96.png" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,11 +31,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/security/login.html.twig">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1393">
               <caret line="161" column="13" selection-start-line="161" selection-start-column="13" selection-end-line="161" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/manifest.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="378">
+              <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -441,16 +456,15 @@
       <workItem from="1556728052260" duration="18306000" />
       <workItem from="1556848536954" duration="15610000" />
       <workItem from="1557002680694" duration="599000" />
-      <workItem from="1557007650338" duration="6218000" />
+      <workItem from="1557007650338" duration="6514000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="257421000" />
+    <option name="totallyTimeSpent" value="257717000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="26" width="2560" height="1014" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17303103" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -834,23 +848,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/images/icons/icon-144x144.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/images/icons/icon-152x152.png">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/manifest.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="24" selection-start-line="24" selection-end-line="28" selection-end-column="6" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/security/login.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1393">
           <caret line="161" column="13" selection-start-line="161" selection-start-column="13" selection-end-line="161" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/images/icons/icon-144x144.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/manifest.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
         </state>
       </provider>
     </entry>
