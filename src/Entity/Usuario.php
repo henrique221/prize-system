@@ -17,7 +17,7 @@ class Usuario implements UserInterface
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\SlackUser")
-     * @ORM\JoinColumns({@ORM\JoinColumn(name="userId", referencedColumnName="id", onDelete="SET NULL")})
+     * @ORM\JoinColumns({@ORM\JoinColumn(name="userId", referencedColumnName="id", onDelete="CASCADE")})
      */
     private $userId;
 
