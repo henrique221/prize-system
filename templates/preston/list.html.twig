@@ -21,14 +21,21 @@
                  <div class="d-flex justify-content-center align-items-center">
                      <button class="sort pb-3 pt-3 pl-3 pr-3 border-0 ml-2" style="background: #1e4b87"
                              data-sort="name">
-                         <i id="sortIcon" class="fas fa-sort-alpha-down" style="font-size: 25px"></i>
+                         <i id="sortIcon" class="fas fa-random" style="font-size: 25px"></i>
                          <script>
                              $(document).ready(function () {
                                  $('#sortIcon').click(function () {
-                                     $(this).toggleClass('fas fa-sort-alpha-up');
-                                     $(this).toggleClass('fas fa-sort-alpha-down');
+                                     $(this).attr('class', 'fas fa-sort-alpha-down')
+                                     $(this).attr('id', 'sortSorted')
+                                     changeSort()
                                  });
 
+                                 function changeSort() {
+                                     $('#sortSorted').click(function () {
+                                         $(this).toggleClass('fas fa-sort-alpha-up')
+                                         $(this).toggleClass('fas fa-sort-alpha-down')
+                                     })
+                                 }
                              })
                          </script>
                      </button>
