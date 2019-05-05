@@ -6,7 +6,6 @@
   "display": "standalone",
   "orientation": "portrait",
   "Scope": "/preston",
-  "start_url": "/preston",
   "icons": [
     {
       "src": "images/icons/icon-72x72.png",
@@ -49,5 +48,5 @@
       "type": "image/png"
     }
   ],
-  "splash_pages": null
+  "start_url": "/preston?utm_source=launcher"
 }
