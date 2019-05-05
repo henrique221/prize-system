@@ -3,6 +3,12 @@
 {% block title %}Log in!{% endblock %}
 {% block stylesheets %}
 
+    <style>
+        #inputLogin {
+            text-transform:lowercase;
+        }
+    </style>
+
 {% endblock %}
 {% block javascriptStyles %}
 
@@ -62,7 +68,7 @@
                 <p class="m-md-5 mb-5 mt-5 loginPrestonText">Login Preston</p>
                 <div class="d-flex flex-row">
                     <i class="text-white fa fa-user my-auto mr-2"></i>
-                    <input type="text" value="{{ last_username }}" name="login" id="inputLogin" class="form-control" placeholder="Login" required>
+                    <input type="text" value="{{ last_username }}" onkeyup="return forceLower(this);" name="login" id="inputLogin" class="form-control" placeholder="Login" required>
                 </div>
                 <br>
                 <div class="d-flex flex-row">
@@ -132,6 +138,11 @@
                 check.classList.add('active');
             });
         });
+
+        function forceLower(strInput)
+        {
+            strInput.value=strInput.value.toLowerCase();
+        }​
 
         var typed3 = new Typed('#typed3', {
             strings: ['<span> atribuir premiações para</span>', '<span> salvar as datas de aniversários dos<span>', '<span> enviar notificações via <strong>Slack</strong> para<span>'],
