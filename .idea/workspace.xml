@@ -9,11 +9,7 @@
       <change beforePath="$PROJECT_DIR$/../4you2/alunosFerias.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../4you2/alunosFerias.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../4you2/dumps/dump-4you2-12-04-2019.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../4you2/dumps/dump-4you2-12-04-2019.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../4you2/src/AppBundle/Command/UpdateVacationClassesFromCsv.php" beforeDir="false" afterPath="$PROJECT_DIR$/../4you2/src/AppBundle/Command/UpdateVacationClassesFromCsv.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/preston/accessForm.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/preston/accessForm.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/preston/editUser.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/preston/editUser.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/preston/list.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/preston/list.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/preston/updateDatabase.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/preston/updateDatabase.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/preston/userRewards.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/preston/userRewards.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,11 +23,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/security/login.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="42">
-              <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="38" />
+            <state relative-caret-position="288">
+              <caret line="152" column="99" lean-forward="true" selection-start-line="152" selection-start-column="99" selection-end-line="152" selection-end-column="99" />
               <folding>
                 <element signature="e#1846#1869#0#HTML" expanded="true" />
                 <element signature="e#2125#2147#0#HTML" expanded="true" />
@@ -118,7 +114,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/preston/userRewards.html.twig">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="42">
@@ -151,7 +147,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>add</find>
       <find>ser</find>
       <find>modal</find>
       <find>user acc</find>
@@ -181,6 +176,7 @@
       <find>font-fam</find>
       <find>font-</find>
       <find>title</find>
+      <find>aniver</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -240,12 +236,12 @@
         <option value="$PROJECT_DIR$/public/js/jquery.sTags.js" />
         <option value="$PROJECT_DIR$/public/js/typedjs.js" />
         <option value="$PROJECT_DIR$/templates/base.html.twig" />
-        <option value="$PROJECT_DIR$/templates/security/login.html.twig" />
         <option value="$PROJECT_DIR$/templates/preston/accessForm.html.twig" />
         <option value="$PROJECT_DIR$/templates/preston/editUser.html.twig" />
         <option value="$PROJECT_DIR$/templates/preston/list.html.twig" />
         <option value="$PROJECT_DIR$/templates/preston/updateDatabase.html.twig" />
         <option value="$PROJECT_DIR$/templates/preston/userRewards.html.twig" />
+        <option value="$PROJECT_DIR$/templates/security/login.html.twig" />
       </list>
     </option>
   </component>
@@ -448,12 +444,12 @@
       <workItem from="1556728052260" duration="18306000" />
       <workItem from="1556848536954" duration="15610000" />
       <workItem from="1557002680694" duration="599000" />
-      <workItem from="1557007650338" duration="14082000" />
+      <workItem from="1557007650338" duration="14191000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="265285000" />
+    <option name="totallyTimeSpent" value="265394000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="26" width="2560" height="1014" extended-state="6" />
@@ -814,21 +810,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/security/login.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="38" />
-          <folding>
-            <element signature="e#1846#1869#0#HTML" expanded="true" />
-            <element signature="e#2125#2147#0#HTML" expanded="true" />
-            <element signature="e#2836#2874#0#HTML" expanded="true" />
-            <element signature="e#3222#3261#0#HTML" expanded="true" />
-            <element signature="n#style#0;n#strong#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#strong#0;n#span#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/index/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="798">
@@ -876,6 +857,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
           <caret line="2" column="54" selection-start-line="2" selection-start-column="54" selection-end-line="2" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/security/login.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="152" column="99" lean-forward="true" selection-start-line="152" selection-start-column="99" selection-end-line="152" selection-end-column="99" />
+          <folding>
+            <element signature="e#1846#1869#0#HTML" expanded="true" />
+            <element signature="e#2125#2147#0#HTML" expanded="true" />
+            <element signature="e#2836#2874#0#HTML" expanded="true" />
+            <element signature="e#3222#3261#0#HTML" expanded="true" />
+            <element signature="n#style#0;n#strong#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#strong#0;n#span#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
