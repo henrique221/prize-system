@@ -5,7 +5,7 @@
 
     <style>
         #inputLogin {
-            text-transform:lowercase;
+            text-transform: lowercase;
         }
     </style>
 
@@ -54,7 +54,7 @@
         </div>
         <div class="prestonText">
             <p class="text-center text-white m-md-5 mt-5" style="font-size: 22px">Com o <strong style="color: #ba8b00">Preston</strong>
-                vc pode<span class="text-center text-white" id="typed3"></span> seus funcionários</p>
+                vc pode<span class="text-center text-white" id="typed3"></span> seus colegas da <strong style="color: #1aace1">4you2</strong></p>
         </div>
 
         <form class="d-flex justify-content-center mt-md-5 text-center" method="post">
@@ -68,12 +68,14 @@
                 <p class="m-md-5 mb-5 mt-5 loginPrestonText">Login Preston</p>
                 <div class="d-flex flex-row">
                     <i class="text-white fa fa-user my-auto mr-2"></i>
-                    <input type="text" value="{{ last_username }}" onkeyup="return forceLower(this);" name="login" id="inputLogin" class="form-control" placeholder="Login" required>
+                    <input type="text" value="{{ last_username }}" onkeyup="return forceLower(this);" style="font-family: 'lato', sans-serif" name="login"
+                           id="inputLogin" class="form-control" placeholder="Login" required>
                 </div>
                 <br>
                 <div class="d-flex flex-row">
                     <i class="text-white fa fa-lock my-auto mr-2"></i>
-                    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Senha" required>
+                    <input type="password" name="password" id="inputPassword" style="font-family: 'lato', sans-serif;" class="form-control" placeholder="Senha"
+                           required>
                 </div>
 
                 <input type="hidden" name="_csrf_token"
@@ -124,7 +126,15 @@
 
 {% endblock %}
 {% block javascripts %}
+
     <script>
+        function forceLower(strInput) {
+            strInput.value = strInput.value.toLowerCase();
+        }​
+    </script>
+
+    <script>
+
         document.addEventListener('DOMContentLoaded', function () {
             var btn = document.querySelector('.button'),
                 loader = document.querySelector('.loader'),
@@ -139,18 +149,13 @@
             });
         });
 
-        function forceLower(strInput)
-        {
-            strInput.value=strInput.value.toLowerCase();
-        }​
-
         var typed3 = new Typed('#typed3', {
-            strings: ['<span> atribuir premiações para</span>', '<span> salvar as datas de aniversários dos<span>', '<span> enviar notificações via <strong>Slack</strong> para<span>'],
+            strings: ['<span> atribuir premiações para</span>', '<span> ver as datas de aniversários dos<span>', '<span> enviar notificações de premiações via <strong style="color: #cf15d0">Slack</strong> para<span>'],
             typeSpeed: 30,
-            backDelay: 2000,
+            backDelay: 4200,
             startDelay: 50,
             backSpeed: 40,
-            cursorChar: '',
+            cursorChar: '|',
             smartBackspace: true, // this is a default
             loop: true
         });
@@ -164,9 +169,9 @@
         if ('serviceWorker' in navigator) {
             console.log("Will the service worker register?");
             navigator.serviceWorker.register('{{ asset('service-worker.js') }}')
-                .then(function(reg){
+                .then(function (reg) {
                     console.log("Yes, it did.");
-                }).catch(function(err) {
+                }).catch(function (err) {
                 console.log("No it didn't. This happened:", err)
             });
         }
