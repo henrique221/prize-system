@@ -104,7 +104,8 @@ class PrestonController extends AbstractController
             1 => "dare",
             2 => "create",
             3 => "do it",
-            4 => "conect"
+            4 => "conect",
+            5 => "deliver"
         ];
 
         $tags = explode(",", $request->request->get("tags"));

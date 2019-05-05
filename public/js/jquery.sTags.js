@@ -61,7 +61,7 @@
 
 				for(var i in o.data){//循环标签数据
 
-					var attr = {"class": "pl-md-4 pr-md-4 pb-md-2 pt-md-2 pl-3 pr-3 pt-2 pb-2 mt-1"};
+					var attr = {"class": "pl-md-3 pr-md-3 pb-md-2 pt-md-2 pl-2 pr-2 pt-2 pb-2 mt-1"};
 					for(var j in o.tagAttr){
 						attr[j] = o.tagAttr[j].replace('{name}',o.data[i].name).replace('{id}',o.data[i].id)
 					}
