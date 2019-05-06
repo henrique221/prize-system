@@ -81,7 +81,23 @@ class SlackService
         $rewardsWithTrophyArray = [];
 
         for($i = 0; $i <= sizeof($rewards)-1; $i++) {
-            $rewardsWithTrophyArray[] = ":trophy: ".$rewards[$i];
+            switch ($rewards[$i]){
+                case 'deliver':
+                    $rewardsWithTrophyArray[] = ":punch: ".$rewards[$i];
+                    break;
+                case 'dare':
+                    $rewardsWithTrophyArray[] = ":star-struck: ".$rewards[$i];
+                    break;
+                case 'do it':
+                    $rewardsWithTrophyArray[] = ":muscle: ".$rewards[$i];
+                    break;
+                case 'connect':
+                    $rewardsWithTrophyArray[] = ":handshake: ".$rewards[$i];
+                    break;
+                case 'create':
+                    $rewardsWithTrophyArray[] = ":bulb: ".$rewards[$i];
+                    break;
+            }
         }
 
         $rewardsWithTrophy = implode(" ", $rewardsWithTrophyArray);

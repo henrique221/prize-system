@@ -104,7 +104,7 @@ class PrestonController extends AbstractController
             1 => "dare",
             2 => "create",
             3 => "do it",
-            4 => "conect",
+            4 => "connect",
             5 => "deliver"
         ];
 
@@ -114,8 +114,6 @@ class PrestonController extends AbstractController
         foreach ($tags as $tag) {
             $rewardsFilterSelected[] = $rewards[$tag];
         }
-
-        dump($rewardsFilterSelected);
 
         $now = new \DateTime();
         $now->setTimezone(new \DateTimeZone('Brazil/East'));
