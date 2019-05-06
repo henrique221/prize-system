@@ -109,12 +109,12 @@ class SlackService
         $channelId = $openChatRequest->channel->id;
 
         $sendMessageUrlToUser = "https://slack.com/api/chat.postMessage?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&channel={$channelId}&text={$textToUser}&pretty=1";
-//        $sendMessageUrlToGeneral = "https://hooks.slack.com/services/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";
-        $sendMessageUrlToTest = "https://hooks.slack.com/services/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";
+        $sendMessageUrlToGeneral = "https://hooks.slack.com/services/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";
+//        $sendMessageUrlToTest = "https://hooks.slack.com/services/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";
 
         $this->requestDispatcher->post($sendMessageUrlToUser);
-//        $this->requestDispatcher->postJson($sendMessageUrlToGeneral, "{'attachments': [{'color':'#ffd700','text':'{$textToGeneral}', 'image_url':'https://i2.wp.com/www.wakeed.org/wp-content/uploads/2016/07/award-icon-06.png'}]}" );
-        $this->requestDispatcher->postJson($sendMessageUrlToTest, "{'attachments': [{'color':'#ffd700','text':'{$textToGeneral}', 'image_url':'https://i2.wp.com/www.wakeed.org/wp-content/uploads/2016/07/award-icon-06.png'}]}" );
+        $this->requestDispatcher->postJson($sendMessageUrlToGeneral, "{'attachments': [{'color':'#ffd700','text':'{$textToGeneral}', 'image_url':'https://i2.wp.com/www.wakeed.org/wp-content/uploads/2016/07/award-icon-06.png'}]}" );
+//        $this->requestDispatcher->postJson($sendMessageUrlToTest, "{'attachments': [{'color':'#ffd700','text':'{$textToGeneral}', 'image_url':'https://i2.wp.com/www.wakeed.org/wp-content/uploads/2016/07/award-icon-06.png'}]}" );
     }
 
     private function formatUserNameToName($username)
