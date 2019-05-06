@@ -21,6 +21,7 @@ class UserRewardsDto implements JsonSerializable
     private $birthdate;
     private $email;
     private $id;
+    private $rewardsIndex;
 
     public function __construct(SlackUser $slackUser, $id, $username, array $rewards, $birthdate, $email)
     {
@@ -40,7 +41,8 @@ class UserRewardsDto implements JsonSerializable
             "username" => $this->slackUser->getUsername(),
             "email" => $this->slackUser->getEmail(),
             "birthdate" => $this->slackUser->getDataDeNascimento(),
-            "rewards" => $this->getRewards()
+            "rewards" => $this->getRewards(),
+            "rewardsIndex" => $this->getRewardsIndex()
         ];
     }
 

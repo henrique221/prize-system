@@ -6,6 +6,7 @@ use App\DTO\UserRewardsDto;
 use App\Entity\Reward;
 use App\Entity\SlackUser;
 use App\Entity\Usuario;
+use App\Form\RewardType;
 use App\Form\SlackUserType;
 use App\Form\UsuarioType;
 use App\Repository\RewardRepository;
@@ -63,7 +64,8 @@ class PrestonController extends AbstractController
      * @Route("/", name="prestonIndex")
      * @return RedirectResponse
      */
-    public function index(){
+    public function index()
+    {
         return $this->redirectToRoute("preston");
     }
 
@@ -196,7 +198,7 @@ class PrestonController extends AbstractController
         $form = $this->createForm(SlackUserType::class, $slackUser);
         $form->handleRequest($request);
 
-        if(!empty($slackUser->getUserAccess())){
+        if (!empty($slackUser->getUserAccess())) {
             $usuario = $slackUser->getUserAccess();
             $userSaveForm = $this->createForm(UsuarioType::class, $usuario);
         }
@@ -209,7 +211,7 @@ class PrestonController extends AbstractController
             return $this->redirectToRoute('edit_user', array('id' => $slackUser->getId()));
         }
 
-        if(isset($userSaveForm)) {
+        if (isset($userSaveForm)) {
             return $this->render("preston/editUser.html.twig", array(
                 'form' => $form->createView(),
                 'slackUser' => $slackUser,
@@ -254,9 +256,54 @@ class PrestonController extends AbstractController
     {
 
         $usersAndRewards = $this->userRewardsService->generateSlackUserRewardDto($slackUser);
+        $user = $this->getUser();
 
         return $this->render("preston/userRewards.html.twig", [
-            'userAndRewards' => $usersAndRewards
+            'userAndRewards' => $usersAndRewards,
+            'user' => $user
         ]);
+    }
+
+    /**
+     * @Route("/edit/reward/{id}", name="edit_reward", methods={"POST"})
+     * @param Reward $reward
+     * @param Request $request
+     * @return Response
+     */
+    public function editReward(Request $request, Reward $reward)
+    {
+
+        $id = $request->request->get("id");
+
+        /** @var Reward $rewardRep */
+        $rewardRepository = $this->rewardRepository->find($request->request->get("id"));
+
+        $rewardRepository->setDescription($request->request->get("description"));
+
+        $slackUserId = $rewardRepository->getSlackUser()->getId();
+
+        $rewards = [
+            1 => "dare",
+            2 => "create",
+            3 => "do it",
+            4 => "connect",
+            5 => "deliver"
+        ];
+
+        $tags = explode(",", $request->request->get("tags{$id}"));
+        $rewardsFilterSelected = [];
+
+        foreach ($tags as $tag) {
+            $rewardsFilterSelected[] = $rewards[$tag];
+        }
+
+        $rewardRepository->setRewards($rewardsFilterSelected);
+
+        $this->rewardRepository->save($rewardRepository);
+
+        $this->addFlash("notice", "Reward updated");
+
+        return $this->redirectToRoute("show_user_rewards", ["id" => $slackUserId]);
+
     }
 }

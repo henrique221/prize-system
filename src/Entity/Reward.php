@@ -112,4 +112,28 @@ class Reward
     {
         $this->idWhoRewarded = $idWhoRewarded;
     }
+
+    public function getRewardsIndex(){
+        $rewardIndex = [];
+        foreach ($this->getRewards() as $r) {
+            switch ($r) {
+                case 'dare':
+                    $rewardIndex[] = 1;
+                    break;
+                case 'create':
+                    $rewardIndex[] = 2;
+                    break;
+                case 'do it':
+                    $rewardIndex[] = 3;
+                    break;
+                case 'connect':
+                    $rewardIndex[] = 4;
+                    break;
+                case 'deliver':
+                    $rewardIndex[] = 5;
+                    break;
+            }
+        }
+        return $rewardIndex;
+    }
 }

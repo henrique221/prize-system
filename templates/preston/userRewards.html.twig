@@ -16,6 +16,17 @@
 
 {% block body %}
 
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        <div class="alert bg-success" role="alert">
+            <strong>
+                {{ flashMessage }}
+                <img src="{{ asset('img/animat-essential/checkmark/animat-checkmark.gif') }}"
+                     style="height: 60px; width: 60px; -webkit-filter: invert(100%);filter: invert(100%);"
+                     alt="ok">
+            </strong>
+        </div>
+    {% endfor %}
+
     <div class="jumbotron bg-dark">
         <h1 class="text-white">{{ userAndRewards.username }}</h1>
         <ul class="text-white list-group bg-dark">
@@ -28,19 +39,98 @@
                         <h4>Rewarded on {{ userAndRewards.rewards["dates"][i]|date("d/m/Y") }}</h4>
                         <div class="p-4" style="background: rgba(13,8,38,0.05)">
                             {% if userAndRewards.rewards['whoRewarded'][i].name is defined %}
-                                <p style="font-style: italic">Rewarded By {{ userAndRewards.rewards['whoRewarded'][i].name }}</p>
+                                <p style="font-style: italic">Rewarded
+                                    By {{ userAndRewards.rewards['whoRewarded'][i].name }}</p>
                             {% endif %}
                             <h6 class="mt-md-5">Rewards :</h6>
                             <p style="font-style: italic">{{ userAndRewards.rewards["rewards"][i]|join(", ") }}</p>
                             <h6 class="mt-md-5">Description</h6>
                             <p>{{ userAndRewards.rewards['description'][i] }}</p>
+
+                            {% if (userAndRewards.rewards['whoRewarded'][i] is defined and user == userAndRewards.rewards['whoRewarded'][i]) or (is_granted('ROLE_ADMIN')) %}
+                                <div class="d-flex justify-content-end">
+                                    <button class="border-0" id="openModal{{ userAndRewards.rewards['id'][i] }}"
+                                            data-toggle="modal"
+                                            data-target="#modelId{{ userAndRewards.rewards['id'][i] }}"
+                                            name="{{ userAndRewards.rewards['id'][i] }}">edit
+                                    </button>
+                                </div>
+                            {% endif %}
                         </div>
+                    </div>
+                {% endfor %}
+
+                {% for i in range(0, userAndRewards.rewards["dates"]|length-1) %}
+
+                    <div class="modal fade" id="modelId{{ userAndRewards.rewards['id'][i] }}" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+                         aria-hidden="true">
+                        <form class="formModal"
+                              action="{{ path('edit_reward', {"id" : userAndRewards.rewards['id'][i] }) }}"
+                              id="form" method="post"
+                              name="openModal{{ userAndRewards.rewards['id'][i] }}"
+                              style="font-family: 'Roboto', sans-serif !important;">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-dark">Edit
+                                            reward {{ userAndRewards.rewards['dates'][i]|date('d/m/Y') }}</h5>
+                                        <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <label id="descriptionLabel" class="text-dark" for="description"></label>
+                                        <textarea id="description" minlength="10" required name="description"
+                                                  class="w-100"
+                                                  placeholder="type here ...">{{ userAndRewards.rewards['description'][i] }}</textarea>
+                                        <input name="tags{{ userAndRewards.rewards['id'][i] }}" required type="text" id="tags{{ userAndRewards.rewards['id'][i] }}">
+                                        <input hidden name="id" value="{{ userAndRewards.rewards['id'][i] }}">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" id="exit" class="btn btn-secondary" data-dismiss="modal">
+                                            Close
+                                        </button>
+                                        <button type="submit" id="btnSubmit" class="btn btn-primary">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
 
                 {% endfor %}
+
             </div>
         </ul>
         <a style="font-size: 30px" href="{{ path('preston') }}"><i class="fas fa-arrow-circle-left"></i></a>
     </div>
+
+    <script>
+        $(document).ready(function () {
+            var tagsdata = []
+
+            tagsdata.push({id: 1, name: "Dare", screen: "dare"});
+            tagsdata.push({id: 2, name: "Create", screen: "create"});
+            tagsdata.push({id: 3, name: "Do it", screen: "do it"});
+            tagsdata.push({id: 4, name: "Connect", screen: "connect"});
+            tagsdata.push({id: 5, name: "Deliver", screen: "deliver"});
+
+            {% for i in range(0, userAndRewards.rewards["dates"]|length-1) %}
+
+            $(document).on("click", "#openModal{{ userAndRewards.rewards['id'][i] }}", function () {
+
+                {% set indexes =  userAndRewards.rewards["rewardsIndex"][i]|json_encode %}
+            });
+
+            $("#tags{{ userAndRewards.rewards['id'][i] }}").sTags({
+                data: tagsdata,
+                defaultData: {{ indexes }},
+                color: 1
+            });
+            {% endfor %}
+            $(".sTags").attr({"class": "d-flex justify-content-between"});
+
+        })
+    </script>
 
 {% endblock %}
