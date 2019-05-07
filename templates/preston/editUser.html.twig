@@ -60,7 +60,8 @@
                 <strong>
                     {{ flashMessage }}
                     <img src="{{ asset('img/animat-essential/customize/animat-customize.gif') }}"
-                         style="height: 60px; width: 60px; -webkit-filter: invert(100%);filter: invert(100%);" alt="error">
+                         style="height: 60px; width: 60px; -webkit-filter: invert(100%);filter: invert(100%);"
+                         alt="error">
                 </strong>
             </div>
         {% endfor %}
@@ -84,7 +85,8 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form id="submitUserAccess" method="post" action="{{ path('save_user_access', {"id": slackUser.id}) }}">
+                        <form id="submitUserAccess" method="post"
+                              action="{{ path('save_user_access', {"id": slackUser.id}) }}">
                             <div class="modal-body">
                                 <div class="container-fluid">
 
@@ -123,7 +125,8 @@
             </script>
 
         {% else %}
-            <a href="{{ path('add_user_access', {"id" : slackUser.id}) }}" class="text-white float-md-right d-inline-flex pt-1 pb-1 pt-md-3 pb-md-3 mt-4 mb-4 mt-md-0 mb-md-0"
+            <a href="{{ path('add_user_access', {"id" : slackUser.id}) }}"
+               class="text-white float-md-right d-inline-flex pt-1 pb-1 pt-md-3 pb-md-3 mt-4 mb-4 mt-md-0 mb-md-0"
                style="background: #133514; padding: 25px; border-radius: 35px">create access to user</a>
         {% endif %}
         <div class="d-flex">
@@ -161,8 +164,26 @@
         </div>
 
         <div class="float-md-right mt-5 mt-md-0">
-            <a class="text-danger" href="{{ path('remove_user', {"id": slackUser.id}) }}">delete user</a>
+            <a class="text-danger border-0" style="cursor: pointer" data-toggle="modal" data-target="#confirmDelete">
+                delete user
+            </a>
         </div>
 
+
+        <!-- Modal -->
+        <div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body text-dark" style="font-size: 25px">
+                        Are you sure you want to delete {{ slackUser.username }} ?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <a href="{{ path('remove_user', {"id": slackUser.id}) }}" style="font-family: 'lato', sans-serif;" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 {% endblock %}

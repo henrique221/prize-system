@@ -45,7 +45,6 @@ class RewardRepository extends ServiceEntityRepository
 
     public function appendReward(Reward $reward)
     {
-        dump($reward);
         $em = $this->getEntityManager();
 //        $query = $em->createQueryBuilder()->select("a.rewards")
 //            ->from(Reward::class, "a")
