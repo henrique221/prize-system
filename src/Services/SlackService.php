@@ -83,26 +83,26 @@ class SlackService
         for($i = 0; $i <= sizeof($rewards)-1; $i++) {
             switch ($rewards[$i]){
                 case 'deliver':
-                    $rewardsWithTrophyArray[] = ":punch: ".$rewards[$i];
+                    $rewardsWithTrophyArray[] = ":deliver: ".$rewards[$i];
                     break;
                 case 'dare':
-                    $rewardsWithTrophyArray[] = ":star-struck: ".$rewards[$i];
+                    $rewardsWithTrophyArray[] = ":dare: ".$rewards[$i];
                     break;
                 case 'do it':
-                    $rewardsWithTrophyArray[] = ":muscle: ".$rewards[$i];
+                    $rewardsWithTrophyArray[] = ":doit: ".$rewards[$i];
                     break;
                 case 'connect':
-                    $rewardsWithTrophyArray[] = ":handshake: ".$rewards[$i];
+                    $rewardsWithTrophyArray[] = ":connect: ".$rewards[$i];
                     break;
                 case 'create':
-                    $rewardsWithTrophyArray[] = ":bulb: ".$rewards[$i];
+                    $rewardsWithTrophyArray[] = ":create: ".$rewards[$i];
                     break;
             }
         }
 
         $rewardsWithTrophy = implode(" ", $rewardsWithTrophyArray);
-        $textToUser = rawurlencode("*CONGRATULATIONS ".strtoupper($slackUser->getUsername())."!* :wink: <@{$slackUser->getSlackId()}> \nYou have just been rewarded by {$user->getName()}\n\n_Rewarding message :_ \n```{$description}```\nRewards you have received :\n_{$rewardsWithTrophy}_");
-        $textToGeneral = "*CONGRATULATIONS ".strtoupper($slackUser->getUsername())."!* :wink: <@{$slackUser->getSlackId()}> \nYou have just been rewarded by {$user->getName()}\n\n_Rewarding message :_ \n```{$description}```\nRewards you have received :\n_{$rewardsWithTrophy}_";
+        $textToUser = rawurlencode("\n*CONGRATULATIONS ".strtoupper($slackUser->getUsername())."!* :wink: <@{$slackUser->getSlackId()}> \nYou have just been rewarded by {$user->getName()}\n\n_Rewarding message :_ \n```{$description}```\nRewards you have received :\n_{$rewardsWithTrophy}_\n");
+        $textToGeneral = "\n*CONGRATULATIONS ".strtoupper($slackUser->getUsername())."!* :wink: <@{$slackUser->getSlackId()}> \nYou have just been rewarded by {$user->getName()}\n\n_Rewarding message :_ \n```{$description}```\nRewards you have received :\n_{$rewardsWithTrophy}_\n";
 
         $urlOpenChat = "https://slack.com/api/im.open?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&user={$slackId}&pretty=1";
         $openChatRequest = $this->requestDispatcher->post($urlOpenChat);
@@ -113,8 +113,8 @@ class SlackService
 //        $sendMessageUrlToTest = "https://hooks.slack.com/services/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";
 
         $this->requestDispatcher->post($sendMessageUrlToUser);
-        $this->requestDispatcher->postJson($sendMessageUrlToGeneral, "{'attachments': [{'color':'#ffd700','text':'{$textToGeneral}', 'image_url':'https://i2.wp.com/www.wakeed.org/wp-content/uploads/2016/07/award-icon-06.png'}]}" );
-//        $this->requestDispatcher->postJson($sendMessageUrlToTest, "{'attachments': [{'color':'#ffd700','text':'{$textToGeneral}', 'image_url':'https://i2.wp.com/www.wakeed.org/wp-content/uploads/2016/07/award-icon-06.png'}]}" );
+//        $this->requestDispatcher->post($sendMessageUrlToTest, ["blocks" => [["type" => "divider"], ["type"=> "section", "text" => ["type"=> "mrkdwn", "text" => "{$textToGeneral}"], "accessory" => ["type" => "image", "image_url" => "https://i2.wp.com/www.wakeed.org/wp-content/uploads/2016/07/award-icon-06.png", "alt_text" => "reward"]] ,["type" => "divider"]]]);
+        $this->requestDispatcher->post($sendMessageUrlToGeneral, ["blocks" => [["type" => "divider"], ["type"=> "section", "text" => ["type"=> "mrkdwn", "text" => "{$textToGeneral}"], "accessory" => ["type" => "image", "image_url" => "https://i2.wp.com/www.wakeed.org/wp-content/uploads/2016/07/award-icon-06.png", "alt_text" => "reward"]] ,["type" => "divider"]]]);
     }
 
     private function formatUserNameToName($username)
