@@ -47,12 +47,12 @@
              <!-- class="search" automagically makes an input a search field. -->
 
              <!-- Child elements of container with class="list" becomes list items -->
-             <ul class="list mt-5">
+             <ul class="list mt-5 d-flex pl-0 flex-column">
 
                  {% for u in userAndRewards %}
                      {% if u %}
 
-                         <li>
+                         <li class="border-bottom pb-4" style="list-style-type: none;">
                              <!-- The innerHTML of children with class="name" becomes this items "name" value -->
                              <div class="d-flex">
                                  <h4 id="rewardBalloonMobile{{ u.id }}" class="name mt-5">{{ u.username }}</h4>
@@ -61,18 +61,19 @@
                                          <a class=""><i class="far fa-eye text-white-50"
                                                         style="font-size: 30px"></i></a>
                                      {% else %}
-                                         <a href="{{ path('show_user_rewards', {'id' : u.id}) }}" class=""><i
-                                                     class="far fa-eye" style="font-size: 30px"></i></a>
+                                         <a onclick="animateCSS('eye{{ u.id }}', 'swing')" href="{{ path('show_user_rewards', {'id' : u.id}) }}"><i
+                                                     class="far fa-eye" id="eye{{ u.id }}" style="font-size: 30px"></i></a>
                                      {% endif %}
                                  </p>
                                  <p class="ml-3 mr-2 mt-5">
-                                     <a onmouseover="style='filter: drop-shadow(1px 1px 5px green); '"
+                                     <a onclick="animateCSS('addRewardTrophyMobile{{ u.id }}', 'heartBeat')"
+                                             onmouseover="style='filter: drop-shadow(1px 1px 5px green); '"
                                         onmouseleave="style= 'filter: none;'"
                                         class=" openModal{{ u.id }} mr-md-4 ml-md-4"
                                         data-toggle="modal"
                                         data-target="#modelId"
                                         name="{{ u.id }}">
-                                         <i style="font-size: 30px" class="fas fa-trophy"></i>
+                                         <i id="addRewardTrophyMobile{{ u.id }}" style="font-size: 30px" class="fas fa-trophy"></i>
                                      </a>
                                  </p>
                              </div>
@@ -234,7 +235,8 @@
 
                              <td class="">
                                  <div class="d-flex justify-content-lg-center ">
-                                     <a onmouseover="style='filter: drop-shadow(1px 1px 5px green); '"
+                                     <a onclick="animateCSS('addRewardTrophy{{ u.id }}', 'heartBeat')"
+                                             onmouseover="style='filter: drop-shadow(1px 1px 5px green); '"
                                         onmouseleave="style= 'filter: none;'"
                                         class=" openModal{{ u.id }} mr-md-4 ml-md-4"
                                         data-toggle="modal"
@@ -247,7 +249,8 @@
                                          <a id="rewardBalloon{{ u.id }}" class="mr-md-4 ml-md-4"><i
                                                      class="far fa-eye text-white-50" style="font-size: 30px"></i></a>
                                      {% else %}
-                                         <a id="rewardBalloon{{ u.id }}"
+                                         <a onclick="animateCSS('rewardBalloon{{ u.id }}', 'swing')"
+                                                 id="rewardBalloon{{ u.id }}"
                                             href="{{ path('show_user_rewards', {'id' : u.id}) }}"
                                             class="mr-md-4 ml-md-4"><i style="font-size: 30px"
                                                                        class="far fa-eye"></i></a>
