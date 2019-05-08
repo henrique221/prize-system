@@ -23,6 +23,8 @@ security:
                 path: app_logout
                 target: /login
 
+            access_denied_handler: App\Security\AccessDeniedHandler
+
             # activate different ways to authenticate
 
             # http_basic: true
@@ -36,5 +38,6 @@ security:
     access_control:
     - { path: ^/preston/list, roles: IS_AUTHENTICATED_REMEMBERED }
     - { path: ^/preston/create/access, roles: ROLE_ADMIN}
+    - { path: ^/preston/update, roles: ROLE_ADMIN}
     - { path: ^/preston/edit/user, roles: ROLE_ADMIN}
     # - { path: ^/profile, roles: ROLE_USER }

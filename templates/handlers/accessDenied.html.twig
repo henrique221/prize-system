@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <link href="https://fonts.googleapis.com/css?family=Strait" rel="stylesheet">
+    <style>
+        body{
+            background: radial-gradient(#2f56bb, #1b336b);
+            background-size: 100% 100%;
+        }
+        .message{
+            font-size: 20px;
+            font-family: 'Strait', sans-serif;
+        }
+        a.backToPreston{
+            font-size: 20px;
+            color: #fffe52;
+            font-family: 'Strait', sans-serif;
+        }
+        a.backToPreston:hover{
+            color: white;
+            text-shadow: 1px 2px 2px #ba8b00;
+            font-family: 'Strait', sans-serif;
+        }
+    </style>
+
+    <div class="d-flex justify-content-center">
+        <img class="col-12 col-md-2 h-25" src="{{ asset('/img/animat-essential/rocket/animat-rocket-color.gif') }}">
+    </div>
+
+    <div class="d-flex flex-column text-center">
+        <p class="message" style="font-size: 25px; margin-bottom: 50px;font-weight: bold">Sorry, {{ user.name }}!</p>
+        <p class="message">You don`t have permission to access this page</p>
+        <a class="backToPreston" href="{{ path('preston') }}">Go bach to Preston home</a>
+    </div>
+
+{% endblock %}
