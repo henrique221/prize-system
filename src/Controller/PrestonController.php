@@ -66,7 +66,9 @@ class PrestonController extends AbstractController
      */
     public function index()
     {
-        return $this->redirectToRoute("preston");
+        return $this->redirectToRoute("preston", [
+            'user' => $this->getUser()
+        ]);
     }
 
     /**
@@ -135,7 +137,9 @@ class PrestonController extends AbstractController
 
         $this->addFlash('notice', "User rewarded ");
 
-        return $this->redirectToRoute("preston");
+        return $this->redirectToRoute("preston", [
+            'user' => $this->getUser()
+        ]);
     }
 
     /**
@@ -165,7 +169,10 @@ class PrestonController extends AbstractController
             $this->usuarioRepository->persist($usuario);
             return $this->redirectToRoute('preston');
         }
-        return $this->render("preston/accessForm.html.twig", ['form' => $form->createView()]);
+        return $this->render("preston/accessForm.html.twig", [
+                'form' => $form->createView(),
+                'user' => $this->getUser(),
+            ]);
     }
 
     /**
@@ -208,18 +215,20 @@ class PrestonController extends AbstractController
             $this->slackUserRepository->save($slackUser);
 
             $this->addFlash('notice', "User edited sucessfully");
-            return $this->redirectToRoute('edit_user', array('id' => $slackUser->getId()));
+            return $this->redirectToRoute('edit_user', array('id' => $slackUser->getId(), 'user' => $this->getUser()));
         }
 
         if (isset($userSaveForm)) {
             return $this->render("preston/editUser.html.twig", array(
                 'form' => $form->createView(),
+                'user' => $this->getUser(),
                 'slackUser' => $slackUser,
                 'userSaveForm' => $userSaveForm->createView()
             ));
         }
         return $this->render("preston/editUser.html.twig", array(
             'form' => $form->createView(),
+            'user' => $this->getUser(),
             'slackUser' => $slackUser
         ));
     }
@@ -244,7 +253,9 @@ class PrestonController extends AbstractController
     {
         $this->slackUserRepository->remove($slackUser);
         $this->addFlash('notice', "User deleted");
-        return $this->redirectToRoute("preston");
+        return $this->redirectToRoute("preston", [
+            'user' => $this->getUser(),
+        ]);
     }
 
     /**
@@ -303,7 +314,10 @@ class PrestonController extends AbstractController
 
         $this->addFlash("notice", "Reward updated");
 
-        return $this->redirectToRoute("show_user_rewards", ["id" => $slackUserId]);
+        return $this->redirectToRoute("show_user_rewards", [
+            "id" => $slackUserId,
+            'user' => $this->getUser()
+        ]);
 
     }
 
@@ -315,6 +329,9 @@ class PrestonController extends AbstractController
     public function deleteRewardFromDay(Reward $reward){
         $this->rewardRepository->remove($reward);
         $this->addFlash("notice", "Reward removed successfully");
-        return $this->redirectToRoute("show_user_rewards", ["id" => $reward->getSlackUser()->getId()]);
+        return $this->redirectToRoute("show_user_rewards", [
+            "id" => $reward->getSlackUser()->getId(),
+            'user' => $this->getUser(),
+        ]);
     }
 }

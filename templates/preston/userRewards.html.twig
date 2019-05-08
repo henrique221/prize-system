@@ -36,11 +36,11 @@
         <div class="jumbotron bg-dark">
             <h1 class="text-white">{{ userAndRewards.username }}</h1>
             <ul class="text-white list-group bg-dark">
-                <h4 class="pt-md-4 pb-md-4">Rewards :</h4>
+                <h4 class="pt-md-4 pb-md-4 mb-5 mt-3">Rewards :</h4>
                 <div class="tada d-flex flex-wrap">
                     {% for i in range(0, userAndRewards.rewards["dates"]|length-1) %}
                         <div
-                                style="width: 500px" id="box{{ userAndRewards.rewards['id'][i] }}">
+                                style="width: 500px" class="m-2" id="box{{ userAndRewards.rewards['id'][i] }}">
                             <h4>Rewarded on {{ userAndRewards.rewards["dates"][i]|date("d/m/Y") }}</h4>
                             <div class="p-4" style="background: rgba(13,8,38,0.05)">
 
