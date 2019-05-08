@@ -306,4 +306,15 @@ class PrestonController extends AbstractController
         return $this->redirectToRoute("show_user_rewards", ["id" => $slackUserId]);
 
     }
+
+    /**
+     * @Route("/delete/reward/from/date/{id}", methods={"GET"}, name="delete_reward_from_date")
+     * @param Reward $reward
+     * @return Response
+     */
+    public function deleteRewardFromDay(Reward $reward){
+        $this->rewardRepository->remove($reward);
+        $this->addFlash("notice", "Reward removed successfully");
+        return $this->redirectToRoute("show_user_rewards", ["id" => $reward->getSlackUser()->getId()]);
+    }
 }

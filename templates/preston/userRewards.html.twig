@@ -11,6 +11,10 @@
             -moz-animation: AnimationName 10s ease infinite;
             animation: AnimationName 10s ease infinite;
         }
+
+        #trash:hover {
+            filter: drop-shadow(0px 0px 2px #ff001f);
+        }
     </style>
 {% endblock %}
 
@@ -27,83 +31,151 @@
         </div>
     {% endfor %}
 
-    <div class="jumbotron bg-dark">
-        <h1 class="text-white">{{ userAndRewards.username }}</h1>
-        <ul class="text-white list-group bg-dark">
-            <h4 class="pt-md-4 pb-md-4">Rewards :</h4>
-            <div class="d-flex flex-wrap">
-                {% for i in range(0, userAndRewards.rewards["dates"]|length-1) %}
-                    <div onmouseover="style='filter: drop-shadow(0px 0px 2px rgba(255, 215, 133, 0.90));width: 500px; cursor: default'"
-                         onmouseleave="style= 'width: 500px'" class="d-flex flex-column offset-0 p-4"
-                         style="width: 500px">
-                        <h4>Rewarded on {{ userAndRewards.rewards["dates"][i]|date("d/m/Y") }}</h4>
-                        <div class="p-4" style="background: rgba(13,8,38,0.05)">
-                            {% if userAndRewards.rewards['whoRewarded'][i].name is defined %}
-                                <p style="font-style: italic">Rewarded
-                                    By {{ userAndRewards.rewards['whoRewarded'][i].name }}</p>
-                            {% endif %}
-                            <h6 class="mt-md-5">Rewards :</h6>
-                            <p style="font-style: italic">{{ userAndRewards.rewards["rewards"][i]|join(", ") }}</p>
-                            <h6 class="mt-md-5">Description</h6>
-                            <p>{{ userAndRewards.rewards['description'][i] }}</p>
+    {% if userAndRewards.rewards["dates"] is defined %}
 
-                            {% if (userAndRewards.rewards['whoRewarded'][i] is defined and user == userAndRewards.rewards['whoRewarded'][i]) or (is_granted('ROLE_ADMIN')) %}
-                                <div class="d-flex justify-content-end">
-                                    <button class="border-0" id="openModal{{ userAndRewards.rewards['id'][i] }}"
-                                            data-toggle="modal"
-                                            data-target="#modelId{{ userAndRewards.rewards['id'][i] }}"
-                                            name="{{ userAndRewards.rewards['id'][i] }}">edit
-                                    </button>
-                                </div>
-                            {% endif %}
-                        </div>
-                    </div>
-                {% endfor %}
+        <div class="jumbotron bg-dark">
+            <h1 class="text-white">{{ userAndRewards.username }}</h1>
+            <ul class="text-white list-group bg-dark">
+                <h4 class="pt-md-4 pb-md-4">Rewards :</h4>
+                <div class="tada d-flex flex-wrap">
+                    {% for i in range(0, userAndRewards.rewards["dates"]|length-1) %}
+                        <div
+                                style="width: 500px" id="box{{ userAndRewards.rewards['id'][i] }}">
+                            <h4>Rewarded on {{ userAndRewards.rewards["dates"][i]|date("d/m/Y") }}</h4>
+                            <div class="p-4" style="background: rgba(13,8,38,0.05)">
 
-                {% for i in range(0, userAndRewards.rewards["dates"]|length-1) %}
+                                {% if (userAndRewards.rewards['whoRewarded'][i] is defined and user == userAndRewards.rewards['whoRewarded'][i]) or (is_granted('ROLE_ADMIN')) %}
+                                    <a onclick="animateCSS(`imgTrash{{ userAndRewards.rewards['id'][i] }}`, 'heartBeat')"
+                                       id="trash" style="cursor: pointer" class="d-flex justify-content-end">
+                                        <img id="imgTrash{{ userAndRewards.rewards['id'][i] }}" data-toggle="modal"
+                                             data-target="#delete{{ userAndRewards.rewards['id'][i] }}"
+                                             style="filter: invert(100%)" src="{{ asset('img/trash-2.svg') }}">
+                                    </a>
+                                {% endif %}
 
-                    <div class="modal fade" id="modelId{{ userAndRewards.rewards['id'][i] }}" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
-                         aria-hidden="true">
-                        <form class="formModal"
-                              action="{{ path('edit_reward', {"id" : userAndRewards.rewards['id'][i] }) }}"
-                              id="form" method="post"
-                              name="openModal{{ userAndRewards.rewards['id'][i] }}"
-                              style="font-family: 'Roboto', sans-serif !important;">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title text-dark">Edit
-                                            reward {{ userAndRewards.rewards['dates'][i]|date('d/m/Y') }}</h5>
-                                        <button type="button" class="close" data-dismiss="modal"
-                                                aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
+                                {% if userAndRewards.rewards['whoRewarded'][i].name is defined %}
+                                    <p style="font-style: italic">Rewarded
+                                        By {{ userAndRewards.rewards['whoRewarded'][i].name }}</p>
+                                {% endif %}
+                                <h6 class="mt-md-5">Rewards :</h6>
+                                <p style="font-style: italic">{{ userAndRewards.rewards["rewards"][i]|join(", ") }}</p>
+                                <h6 class="mt-md-5">Description</h6>
+                                <p>{{ userAndRewards.rewards['description'][i] }}</p>
+
+                                {% if (userAndRewards.rewards['whoRewarded'][i] is defined and user == userAndRewards.rewards['whoRewarded'][i]) or (is_granted('ROLE_ADMIN')) %}
+                                    <div class="d-flex justify-content-end">
+                                        <button onclick="animateCSS(`openModal{{ userAndRewards.rewards['id'][i] }}`, `jello`)"
+                                                class="border-0" id="openModal{{ userAndRewards.rewards['id'][i] }}"
+                                                data-toggle="modal"
+                                                data-target="#modelId{{ userAndRewards.rewards['id'][i] }}"
+                                                name="{{ userAndRewards.rewards['id'][i] }}">edit
                                         </button>
                                     </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    {% for i in range(0, userAndRewards.rewards["dates"]|length-1) %}
+
+                        <div class="modal fade" id="modelId{{ userAndRewards.rewards['id'][i] }}" tabindex="-1"
+                             role="dialog" aria-labelledby="modelTitleId"
+                             aria-hidden="true">
+                            <form class="formModal"
+                                  action="{{ path('edit_reward', {"id" : userAndRewards.rewards['id'][i] }) }}"
+                                  id="form" method="post"
+                                  name="openModal{{ userAndRewards.rewards['id'][i] }}"
+                                  style="font-family: 'Roboto', sans-serif !important;">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title text-dark">Edit
+                                                reward {{ userAndRewards.rewards['dates'][i]|date('d/m/Y') }}</h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <label id="descriptionLabel" class="text-dark" for="description"></label>
+                                            <textarea id="description" minlength="10" required name="description"
+                                                      class="w-100"
+                                                      placeholder="type here ...">{{ userAndRewards.rewards['description'][i] }}</textarea>
+                                            <input name="tags{{ userAndRewards.rewards['id'][i] }}" required type="text"
+                                                   id="tags{{ userAndRewards.rewards['id'][i] }}">
+                                            <input hidden name="id" value="{{ userAndRewards.rewards['id'][i] }}">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" id="exit" class="btn btn-secondary"
+                                                    data-dismiss="modal">
+                                                Close
+                                            </button>
+                                            <button type="submit" id="btnSubmit" class="btn btn-primary">Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="modal fade" id="delete{{ userAndRewards.rewards['id'][i] }}" tabindex="-1"
+                             role="dialog" aria-labelledby="modelTitleId"
+                             aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
                                     <div class="modal-body">
-                                        <label id="descriptionLabel" class="text-dark" for="description"></label>
-                                        <textarea id="description" minlength="10" required name="description"
-                                                  class="w-100"
-                                                  placeholder="type here ...">{{ userAndRewards.rewards['description'][i] }}</textarea>
-                                        <input name="tags{{ userAndRewards.rewards['id'][i] }}" required type="text" id="tags{{ userAndRewards.rewards['id'][i] }}">
-                                        <input hidden name="id" value="{{ userAndRewards.rewards['id'][i] }}">
+                                        <p class="text-dark">Are you sure you want to delete this reward
+                                            from {{ userAndRewards.rewards['dates'][i]|date('d/m/Y') }} ?</p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" id="exit" class="btn btn-secondary" data-dismiss="modal">
-                                            Close
+                                            cancel
                                         </button>
-                                        <button type="submit" id="btnSubmit" class="btn btn-primary">Save</button>
+                                        <a onclick="animateCSS(`box{{ userAndRewards.rewards['id'][i] }}`, 'hinge')"
+                                           style="font-family: 'lato', sans-serif" type="button" class="btn btn-danger"
+                                           href="{{ path('delete_reward_from_date', {'id': userAndRewards.rewards['id'][i]}) }}">delete</a>
                                     </div>
                                 </div>
                             </div>
-                        </form>
-                    </div>
+                        </div>
 
-                {% endfor %}
 
+                    {% endfor %}
+
+                </div>
+            </ul>
+            <a style="font-size: 30px" href="{{ path('preston') }}"><i class="fas fa-arrow-circle-left"></i></a>
+        </div>
+    {% else %}
+        <div class="pb-3" style="background: #ba8b00">
+            <div class="d-flex justify-content-center">
+                <img class="w-75 h-75 col-md-2" src="{{ asset('img/animat-essential/search/animat-search-color.gif') }}">
             </div>
-        </ul>
-        <a style="font-size: 30px" href="{{ path('preston') }}"><i class="fas fa-arrow-circle-left"></i></a>
-    </div>
+
+            <div class="d-flex flex-column text-center">
+                <h2 class="text-white">{{ user.name }} has no rewards</h2>
+                <a href="{{ path('preston') }}" class="pt-2 text-white backToPreston">Return to Preston home</a>
+            </div>
+        </div>
+
+    {% endif %}
+    <script>
+
+        function animateCSS(elementId, animationName, callback) {
+
+            var node = document.getElementById(elementId);
+
+            node.classList.add('animated', animationName)
+
+            function handleAnimationEnd() {
+                node.classList.remove('animated', animationName)
+                node.removeEventListener('animationend', handleAnimationEnd)
+
+                if (typeof callback === 'function') callback()
+            }
+
+            node.addEventListener('animationend', handleAnimationEnd)
+        }
+    </script>
 
     <script>
         $(document).ready(function () {
@@ -115,6 +187,7 @@
             tagsdata.push({id: 4, name: "Connect", screen: "connect"});
             tagsdata.push({id: 5, name: "Deliver", screen: "deliver"});
 
+            {% if userAndRewards.rewards["dates"] is defined %}
             {% for i in range(0, userAndRewards.rewards["dates"]|length-1) %}
 
             $(document).on("click", "#openModal{{ userAndRewards.rewards['id'][i] }}", function () {
@@ -128,6 +201,7 @@
                 color: 1
             });
             {% endfor %}
+            {% endif %}
             $(".sTags").attr({"class": "d-flex justify-content-between"});
 
         })
