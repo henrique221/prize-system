@@ -151,7 +151,8 @@ class PrestonController extends AbstractController
     {
         $users = $slackService->getAllUsers();
         return $this->render('preston/updateDatabase.html.twig', [
-            'users' => $users->members
+            'users' => $users->members,
+            'user' => $this->getUser()
         ]);
     }
 

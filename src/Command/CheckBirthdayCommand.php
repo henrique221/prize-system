@@ -81,6 +81,6 @@ class CheckBirthdayCommand extends Command
 
         $this->slackService->sendBirthdayNotification($daysToBirthday);
 
-        $output->writeln(["Funcionou"]);
+        $output->writeln(["ok"]);
     }
 }

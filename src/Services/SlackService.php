@@ -132,9 +132,6 @@ class SlackService
 
     public function sendBirthdayNotification($birthdays){
 
-//        $henriqueUrl = "https://hooks.slack.com/services/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";
-//        $this->requestDispatcher->post($henriqueUrl, ["text" => "teste"]);
-
         $henriqueChatOpen = "https://slack.com/api/im.open?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&user=UEDG5PNQ0&pretty=1";
         $matheusChatOpen = "https://slack.com/api/im.open?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&user=U7Q9H9VFY&pretty=1";
 
@@ -146,14 +143,36 @@ class SlackService
 
         for($i = 0; $i <= sizeof($birthdays)-1; $i++) {
             if (isset($birthdays[$i]["birthday"])) {
-                $text = rawurlencode("*{$birthdays[$i]['birthday']->getUsername()}* faz aniversário hoje, deseje felicidades :balloon: :fireworks: :fiesta:");
+
+                //Send message to General
+
+                $textToNotification = rawurlencode("Hoje é aniversário de *{$birthdays[$i]['birthday']->getUsername()}* :balloon: :fireworks: :star2: \n<http://4you2team.slack.com/team/{$birthdays[$i]['birthday']->getSlackId()}|Deseje um feliz aniversário>");
+                $textToGeneral = "<!channel>\nToday is *{$birthdays[$i]['birthday']->getUsername()}'s* birthday :balloon: :fireworks: :star2: \n<http://4you2team.slack.com/team/{$birthdays[$i]['birthday']->getSlackId()}|Wish happy birthday>";
+
+                $textToUser = rawurlencode("Happy birthday *{$birthdays[$i]['birthday']->getUsername()}* :balloon: :fireworks: :star2:");
+
+//                $sendMessageUrlToTest = "https://hooks.slack.com/services/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";
+                $sendMessageToGeneral = "https://hooks.slack.com/services/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";
+
+                $this->requestDispatcher->post($sendMessageToGeneral, ["blocks" => [["type" => "divider"], ["type"=> "section", "text" => ["type"=> "mrkdwn", "text" => "{$textToGeneral}"], "accessory" => ["type" => "image", "image_url" => "https://techcrunch.com/wp-content/uploads/2011/06/tctv-birthday.jpg?w=500", "alt_text" => "birthday"]] ,["type" => "divider"]]]);
+
+                // Send message to user whose birthday
+
+                $urlOpenChat = "https://slack.com/api/im.open?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&user={$birthdays[$i]['birthday']->getSlackId()}&pretty=1";
+                $openChatRequest = $this->requestDispatcher->post($urlOpenChat);
+                $channelId = $openChatRequest->channel->id;
+
+                $sendMessageUrlToUser = "https://slack.com/api/chat.postMessage?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&channel={$channelId}&text={$textToUser}&pretty=1";
+
+                $this->requestDispatcher->post($sendMessageUrlToUser);
 
                 // Send notification to Henrique
-                $sendNotificationUrlHenrique = "https://slack.com/api/chat.postMessage?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&channel={$channelHenrique}&text={$text}&pretty=1";
+
+                $sendNotificationUrlHenrique = "https://slack.com/api/chat.postMessage?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&channel={$channelHenrique}&text={$textToNotification}&pretty=1";
                 $this->requestDispatcher->post($sendNotificationUrlHenrique);
 
                 // Send notification to Matheus
-                $sendNotificationUrlMatheus = "https://slack.com/api/chat.postMessage?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&channel={$channelMatheus}&text={$text}&pretty=1";
+                $sendNotificationUrlMatheus = "https://slack.com/api/chat.postMessage?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&channel={$channelMatheus}&text={$textToNotification}&pretty=1";
                 $this->requestDispatcher->post($sendNotificationUrlMatheus);
 
             }
@@ -193,7 +212,6 @@ class SlackService
                 $sendNotificationUrlMatheus = "https://slack.com/api/chat.postMessage?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&channel={$channelMatheus}&text={$text}&pretty=1";
                 $this->requestDispatcher->post($sendNotificationUrlMatheus);
             }
-
         }
     }
 }
