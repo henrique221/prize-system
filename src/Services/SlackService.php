@@ -133,85 +133,42 @@ class SlackService
     public function sendBirthdayNotification($birthdays){
 
         $henriqueChatOpen = "https://slack.com/api/im.open?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&user=UEDG5PNQ0&pretty=1";
-        $matheusChatOpen = "https://slack.com/api/im.open?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&user=U7Q9H9VFY&pretty=1";
+//        $matheusChatOpen = "https://slack.com/api/im.open?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&user=U7Q9H9VFY&pretty=1";
 
         $openChatRequestHenrique = $this->requestDispatcher->post($henriqueChatOpen);
-        $openChatRequestMatheus = $this->requestDispatcher->post($matheusChatOpen);
+//        $openChatRequestMatheus = $this->requestDispatcher->post($matheusChatOpen);
 
         $channelHenrique = $openChatRequestHenrique->channel->id;
-        $channelMatheus = $openChatRequestMatheus->channel->id;
+//        $channelMatheus = $openChatRequestMatheus->channel->id;
 
         for($i = 0; $i <= sizeof($birthdays)-1; $i++) {
-            if (isset($birthdays[$i]["birthday"])) {
+            switch($birthdays){
+                case array_key_exists("five", $birthdays[$i]):
+                    $this->notifiesBirthdayWIthRemainingDays($birthdays[$i]['five']->getUsername(), 5);
+                    break;
 
-                //Send message to General
+                case array_key_exists("ten", $birthdays[$i]):
+                    $this->notifiesBirthdayWIthRemainingDays($birthdays[$i]['ten']->getUsername(), 10);
+                    break;
 
-                $textToNotification = rawurlencode("Hoje é aniversário de *{$birthdays[$i]['birthday']->getUsername()}* :balloon: :fireworks: :star2: \n<http://4you2team.slack.com/team/{$birthdays[$i]['birthday']->getSlackId()}|Deseje um feliz aniversário>");
-                $textToGeneral = "<!channel>\nToday is *{$birthdays[$i]['birthday']->getUsername()}'s* birthday :balloon: :fireworks: :star2: \n<http://4you2team.slack.com/team/{$birthdays[$i]['birthday']->getSlackId()}|Wish happy birthday>";
+                case array_key_exists("three", $birthdays[$i]):
+                    $this->notifiesBirthdayWIthRemainingDays($birthdays[$i]['three']->getUsername(), 3);
+                    break;
 
-                $textToUser = rawurlencode("Happy birthday *{$birthdays[$i]['birthday']->getUsername()}* :balloon: :fireworks: :star2:");
-
-//                $sendMessageUrlToTest = "https://hooks.slack.com/services/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";
-                $sendMessageToGeneral = "https://hooks.slack.com/services/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";
-
-                $this->requestDispatcher->post($sendMessageToGeneral, ["blocks" => [["type" => "divider"], ["type"=> "section", "text" => ["type"=> "mrkdwn", "text" => "{$textToGeneral}"], "accessory" => ["type" => "image", "image_url" => "https://techcrunch.com/wp-content/uploads/2011/06/tctv-birthday.jpg?w=500", "alt_text" => "birthday"]] ,["type" => "divider"]]]);
-
-                // Send message to user whose birthday
-
-                $urlOpenChat = "https://slack.com/api/im.open?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&user={$birthdays[$i]['birthday']->getSlackId()}&pretty=1";
-                $openChatRequest = $this->requestDispatcher->post($urlOpenChat);
-                $channelId = $openChatRequest->channel->id;
-
-                $sendMessageUrlToUser = "https://slack.com/api/chat.postMessage?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&channel={$channelId}&text={$textToUser}&pretty=1";
-
-                $this->requestDispatcher->post($sendMessageUrlToUser);
-
-                // Send notification to Henrique
-
-                $sendNotificationUrlHenrique = "https://slack.com/api/chat.postMessage?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&channel={$channelHenrique}&text={$textToNotification}&pretty=1";
-                $this->requestDispatcher->post($sendNotificationUrlHenrique);
-
-                // Send notification to Matheus
-                $sendNotificationUrlMatheus = "https://slack.com/api/chat.postMessage?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&channel={$channelMatheus}&text={$textToNotification}&pretty=1";
-                $this->requestDispatcher->post($sendNotificationUrlMatheus);
-
-            }
-            if (isset($birthdays[$i]["one"])) {
-                $text = rawurlencode("Amanhã é aniversário de *{$birthdays[$i]['one']->getUsername()}* :fireworks:");
-
-                $sendNotificationUrlHenrique = "https://slack.com/api/chat.postMessage?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&channel={$channelHenrique}&text={$text}&pretty=1";
-                $this->requestDispatcher->post($sendNotificationUrlHenrique);
-            }
-            if (isset($birthdays[$i]["five"])) {
-                $text = rawurlencode("Faltam `5 dias` para o aniversário de *{$birthdays[$i]['five']->getUsername()}* :fireworks:");
-
-                $sendNotificationUrlHenrique = "https://slack.com/api/chat.postMessage?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&channel={$channelHenrique}&text={$text}&pretty=1";
-                $this->requestDispatcher->post($sendNotificationUrlHenrique);
-
-                // Send notification to Matheus
-                $sendNotificationUrlMatheus = "https://slack.com/api/chat.postMessage?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&channel={$channelMatheus}&text={$text}&pretty=1";
-                $this->requestDispatcher->post($sendNotificationUrlMatheus);
-            }
-            if (isset($birthdays[$i]["three"])) {
-                $text = rawurlencode("Faltam `3 dias` para o aniversário de *{$birthdays[$i]['three']->getUsername()}* :fireworks:");
-
-                $sendNotificationUrlHenrique = "https://slack.com/api/chat.postMessage?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&channel={$channelHenrique}&text={$text}&pretty=1";
-                $this->requestDispatcher->post($sendNotificationUrlHenrique);
-
-                // Send notification to Matheus
-                $sendNotificationUrlMatheus = "https://slack.com/api/chat.postMessage?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&channel={$channelMatheus}&text={$text}&pretty=1";
-                $this->requestDispatcher->post($sendNotificationUrlMatheus);
-            }
-            if (isset($birthdays[$i]["ten"])) {
-                $text = rawurlencode("Faltam `10 dias` para o aniversário de *{$birthdays[$i]['ten']->getUsername()}* :fireworks:");
-
-                $sendNotificationUrlHenrique = "https://slack.com/api/chat.postMessage?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&channel={$channelHenrique}&text={$text}&pretty=1";
-                $this->requestDispatcher->post($sendNotificationUrlHenrique);
-
-                // Send notification to Matheus
-                $sendNotificationUrlMatheus = "https://slack.com/api/chat.postMessage?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&channel={$channelMatheus}&text={$text}&pretty=1";
-                $this->requestDispatcher->post($sendNotificationUrlMatheus);
+                case array_key_exists("two", $birthdays[$i]):
+                    $this->notifiesBirthdayWIthRemainingDays($birthdays[$i]['two']->getUsername(), 2);
+                    break;
             }
         }
+    }
+
+    /**
+     * @param $user
+     * @param $remainingDays
+     */
+    public function notifiesBirthdayWIthRemainingDays($user, $remainingDays){
+        $defaultText = "Faltam `${remainingDays}` dias para o aniversário de ${user}";
+        $channelHenrique = "https://hooks.slack.com/services/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";
+        $this->requestDispatcher->post($channelHenrique, array("text" => $defaultText));
     }
 }
