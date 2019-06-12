@@ -56,28 +56,30 @@ class CheckBirthdayCommand extends Command
 
         foreach ($slackUsers as $slackUser) {
 
-            $month = $slackUser->getDataDeNascimento()->format("m");
-            $day = $slackUser->getDataDeNascimento()->format("d");
-            $nextBirthday = new \DateTime("{$currentYear}-{$month}-{$day}");
+            if(!empty($slackUser->getDataDeNascimento())) {
+                $month = $slackUser->getDataDeNascimento()->format("m");
+                $day = $slackUser->getDataDeNascimento()->format("d");
+                $nextBirthday = new \DateTime("{$currentYear}-{$month}-{$day}");
 
-            $tenDays = $now->modify("+10 days");
-            $fiveDays = $now->modify("+5 days");
-            $threeDays = $now->modify("+3 days");
-            $twoDays = $now->modify("+2 days");
-            $oneDay = $now->modify("+1 day");
+                $tenDays = $now->modify("+10 days");
+                $fiveDays = $now->modify("+5 days");
+                $threeDays = $now->modify("+3 days");
+                $twoDays = $now->modify("+2 days");
+                $oneDay = $now->modify("+1 day");
 
-            if ($tenDays->format("d/m/Y") == $nextBirthday->format("d/m/Y")) {
-                $daysToBirthday[] = array("ten" => $slackUser);
-            } elseif ($fiveDays->format("d/m/Y") == $nextBirthday->format("d/m/Y")) {
-                $daysToBirthday[] = array("five" => $slackUser);
-            } elseif ($twoDays->format("d/m/Y") == $nextBirthday->format("d/m/Y")) {
-                $daysToBirthday[] = array("two" => $slackUser);
-            } elseif ($oneDay->format("d/m/Y") == $nextBirthday->format("d/m/Y")) {
-                $daysToBirthday[] = array("one" => $slackUser);
-            } elseif ($now->format("d/m/Y") == $nextBirthday->format("d/m/Y")) {
-                $daysToBirthday[] = array("birthday" => $slackUser);
-            } elseif ($threeDays->format("d/m/Y") == $nextBirthday->format("d/m/Y")) {
-                $daysToBirthday[] = array("three" => $slackUser);
+                if ($tenDays->format("d/m/Y") == $nextBirthday->format("d/m/Y")) {
+                    $daysToBirthday[] = array("ten" => $slackUser);
+                } elseif ($fiveDays->format("d/m/Y") == $nextBirthday->format("d/m/Y")) {
+                    $daysToBirthday[] = array("five" => $slackUser);
+                } elseif ($twoDays->format("d/m/Y") == $nextBirthday->format("d/m/Y")) {
+                    $daysToBirthday[] = array("two" => $slackUser);
+                } elseif ($oneDay->format("d/m/Y") == $nextBirthday->format("d/m/Y")) {
+                    $daysToBirthday[] = array("one" => $slackUser);
+                } elseif ($now->format("d/m/Y") == $nextBirthday->format("d/m/Y")) {
+                    $daysToBirthday[] = array("birthday" => $slackUser);
+                } elseif ($threeDays->format("d/m/Y") == $nextBirthday->format("d/m/Y")) {
+                    $daysToBirthday[] = array("three" => $slackUser);
+                }
             }
         }
 
