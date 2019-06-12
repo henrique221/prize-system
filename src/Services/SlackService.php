@@ -80,29 +80,29 @@ class SlackService
 
         $rewardsWithTrophyArray = [];
 
-        for($i = 0; $i <= sizeof($rewards)-1; $i++) {
-            switch ($rewards[$i]){
+        for ($i = 0; $i <= sizeof($rewards) - 1; $i++) {
+            switch ($rewards[$i]) {
                 case 'deliver':
-                    $rewardsWithTrophyArray[] = ":deliver: ".$rewards[$i];
+                    $rewardsWithTrophyArray[] = ":deliver: " . $rewards[$i];
                     break;
                 case 'dare':
-                    $rewardsWithTrophyArray[] = ":dare: ".$rewards[$i];
+                    $rewardsWithTrophyArray[] = ":dare: " . $rewards[$i];
                     break;
                 case 'do it':
-                    $rewardsWithTrophyArray[] = ":doit: ".$rewards[$i];
+                    $rewardsWithTrophyArray[] = ":doit: " . $rewards[$i];
                     break;
                 case 'connect':
-                    $rewardsWithTrophyArray[] = ":connect: ".$rewards[$i];
+                    $rewardsWithTrophyArray[] = ":connect: " . $rewards[$i];
                     break;
                 case 'create':
-                    $rewardsWithTrophyArray[] = ":create: ".$rewards[$i];
+                    $rewardsWithTrophyArray[] = ":create: " . $rewards[$i];
                     break;
             }
         }
 
         $rewardsWithTrophy = implode(" ", $rewardsWithTrophyArray);
-        $textToUser = rawurlencode("\n*CONGRATULATIONS ".strtoupper($slackUser->getUsername())."!* :wink: <@{$slackUser->getSlackId()}> \nYou have just been rewarded by {$user->getName()}\n\n_Rewarding message :_ \n```{$description}```\nRewards you have received :\n_{$rewardsWithTrophy}_\n");
-        $textToGeneral = "\n*CONGRATULATIONS ".strtoupper($slackUser->getUsername())."!* :wink: <@{$slackUser->getSlackId()}> \nYou have just been rewarded by {$user->getName()}\n\n_Rewarding message :_ \n```{$description}```\nRewards you have received :\n_{$rewardsWithTrophy}_\n";
+        $textToUser = rawurlencode("\n*CONGRATULATIONS " . strtoupper($slackUser->getUsername()) . "!* :wink: <@{$slackUser->getSlackId()}> \nYou have just been rewarded by {$user->getName()}\n\n_Rewarding message :_ \n```{$description}```\nRewards you have received :\n_{$rewardsWithTrophy}_\n");
+        $textToGeneral = "\n*CONGRATULATIONS " . strtoupper($slackUser->getUsername()) . "!* :wink: <@{$slackUser->getSlackId()}> \nYou have just been rewarded by {$user->getName()}\n\n_Rewarding message :_ \n```{$description}```\nRewards you have received :\n_{$rewardsWithTrophy}_\n";
 
         $urlOpenChat = "https://slack.com/api/im.open?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&user={$slackId}&pretty=1";
         $openChatRequest = $this->requestDispatcher->post($urlOpenChat);
@@ -114,7 +114,7 @@ class SlackService
 
         $this->requestDispatcher->post($sendMessageUrlToUser);
 //        $this->requestDispatcher->post($sendMessageUrlToTest, ["blocks" => [["type" => "divider"], ["type"=> "section", "text" => ["type"=> "mrkdwn", "text" => "{$textToGeneral}"], "accessory" => ["type" => "image", "image_url" => "https://i2.wp.com/www.wakeed.org/wp-content/uploads/2016/07/award-icon-06.png", "alt_text" => "reward"]] ,["type" => "divider"]]]);
-        $this->requestDispatcher->post($sendMessageUrlToGeneral, ["blocks" => [["type" => "divider"], ["type"=> "section", "text" => ["type"=> "mrkdwn", "text" => "{$textToGeneral}"], "accessory" => ["type" => "image", "image_url" => "https://i2.wp.com/www.wakeed.org/wp-content/uploads/2016/07/award-icon-06.png", "alt_text" => "reward"]] ,["type" => "divider"]]]);
+        $this->requestDispatcher->post($sendMessageUrlToGeneral, ["blocks" => [["type" => "divider"], ["type" => "section", "text" => ["type" => "mrkdwn", "text" => "{$textToGeneral}"], "accessory" => ["type" => "image", "image_url" => "https://i2.wp.com/www.wakeed.org/wp-content/uploads/2016/07/award-icon-06.png", "alt_text" => "reward"]], ["type" => "divider"]]]);
     }
 
     private function formatUserNameToName($username)
@@ -130,33 +130,28 @@ class SlackService
         return trim($new_string);
     }
 
-    public function sendBirthdayNotification($birthdays){
-
-        $henriqueChatOpen = "https://slack.com/api/im.open?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&user=UEDG5PNQ0&pretty=1";
-//        $matheusChatOpen = "https://slack.com/api/im.open?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&user=U7Q9H9VFY&pretty=1";
-
-        $openChatRequestHenrique = $this->requestDispatcher->post($henriqueChatOpen);
-//        $openChatRequestMatheus = $this->requestDispatcher->post($matheusChatOpen);
-
-        $channelHenrique = $openChatRequestHenrique->channel->id;
-//        $channelMatheus = $openChatRequestMatheus->channel->id;
-
-        for($i = 0; $i <= sizeof($birthdays)-1; $i++) {
-            switch($birthdays){
+    public function sendBirthdayNotification($birthdays)
+    {
+        for ($i = 0; $i <= sizeof($birthdays) - 1; $i++) {
+            switch ($birthdays) {
                 case array_key_exists("five", $birthdays[$i]):
-                    $this->notifiesBirthdayWIthRemainingDays($birthdays[$i]['five']->getUsername(), 5);
+                    $this->notifiesBirthdayWIthRemainingDays($birthdays[$i]['five']->getUsername(), 5, $birthdays[$i]['five']->getSlackId());
                     break;
 
                 case array_key_exists("ten", $birthdays[$i]):
-                    $this->notifiesBirthdayWIthRemainingDays($birthdays[$i]['ten']->getUsername(), 10);
+                    $this->notifiesBirthdayWIthRemainingDays($birthdays[$i]['ten']->getUsername(), 10, $birthdays[$i]['ten']->getSlackId());
                     break;
 
                 case array_key_exists("three", $birthdays[$i]):
-                    $this->notifiesBirthdayWIthRemainingDays($birthdays[$i]['three']->getUsername(), 3);
+                    $this->notifiesBirthdayWIthRemainingDays($birthdays[$i]['three']->getUsername(), 3, $birthdays[$i]['three']->getSlackId());
                     break;
 
                 case array_key_exists("two", $birthdays[$i]):
-                    $this->notifiesBirthdayWIthRemainingDays($birthdays[$i]['two']->getUsername(), 2);
+                    $this->notifiesBirthdayWIthRemainingDays($birthdays[$i]['two']->getUsername(), 2, $birthdays[$i]['two']->getSlackId());
+                    break;
+
+                case array_key_exists("birthday", $birthdays[$i]):
+                    $this->notifiesBirthdayWIthRemainingDays($birthdays[$i]['birthday']->getUsername(), 0, $birthdays[$i]['birthday']->getSlackId());
                     break;
             }
         }
@@ -165,10 +160,43 @@ class SlackService
     /**
      * @param $user
      * @param $remainingDays
+     * @param $slackId
      */
-    public function notifiesBirthdayWIthRemainingDays($user, $remainingDays){
-        $defaultText = "Faltam `${remainingDays}` dias para o aniversário de ${user}";
-        $channelHenrique = "https://hooks.slack.com/services/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";
-        $this->requestDispatcher->post($channelHenrique, array("text" => $defaultText));
+    public function notifiesBirthdayWIthRemainingDays($user, $remainingDays, $slackId)
+    {
+        $users = $this->slackUserRepository->findAll();
+
+        $defaultText = rawurlencode("Faltam `{$remainingDays}` dias para o aniversário de *{$user}* :fireworks:");
+
+        if ($remainingDays == 0) {
+            $textToGeneral = "<!channel>\nToday is *{$user}'s* birthday :balloon: :fireworks: :star2: \n<http://4you2team.slack.com/team/{$slackId}|Wish happy birthday>";
+            $sendMessageToGeneral = "https://hooks.slack.com/services/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";
+//            $sendMessageToGeneral = "https://hooks.slack.com/services/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";
+            $this->requestDispatcher->post($sendMessageToGeneral, ["blocks" => [["type" => "divider"], ["type" => "section", "text" => ["type" => "mrkdwn", "text" => "{$textToGeneral}"], "accessory" => ["type" => "image", "image_url" => "https://techcrunch.com/wp-content/uploads/2011/06/tctv-birthday.jpg?w=500", "alt_text" => "birthday"]], ["type" => "divider"]]]);
+        }
+
+        /** @var SlackUser $user */
+        foreach ($users as $userSlack) {
+            if ($remainingDays == 0) {
+                $defaultText = rawurlencode("Hoje é aniversário de *{$user}* :balloon: :fireworks: :star2: \n<http://4you2team.slack.com/team/{$slackId}|Deseje um feliz aniversário>");
+            }
+
+            if ($userSlack->getSlackId() == $slackId and $remainingDays == 0) {
+                $defaultText = rawurlencode("Happy birthday *{$user}* :balloon: :fireworks: :star2:");
+            }
+
+            $this->createChatAndSendMessageToUser($userSlack->getSlackId(), $defaultText);
+        }
+    }
+
+    public function createChatAndSendMessageToUser($id, $text)
+    {
+        $userChatOpen = "https://slack.com/api/im.open?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&user={$id}&pretty=1";
+        $openChatRequestUser = $this->requestDispatcher->post($userChatOpen);
+
+        $channelUser = $openChatRequestUser->channel->id;
+        $sendMessageUrlToUser = "https://slack.com/api/chat.postMessage?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&channel={$channelUser}&text={$text}&pretty=1";
+
+        $this->requestDispatcher->post($sendMessageUrlToUser);
     }
 }
