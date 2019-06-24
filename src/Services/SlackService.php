@@ -199,4 +199,15 @@ class SlackService
 
         $this->requestDispatcher->post($sendMessageUrlToUser);
     }
+
+    public function sendMessageToManager($message, $user)
+    {
+        try {
+            $url = "https://hooks.slack.com/services/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";
+            $this->requestDispatcher->post($url, ["text" => "{$message} \n```{$user->getName()}```"]);
+            return "sent";
+        }catch (\Exception $exception){
+            return $exception;
+        }
+    }
 }
