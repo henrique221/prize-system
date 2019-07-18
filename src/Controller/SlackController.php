@@ -40,9 +40,9 @@ class SlackController
 //        $challenge = (((array) json_decode($request->getContent()))["challenge"]);
 //        return new JsonResponse(["challenge" => $challenge], 200);
         $sendMessageUrlToTest = "https://hooks.slack.com/services/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";
-        $this->requestDispatcher->post($sendMessageUrlToTest, ["blocks" => [["type" => "divider"], ["type" => "section", "text" => ["type" => "mrkdwn", "text" => "{$request->getContent()}"], "accessory" => ["type" => "image", "image_url" => "https://i2.wp.com/www.wakeed.org/wp-content/uploads/2016/07/award-icon-06.png", "alt_text" => "reward"]], ["type" => "divider"]]]);
+        $text = json_decode($request->getContent())["event"]["text"];
+        $this->requestDispatcher->post($sendMessageUrlToTest, ["blocks" => [["type" => "divider"], ["type" => "section", "text" => ["type" => "mrkdwn", "text" => "{$text}"], "accessory" => ["type" => "image", "image_url" => "https://i2.wp.com/www.wakeed.org/wp-content/uploads/2016/07/award-icon-06.png", "alt_text" => "reward"]], ["type" => "divider"]]]);
 
-        var_dump($request->getContent());
-        return new JsonResponse($request->getContent(), Response::HTTP_OK);
+        return new JsonResponse("message sent", Response::HTTP_OK);
     }
 }
