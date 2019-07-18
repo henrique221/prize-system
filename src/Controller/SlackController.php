@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 use App\Services\CurlRequestDispatcher;
+use App\Services\MessageDealer;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,14 +20,20 @@ class SlackController
      * @var CurlRequestDispatcher
      */
     private $requestDispatcher;
+    /**
+     * @var MessageDealer
+     */
+    private $messageDeal;
 
     /**
      * SlackController constructor.
      * @param CurlRequestDispatcher $requestDispatcher
+     * @param MessageDealer $messageDeal
      */
-    public function __construct(CurlRequestDispatcher $requestDispatcher)
+    public function __construct(CurlRequestDispatcher $requestDispatcher, MessageDealer $messageDeal)
     {
         $this->requestDispatcher = $requestDispatcher;
+        $this->messageDeal = $messageDeal;
     }
 
     /**
@@ -40,14 +47,15 @@ class SlackController
 //        $challenge = (((array) json_decode($request->getContent()))["challenge"]);
 //        return new JsonResponse(["challenge" => $challenge], 200);
         try {
-            $channelId = json_decode($request->getContent(), true)["event"]["channel"];
-            $text = json_decode($request->getContent(), true)["event"]["text"];
-            if($text == "oi") {
-                $textToUser = rawurlencode("Oi, tudo bem ?");
-                $sendMessageUrlToUser = "https://slack.com/api/chat.postMessage?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&channel={$channelId}&text={$textToUser}&pretty=1";
-                $this->requestDispatcher->post($sendMessageUrlToUser);
+            $user = json_decode($request->getContent(), true)["event"]["user"];
+            if($user != "UHDPTCVHA") {
+                $channelId = json_decode($request->getContent(), true)["event"]["channel"];
+                $text = json_decode($request->getContent(), true)["event"]["text"];
+
+                $this->messageDeal->replyMessages($channelId, $text);
+
+                return new Response("ok", Response::HTTP_OK);
             }
-            return new Response("ok", Response::HTTP_OK);
         }catch (\Exception $exception){
             return new Response($exception->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
