@@ -44,7 +44,6 @@ class SlackController
             $text = ((array) json_decode($request->getContent()))["event"]["text"];
             $textToUser = $text;
             $sendMessageUrlToUser = "https://slack.com/api/chat.postMessage?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&channel={$channelId}&text={$textToUser}&pretty=1";
-            $text = json_decode($request->getContent(), true)["event"]["text"];
             if(!is_null($text)) {
                 $this->requestDispatcher->post($sendMessageUrlToUser);
             }
