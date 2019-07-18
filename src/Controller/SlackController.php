@@ -52,7 +52,7 @@ class SlackController
                 $channelId = json_decode($request->getContent(), true)["event"]["channel"];
                 $text = json_decode($request->getContent(), true)["event"]["text"];
 
-                $this->messageDeal->replyMessages($channelId, $text);
+                $this->messageDeal->replyMessages($channelId, $text, $user);
 
                 return new Response("ok", Response::HTTP_OK);
             }

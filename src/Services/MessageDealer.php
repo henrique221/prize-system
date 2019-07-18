@@ -20,21 +20,23 @@ class MessageDealer
         $this->requestDispatcher = $requestDispatcher;
     }
 
-    public function replyMessages($channel, $text)
+    public function replyMessages($channel, $text, $user)
     {
-        switch ($text) {
-            case "oi":
-                $textToUser = rawurlencode("Oi, como posso ajudar ?");
-                $this->sendMessageToSlackUser($channel, $textToUser);
-                break;
-            case "birthday":
-            case "aniversário":
-                $textToUser = rawurlencode("Me diga o nome de alguem que você quer saber o aniversário");
-                $this->sendMessageToSlackUser($channel, $textToUser);
-                break;
-            default:
-                $textToUser = rawurlencode("Desculpe, não entendi");
-                $this->sendMessageToSlackUser($channel, $textToUser);
+        if ($user != "UHDPTCVHA") {
+            switch ($text) {
+                case "oi":
+                    $textToUser = rawurlencode("Oi, como posso ajudar ?");
+                    $this->sendMessageToSlackUser($channel, $textToUser);
+                    break;
+                case "birthday":
+                case "aniversário":
+                    $textToUser = rawurlencode("Me diga o nome de alguem que você quer saber o aniversário");
+                    $this->sendMessageToSlackUser($channel, $textToUser);
+                    break;
+                default:
+                    $textToUser = rawurlencode("Desculpe, não entendi".$user);
+                    $this->sendMessageToSlackUser($channel, $textToUser);
+            }
         }
     }
 
