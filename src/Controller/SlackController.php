@@ -46,20 +46,24 @@ class SlackController
 
 //        $challenge = (((array) json_decode($request->getContent()))["challenge"]);
 //        return new JsonResponse(["challenge" => $challenge], 200);
+        $birthdayChoose = false;
         try {
             $user = json_decode($request->getContent(), true)["event"]["user"];
-            if(!is_null($user)) {
+            if(!is_null($user) && $birthdayChoose == false) {
                 $channelId = json_decode($request->getContent(), true)["event"]["channel"];
                 $text = json_decode($request->getContent(), true)["event"]["text"];
 
                 $sendMessage = $this->messageDeal->replyMessages($channelId, $text, $user);
 
-                if($sendMessage == "birthday"){
-                    $sendMessage = $this->messageDeal->replyMessages($channelId, $text, $user, true);
+                if($sendMessage == "birthdayChoose"){
+                    $birthdayChoose = true;
                 }
-
-                return new Response("ok", Response::HTTP_OK);
+            }elseif (!is_null($user) && $birthdayChoose == true){
+                $channelId = json_decode($request->getContent(), true)["event"]["channel"];
+                $text = json_decode($request->getContent(), true)["event"]["text"];
+                $sendMessage = $this->messageDeal->replyMessages($channelId, $text, $user, true);
             }
+            return new Response("ok", Response::HTTP_OK);
         }catch (\Exception $exception){
             return new Response($exception->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }

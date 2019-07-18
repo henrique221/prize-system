@@ -34,7 +34,7 @@ class MessageDealer
                 case "aniversario":
                     $textToUser = rawurlencode("Me diga o nome de alguem que você quer saber o aniversário");
                     $this->sendMessageToSlackUser($channel, $textToUser);
-                    return "birthday";
+                    return "birthdayChoose";
                 case "posso escolher":
                     if($canChooseBirthday){
                         $textToUser = rawurlencode("sim");
