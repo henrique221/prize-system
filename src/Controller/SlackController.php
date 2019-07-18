@@ -48,7 +48,7 @@ class SlackController
 //        return new JsonResponse(["challenge" => $challenge], 200);
         try {
             $user = json_decode($request->getContent(), true)["event"]["user"];
-            if($user != "UHDPTCVHA") {
+            if(!is_null($user)) {
                 $channelId = json_decode($request->getContent(), true)["event"]["channel"];
                 $text = json_decode($request->getContent(), true)["event"]["text"];
 
