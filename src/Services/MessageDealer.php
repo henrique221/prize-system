@@ -34,7 +34,7 @@ class MessageDealer
                     $this->sendMessageToSlackUser($channel, $textToUser);
                     break;
                 default:
-                    $textToUser = rawurlencode("Desculpe, não entendi".$user);
+                    $textToUser = rawurlencode("Desculpe, não entendi");
                     $this->sendMessageToSlackUser($channel, $textToUser);
             }
         }
