@@ -34,11 +34,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Controller/SlackController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-14">
-              <caret line="32" column="59" lean-forward="true" selection-start-line="32" selection-start-column="59" selection-end-line="32" selection-end-column="59" />
+            <state relative-caret-position="511">
+              <caret line="57" column="35" selection-start-line="57" selection-start-column="35" selection-end-line="57" selection-end-column="35" />
               <folding>
                 <element signature="e#35#74#0#PHP" expanded="true" />
               </folding>
@@ -46,11 +46,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Services/MessageDealer.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="45" column="26" selection-start-line="45" selection-start-column="26" selection-end-line="45" selection-end-column="26" />
+            <state relative-caret-position="49">
+              <caret line="19" column="54" lean-forward="true" selection-start-line="19" selection-start-column="54" selection-end-line="19" selection-end-column="54" />
             </state>
           </provider>
         </entry>
@@ -177,8 +177,8 @@
         <option value="$PROJECT_DIR$/src/Services/SlackService.php" />
         <option value="$PROJECT_DIR$/src/Controller/IndexController.php" />
         <option value="$PROJECT_DIR$/src/Services/MessageReply.php" />
-        <option value="$PROJECT_DIR$/src/Controller/SlackController.php" />
         <option value="$PROJECT_DIR$/src/Services/MessageDealer.php" />
+        <option value="$PROJECT_DIR$/src/Controller/SlackController.php" />
       </list>
     </option>
   </component>
@@ -394,12 +394,12 @@
       <workItem from="1562960128668" duration="30000" />
       <workItem from="1563422193812" duration="1196000" />
       <workItem from="1563424310134" duration="60000" />
-      <workItem from="1563424370581" duration="6319000" />
+      <workItem from="1563424370581" duration="6407000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="354738000" />
+    <option name="totallyTimeSpent" value="354826000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="26" width="2560" height="1014" extended-state="6" />
@@ -762,20 +762,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/SlackController.php">
+    <entry file="file://$PROJECT_DIR$/src/Services/MessageDealer.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-14">
-          <caret line="32" column="59" lean-forward="true" selection-start-line="32" selection-start-column="59" selection-end-line="32" selection-end-column="59" />
-          <folding>
-            <element signature="e#35#74#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="49">
+          <caret line="19" column="54" lean-forward="true" selection-start-line="19" selection-start-column="54" selection-end-line="19" selection-end-column="54" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Services/MessageDealer.php">
+    <entry file="file://$PROJECT_DIR$/src/Controller/SlackController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="45" column="26" selection-start-line="45" selection-start-column="26" selection-end-line="45" selection-end-column="26" />
+        <state relative-caret-position="511">
+          <caret line="57" column="35" selection-start-line="57" selection-start-column="35" selection-end-line="57" selection-end-column="35" />
+          <folding>
+            <element signature="e#35#74#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

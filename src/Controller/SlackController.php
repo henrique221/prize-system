@@ -55,12 +55,7 @@ class SlackController
                 $sendMessage = $this->messageDeal->replyMessages($channelId, $text, $user);
 
                 if($sendMessage == "birthday"){
-                    $canChooseUser = true;
-                    $sendMessage = $this->messageDeal->replyMessages($channelId, $text, $user);
-                }else{
-                    $canChooseUser = false;
-                    $sendMessage = $this->messageDeal->replyMessages($channelId, $text, $user);
-
+                    $sendMessage = $this->messageDeal->replyMessages($channelId, $text, $user, true);
                 }
 
                 return new Response("ok", Response::HTTP_OK);

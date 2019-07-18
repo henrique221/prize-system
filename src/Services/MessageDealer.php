@@ -20,7 +20,7 @@ class MessageDealer
         $this->requestDispatcher = $requestDispatcher;
     }
 
-    public function replyMessages($channel, $text, $user, $canChooseBirthday)
+    public function replyMessages($channel, $text, $user, $canChooseBirthday = false)
     {
         if ($user != "UHDPTCVHA") {
             switch ($text) {
