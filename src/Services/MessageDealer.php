@@ -25,6 +25,11 @@ class MessageDealer
         if ($user != "UHDPTCVHA") {
             switch ($text) {
                 case "oi":
+                case "ola":
+                case "olá":
+                case "Oi":
+                case "Ola":
+                case "Olá":
                     $textToUser = rawurlencode("Oi, como posso ajudar ?");
                     $this->sendMessageToSlackUser($channel, $textToUser);
                     break;
