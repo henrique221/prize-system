@@ -40,10 +40,13 @@ class SlackController
 //        $challenge = (((array) json_decode($request->getContent()))["challenge"]);
 //        return new JsonResponse(["challenge" => $challenge], 200);
         try {
-            $sendMessageUrlToTest = "https://hooks.slack.com/services/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";
+            $channelId = json_decode($request->getContent(), true)["event"]["channel"];
+            $text = json_decode($request->getContent(), true)["event"]["text"];
+            $textToUser = $text;
+            $sendMessageUrlToUser = "https://slack.com/api/chat.postMessage?token=xoxb-260471979411-591809437588-ODmeN9mFCJV5cHN2byap3evc&channel={$channelId}&text={$textToUser}&pretty=1";
             $text = json_decode($request->getContent(), true)["event"]["text"];
             if(!is_null($text)) {
-                $this->requestDispatcher->post($sendMessageUrlToTest, ["blocks" => [["type" => "divider"], ["type" => "section", "text" => ["type" => "mrkdwn", "text" => "{$text}"], "accessory" => ["type" => "image", "image_url" => "https://i2.wp.com/www.wakeed.org/wp-content/uploads/2016/07/award-icon-06.png", "alt_text" => "reward"]], ["type" => "divider"]]]);
+                $this->requestDispatcher->post($sendMessageUrlToUser);
             }
             return new Response("ok", Response::HTTP_OK);
         }catch (\Exception $exception){
