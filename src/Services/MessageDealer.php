@@ -20,7 +20,7 @@ class MessageDealer
         $this->requestDispatcher = $requestDispatcher;
     }
 
-    public function replyMessages($channel, $text, $user)
+    public function replyMessages($channel, $text, $user, $canChooseBirthday)
     {
         if ($user != "UHDPTCVHA") {
             switch ($text) {
@@ -30,9 +30,21 @@ class MessageDealer
                     break;
                 case "birthday":
                 case "aniversário":
+                case "niver":
+                case "aniversario":
                     $textToUser = rawurlencode("Me diga o nome de alguem que você quer saber o aniversário");
                     $this->sendMessageToSlackUser($channel, $textToUser);
+                    return "birthday";
+                case "posso escolher":
+                    if($canChooseBirthday){
+                        $textToUser = rawurlencode("sim");
+                        $this->sendMessageToSlackUser($channel, $textToUser);
+                    }else{
+                        $textToUser = rawurlencode("não");
+                        $this->sendMessageToSlackUser($channel, $textToUser);
+                    }
                     break;
+
                 default:
                     $textToUser = rawurlencode("Desculpe, não entendi");
                     $this->sendMessageToSlackUser($channel, $textToUser);
