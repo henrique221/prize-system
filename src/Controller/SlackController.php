@@ -39,6 +39,7 @@ class SlackController
 
 //        $challenge = (((array) json_decode($request->getContent()))["challenge"]);
 //        return new JsonResponse(["challenge" => $challenge], 200);
+        var_dump($request->getContent());
         return new JsonResponse($request->getContent(), Response::HTTP_OK);
     }
 }
