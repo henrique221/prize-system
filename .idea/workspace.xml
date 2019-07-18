@@ -37,7 +37,7 @@
         <entry file="file://$PROJECT_DIR$/src/Controller/SlackController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="616">
-              <caret line="42" column="66" selection-start-line="42" selection-start-column="66" selection-end-line="42" selection-end-column="66" />
+              <caret line="42" column="51" selection-start-line="42" selection-start-column="51" selection-end-line="42" selection-end-column="51" />
               <folding>
                 <element signature="e#35#74#0#PHP" expanded="true" />
               </folding>
@@ -384,12 +384,12 @@
       <workItem from="1562960128668" duration="30000" />
       <workItem from="1563422193812" duration="1196000" />
       <workItem from="1563424310134" duration="60000" />
-      <workItem from="1563424370581" duration="1888000" />
+      <workItem from="1563424370581" duration="1932000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="350307000" />
+    <option name="totallyTimeSpent" value="350351000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="26" width="2560" height="1014" extended-state="6" />
@@ -762,7 +762,7 @@
     <entry file="file://$PROJECT_DIR$/src/Controller/SlackController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="616">
-          <caret line="42" column="66" selection-start-line="42" selection-start-column="66" selection-end-line="42" selection-end-column="66" />
+          <caret line="42" column="51" selection-start-line="42" selection-start-column="51" selection-end-line="42" selection-end-column="51" />
           <folding>
             <element signature="e#35#74#0#PHP" expanded="true" />
           </folding>
