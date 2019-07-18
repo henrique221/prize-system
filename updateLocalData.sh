@@ -8,7 +8,7 @@ interact
 
 spawn mkdir ../dumps
 
-spawn scp root@anthlab.com:~/dump-preston-$date.sql ../dumps/.
+spawn scp root@anthlab.com:~/dumps/dump-preston-$date.sql ../dumps/.
 expect "root@anthlab.com's password: "
 send "rique221\r"
 interact
