@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Preston{% endblock %}
+{% block title %}Preston 4you2{% endblock %}
 
  {% block body %}
      <link rel="stylesheet" href="{{ asset('css/back.css') }}">
@@ -154,10 +154,11 @@
                      </strong>
                  </div>
              {% endfor %}
+             <h5 class="mb-md-5"><span style="color:#f3b88d; font-style: italic">Preston</span> <span style="color: #fceccb; font-weight: bold">4you2</span></h5>
 
-             <h5 class="mb-md-5"><i id="userBot" class="fas fa-robot"></i> Preston control panel</h5>
-
-             <p style="font-size: 20px" class="mb-md-5">Welcome, {{ user.name }} !</p>
+             <div class="d-flex justify-content-end" style="margin-bottom: 30px">
+                 <i onmouseover="animateCSS('userBot', 'bounce')" style="font-size: 45px;" id="userBot" class="fas fa-robot"></i>
+             </div>
 
              <table id="dtBasicExample" style="font-family: 'Roboto', sans-serif !important;"
                     class="table table-borderless text-white col-12 col-lg-12">
@@ -377,7 +378,7 @@
                                  {% endif %}
                                  $("#userBot").balloon({
                                      html: true,
-                                     position: 'top-right',
+                                     position: 'top-left',
                                      css: {
                                          border: 'solid 2px #5baec0',
                                          borderRadius: '15px',
@@ -389,7 +390,7 @@
                                          backgroundColor: '#666',
                                          color: '#fff'
                                      },
-                                     contents: $("<p style='margin-top: 15px; font-family: `lato`, sans-serif; font-size: 15px; width: 150px;'>{{ user.name }}</p>")
+                                     contents: $("<p style='margin-top: 15px; font-family: `lato`, sans-serif; font-size: 15px; width: 150px;'>Hello {{ user.name }} !</p>")
                                  });
 
                                  $("#addRewardTrophy{{ u.id }}").balloon({
@@ -436,7 +437,7 @@
              </table>
          </div>
      </div>
-     <div class="area">
+     <div class="area" style="top: 0; bottom: 0; left: 0; right: 0">
          <ul class="circles">
              <li></li>
              <li></li>
