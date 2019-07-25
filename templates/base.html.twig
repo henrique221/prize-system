@@ -65,6 +65,7 @@
                 <a class="nav-link text-white-50" href="{{ path('preston') }}">preston</a>
             </li>
         </ul>
+        <a id="manual" class="navbar-brand text-white-50 mr-md-4" href=""><i class="far fa-question-circle" style="font-size: 25px"></i></a>
         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
             <a id="ideas" href="{{ path('ideas_new') }}" class="navbar-brand text-white-50 mr-md-4"><i class="far fa-lightbulb" style="font-size: 25px"></i></a>
             <div class="mr-4">
@@ -72,14 +73,14 @@
                 <a id="updateDatabase" class="navbar-brand text-white-50 mr-md-3" href="{{ path('update_trello_database') }}"><i class="fas fa-user-plus" style="font-size: 25px"></i></a>
                 <a id="createAccess" class="navbar-brand text-white-50 mr-md-3" href="{{ path('create_access') }}"><i class="fas fa-at" style="font-size: 25px"></i></a>
             {% endif %}
-            <a id="showMyRewards" href="{{ path('show_user_rewards', {'id': user.userId.id}) }}"><i class="fas fa-trophy" style="font-size: 25px"></i></a>
+                <a id="showMyRewards" href="{{ path('show_user_rewards', {'id': user.userId.id}) }}"><i class="fas fa-trophy" style="font-size: 25px"></i></a>
             </div>
             <a name="logout" id="logout"
                style="background: #261b30; filter: opacity(95%); padding: 25px; border-radius: 35px"
-               href="{{ path('app_logout') }}" role="button"><i class="fas fa-sign-out-alt" style="font-size: 25px"></i></a>
+            href="{{ path('app_logout') }}" role="button"><i class="fas fa-sign-out-alt" style="font-size: 25px"></i></a>
         {% else %}
             <a name="login" id="login" style="background: #1b2735; padding: 25px; border-radius: 35px"
-               href="{{ path('app_login') }}" role="button"><i class="fas fa-sign-in-alt" style="font-size: 25px"></i></a>
+            href="{{ path('app_login') }}" role="button"><i class="fas fa-sign-in-alt" style="font-size: 25px"></i></a>
         {% endif %}
 
     </div>
@@ -121,6 +122,22 @@
                 color: '#fff'
             },
             contents: $("<p style='text-align: center; margin-top: 15px; font-family: `lato`, sans-serif; font-size: 15px; width: 150px;'>new ideas</p>")
+        });
+        $("#manual").balloon({
+            html: true,
+            position: "bottom",
+            tipSize: 25,
+            css: {
+                border: 'solid 2px #5baec0',
+                borderRadius: '15px',
+                padding: '1px',
+                fontSize: '150%',
+                fontWeight: 'bold',
+                lineHeight: '1',
+                backgroundColor: '#666',
+                color: '#fff'
+            },
+            contents: $("<p style='text-align: center; margin-top: 15px; font-family: `lato`, sans-serif; font-size: 15px; width: 150px;'>how to use</p>")
         });
         $("#createAccess").balloon({
             html: true,
