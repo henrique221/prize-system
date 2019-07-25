@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9619f130-f45f-4468-bcdc-0db50da68777" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/public/css/back.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/backGround.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/ideas/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/ideas/new.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/preston/editUser.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/preston/editUser.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/preston/list.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/preston/list.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/var/cache/dev/twig/2e/2e074ec245a0251d82be173ff8da019d797bfa49676b28335f735a47f1a2c1ca.php" beforeDir="false" afterPath="$PROJECT_DIR$/var/cache/dev/twig/2e/2e074ec245a0251d82be173ff8da019d797bfa49676b28335f735a47f1a2c1ca.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/var/cache/dev/twig/c3/c3e818a4cd20a2cf18952c7cd04937565df3649d58f0a31a3864358681eae7bd.php" beforeDir="false" afterPath="$PROJECT_DIR$/var/cache/dev/twig/c3/c3e818a4cd20a2cf18952c7cd04937565df3649d58f0a31a3864358681eae7bd.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/var/cache/dev/twig/d3/d3707eef0d157f4d3c40cced8ec7722115cb2c56b42695fdc867a8064ffe8d4c.php" beforeDir="false" afterPath="$PROJECT_DIR$/var/cache/dev/twig/d3/d3707eef0d157f4d3c40cced8ec7722115cb2c56b42695fdc867a8064ffe8d4c.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -420,12 +414,12 @@
       <workItem from="1563424310134" duration="60000" />
       <workItem from="1563424370581" duration="7085000" />
       <workItem from="1564026083106" duration="514000" />
-      <workItem from="1564026988630" duration="5572000" />
+      <workItem from="1564026988630" duration="5690000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="361590000" />
+    <option name="totallyTimeSpent" value="361708000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="26" width="2560" height="1016" extended-state="6" />
