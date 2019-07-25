@@ -41,11 +41,11 @@
 {% endblock %}
 
 {% block body %}
+    <script src="https://cdn.jsdelivr.net/gh/RobinHerbots/jquery.inputmask@5.0.0-beta.217/dist/inputmask.js"></script>
 
     <link rel="stylesheet" href="{{ asset('css/backGround.css') }}">
 
     <section class="jumbotron" style="background: #1b2735">
-
         {% for flashMessage in app.session.flashbag.get('notice') %}
             <div class="alert bg-success" role="alert">
                 <strong>
@@ -186,4 +186,13 @@
             </div>
         </div>
     </section>
+
+    <script>
+        var birthday = document.getElementById("slack_user_dataDeNascimento");
+        var startDay = document.getElementById("slack_user_startDate");
+
+        var im = new Inputmask("99/99/9999");
+        im.mask(birthday);
+        im.mask(startDay);
+    </script>
 {% endblock %}
