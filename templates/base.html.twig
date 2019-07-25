@@ -176,10 +176,11 @@
 </script>
 
 {% block footer %}
-    <footer class="d-md-none pt-2 pb-5 w-100 position-fixed" style="bottom: 0;height: 20px; background: #1b2735; z-index: 500">
+    <footer class="d-md-none pt-2 pb-5 w-100 position-fixed" style="bottom: 0;height: 20px; background: #2b1d42; z-index: 500">
 
-    <div class="mt-2 d-flex justify-content-around">
-        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        <div class="mt-2 d-flex justify-content-around">
+            <a href=""><i class="far fa-question-circle" style="font-size: 25px"></i></a>
+            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
             {% if is_granted('ROLE_ADMIN') %}
                 <a class="text-white-50" href="{{ path('update_trello_database') }}"><i class="fas fa-user-plus" style="font-size: 25px"></i></a>
                 <a class="text-white-50" href="{{ path('create_access') }}"><i class="fas fa-at" style="font-size: 25px"></i></a>
