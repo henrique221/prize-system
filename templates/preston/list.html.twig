@@ -165,9 +165,6 @@
                  <thead style="background: rgba(245,248,255,0.07);">
 
                  </th>
-                 <th class="border-0 text-center">Id
-
-                 </th>
                  <th class="border-0 text-center">Name
 
                  </th>
@@ -225,10 +222,11 @@
 
                          <tr onmouseover="style='filter: drop-shadow(0px 0px 3px yellow); cursor: default'"
                              onmouseleave="style= 'filter: none;'">
-                             <td class="text-center">{{ u.id }}</td>
                              <td class="text-center username{{ u.id }}">{{ u.username }}</td>
                              <td class="text-center">{{ u.email }}</td>
-                             {% if u.birthdate is null %}
+                             {% if u.birthdate is null and is_granted('ROLE_ADMIN')%}
+                                 <td class="text-center"><a style="background: #261b30; filter: opacity(95%); padding: 10px; border-radius: 35px" href="{{ path('edit_user', {'id': u.id}) }}">add birthdate</a></td>
+                             {% elseif u.birthdate is null and is_granted('ROLE_ADMIN') == false %}
                                  <td class="text-center">no birthdate</td>
                              {% else %}
                                  <td class="text-center">{{ u.birthdate|date("d/m/Y") }}</td>
@@ -418,7 +416,6 @@
 
                  <tfoot style="background: rgba(245,248,255,0.07);">
                  <tr>
-                     <th class="border-0 text-center">Id</th>
                      <th class="border-0 text-center">Name
                      </th>
                      <th class="border-0 text-center">Email

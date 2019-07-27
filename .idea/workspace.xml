@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9619f130-f45f-4468-bcdc-0db50da68777" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/preston/list.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/preston/list.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -65,10 +63,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/preston/list.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="156" column="148" selection-start-line="156" selection-start-column="148" selection-end-line="156" selection-end-column="148" />
+            <state relative-caret-position="310">
+              <caret line="227" column="204" selection-start-line="227" selection-start-column="204" selection-end-line="227" selection-end-column="204" />
               <folding>
                 <element signature="e#12#26#0#Twig" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+                <element signature="e#12382#12391#0#Twig" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -77,9 +77,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="69" column="144" selection-start-line="69" selection-start-column="144" selection-end-line="69" selection-end-column="144" />
+            <state relative-caret-position="310">
+              <caret line="79" column="22" selection-start-line="79" selection-start-column="22" selection-end-line="79" selection-end-column="99" />
               <folding>
+                <element signature="n#style#0;n#a#2;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
@@ -112,9 +113,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>trop</find>
-      <find>eye</find>
-      <find>pl</find>
       <find>footer</find>
       <find>edit/us</find>
       <find>render</find>
@@ -142,6 +140,9 @@
       <find>nav</find>
       <find>jquery</find>
       <find>4you</find>
+      <find>Id</find>
+      <find>is</find>
+      <find>logou</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -448,12 +449,12 @@
       <workItem from="1563424370581" duration="7085000" />
       <workItem from="1564026083106" duration="514000" />
       <workItem from="1564026988630" duration="9901000" />
-      <workItem from="1564198320846" duration="1062000" />
+      <workItem from="1564198320846" duration="1751000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="366981000" />
+    <option name="totallyTimeSpent" value="367670000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="26" width="2560" height="1016" extended-state="6" />
@@ -797,9 +798,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="69" column="144" selection-start-line="69" selection-start-column="144" selection-end-line="69" selection-end-column="144" />
+        <state relative-caret-position="310">
+          <caret line="79" column="22" selection-start-line="79" selection-start-column="22" selection-end-line="79" selection-end-column="99" />
           <folding>
+            <element signature="n#style#0;n#a#2;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
@@ -813,10 +815,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/preston/list.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="156" column="148" selection-start-line="156" selection-start-column="148" selection-end-line="156" selection-end-column="148" />
+        <state relative-caret-position="310">
+          <caret line="227" column="204" selection-start-line="227" selection-start-column="204" selection-end-line="227" selection-end-column="204" />
           <folding>
             <element signature="e#12#26#0#Twig" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#12382#12391#0#Twig" expanded="true" />
           </folding>
         </state>
       </provider>
