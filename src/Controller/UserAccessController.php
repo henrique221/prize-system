@@ -9,7 +9,7 @@ use App\Form\UsuarioType;
 use App\Repository\SlackUserRepository;
 use App\Repository\UsuarioRepository;
 use App\Services\CheckIfUserHasAccess;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;

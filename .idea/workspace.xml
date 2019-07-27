@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9619f130-f45f-4468-bcdc-0db50da68777" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Controller/PrestonController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PrestonController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/SlackUserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/SlackUserRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Services/SlackService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/SlackService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/preston/updateDatabase.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/preston/updateDatabase.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/UserAccessController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserAccessController.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,10 +25,9 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/PrestonController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="190" lean-forward="true" selection-start-line="190" selection-end-line="190" />
+            <state relative-caret-position="483">
+              <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" selection-end-column="47" />
               <folding>
-                <element signature="e#34#61#0#PHP" expanded="true" />
                 <element signature="e#5814#5825#1#PHP" expanded="true" />
               </folding>
             </state>
@@ -40,17 +37,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/preston/editUser.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
-              <caret line="68" column="60" selection-start-line="68" selection-start-column="52" selection-end-line="68" selection-end-column="60" />
+            <state relative-caret-position="247">
+              <caret line="127" column="39" selection-start-line="127" selection-start-column="39" selection-end-line="127" selection-end-column="39" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Controller/UserAccessController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="231">
+              <caret line="11" column="47" selection-start-line="11" selection-start-column="47" selection-end-line="11" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Services/SlackService.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="59" column="41" lean-forward="true" selection-start-line="59" selection-start-column="41" selection-end-line="59" selection-end-column="41" />
+            <state relative-caret-position="143">
+              <caret line="64" selection-start-line="64" selection-end-line="64" />
             </state>
           </provider>
         </entry>
@@ -129,15 +135,6 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/css/backGround.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -149,7 +146,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>redire</find>
       <find>Hoje</find>
       <find>alread</find>
       <find>dump</find>
@@ -179,6 +175,7 @@
       <find>logout</find>
       <find>prestonc</find>
       <find>this-&gt;add</find>
+      <find>create</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -199,7 +196,6 @@
         <option value="$PROJECT_DIR$/src/Controller/UserAccess.php" />
         <option value="$PROJECT_DIR$/templates/preston/service-worker.js" />
         <option value="$PROJECT_DIR$/src/Services/CheckIfUserHasAccess.php" />
-        <option value="$PROJECT_DIR$/src/Controller/UserAccessController.php" />
         <option value="$PROJECT_DIR$/public/js/list.min.js" />
         <option value="$PROJECT_DIR$/public/css/index.css" />
         <option value="$PROJECT_DIR$/public/css/style.css" />
@@ -244,6 +240,7 @@
         <option value="$PROJECT_DIR$/src/Services/SlackService.php" />
         <option value="$PROJECT_DIR$/templates/preston/editUser.html.twig" />
         <option value="$PROJECT_DIR$/src/Controller/PrestonController.php" />
+        <option value="$PROJECT_DIR$/src/Controller/UserAccessController.php" />
       </list>
     </option>
   </component>
@@ -497,12 +494,12 @@
       <workItem from="1563424370581" duration="7085000" />
       <workItem from="1564026083106" duration="514000" />
       <workItem from="1564026988630" duration="9901000" />
-      <workItem from="1564198320846" duration="8500000" />
+      <workItem from="1564198320846" duration="9345000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="374419000" />
+    <option name="totallyTimeSpent" value="375264000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="26" width="2560" height="1016" extended-state="6" />
@@ -535,16 +532,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/js/typedjs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" column="37" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/var/cache/dev/srcApp_KernelDevDebugContainer.xml.meta">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -847,24 +834,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/preston/editUser.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="68" column="60" selection-start-line="68" selection-start-column="52" selection-end-line="68" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/PrestonController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="190" lean-forward="true" selection-start-line="190" selection-end-line="190" />
-          <folding>
-            <element signature="e#34#61#0#PHP" expanded="true" />
-            <element signature="e#5814#5825#1#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Repository/SlackUserRepository.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
@@ -874,8 +843,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Services/SlackService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="59" column="41" lean-forward="true" selection-start-line="59" selection-start-column="41" selection-end-line="59" selection-end-column="41" />
+        <state relative-caret-position="143">
+          <caret line="64" selection-start-line="64" selection-end-line="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/preston/editUser.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="127" column="39" selection-start-line="127" selection-start-column="39" selection-end-line="127" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/PrestonController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" selection-end-column="47" />
+          <folding>
+            <element signature="e#5814#5825#1#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/UserAccessController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="11" column="47" selection-start-line="11" selection-start-column="47" selection-end-line="11" selection-end-column="47" />
         </state>
       </provider>
     </entry>
