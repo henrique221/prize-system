@@ -68,7 +68,7 @@
                         <td class="text-center"><strong class="text-danger">not active</strong></td>
                     {% endif %}
                     <td class="text-center">
-                        <form id="{{ u.id }}">
+                        <form method="post" action="{{ path('check_user_in_database') }}">
                             <input type="hidden" name="userId" value="{{ u.id }}">
                             <button class="pt-0 pb-0 border-0">add to database</button>
                         </form>

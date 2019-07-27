@@ -187,9 +187,11 @@ class PrestonController extends AbstractController
     {
         $userId = $request->request->get("userId");
 
-        $status = $slackService->updateSlackDatabase($userId);
+        $return = $slackService->updateSlackDatabase($userId);
 
-        return new JsonResponse($userId, $status->getStatusCode());
+        $this->addFlash('notice', "User {$return->getUsername()} added sucessfully, now please add a birthdate!");
+
+        return $this->redirectToRoute("edit_user", ["id" => $return->getId()]);
     }
 
     /**

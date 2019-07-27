@@ -39,36 +39,41 @@ class SlackService
         return $request;
     }
 
+    public function getUser($userId)
+    {
+        $url = "https://slack.com/api/users.profile.get?token=xoxp-260471979411-489549804816-597878161238-be9bc3c8425e2fc76e15893d9ea98e5e&user={$userId}&pretty=1";
+        $request = $this->requestDispatcher->get($url);
+        return $request;
+    }
+
     public function updateSlackDatabase($userId)
     {
-        $slackUsers = $this->getAllUsers()->members;
-
         $userFromDatabase = $this->slackUserRepository->findBy(["SlackId" => $userId]);
 
         if (!$userFromDatabase) {
             $slackUserObj = new SlackUser();
-            foreach ($slackUsers as $slackUser) {
-                if ($slackUser->id == $userId) {
+            $user = $this->getUser($userId);
 
-                    $slackUserObj
-                        ->setSlackId($slackUser->id)
-                        ->setUsername($this->formatUserNameToName($slackUser->name));
+            if($user->ok == true){
 
-                    $realName = !empty($slackUser->real_name) ? $slackUser->real_name : "no full name";
-                    $email = !empty($slackUser->profile->email) ? $slackUser->profile->email : "no email";
+                $slackUserObj
+                    ->setSlackId($userId)
+                    ->setUsername($this->formatNameToUsername($user->profile->real_name));
 
-                    $slackUserObj->setRealName($realName);
-                    $slackUserObj->setEmail($email);
-                    $slackUserObj->setDataDeNascimento(null);
+                $realName = !empty($user->profile->real_name) ? $user->profile->real_name : "no full name";
+                $email = !empty($user->profile->email) ? $user->profile->email : "no email";
 
-                    $em = $this->managerRegistry->getManager();
-                    $em->persist($slackUserObj);
-                    $em->flush();
-                }
+                $slackUserObj->setUsername($realName);
+                $slackUserObj->setEmail($email);
+                $slackUserObj->setDataDeNascimento(null);
+
+                $this->slackUserRepository->persist($slackUserObj);
+
+                return $slackUserObj;
             }
-            return new Response("user added", 200);
+
         } else {
-            return new Response("user already exists", 409);
+            return "user already exists";
         }
     }
 
@@ -126,6 +131,17 @@ class SlackService
             $new_string .= ($key & 1) == 0 ?
                 ucfirst(strtolower(trim($sentence))) :
                 $sentence . ' ';
+        }
+        return trim($new_string);
+    }
+
+    private function formatNameToUsername($name)
+    {
+        $sentences = preg_split('/([.?!]+)/', $name, -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
+        $sentences = str_replace(" ", ".", $sentences);
+        $new_string = '';
+        foreach ($sentences as $key => $sentence) {
+            $new_string = strtolower(trim($sentence));
         }
         return trim($new_string);
     }
