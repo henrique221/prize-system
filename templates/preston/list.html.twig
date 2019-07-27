@@ -225,7 +225,7 @@
                              <td class="text-center username{{ u.id }}">{{ u.username }}</td>
                              <td class="text-center">{{ u.email }}</td>
                              {% if u.birthdate is null and is_granted('ROLE_ADMIN')%}
-                                 <td class="text-center"><a style="background: #261b30; filter: opacity(95%); padding: 10px; border-radius: 35px" href="{{ path('edit_user', {'id': u.id}) }}">add birthdate</a></td>
+                                 <td class="text-center"><a style="background: #8f3d4b; filter: opacity(95%); padding: 10px; border-radius: 35px" href="{{ path('edit_user', {'id': u.id}) }}">add birthdate</a></td>
                              {% elseif u.birthdate is null and is_granted('ROLE_ADMIN') == false %}
                                  <td class="text-center">no birthdate</td>
                              {% else %}
