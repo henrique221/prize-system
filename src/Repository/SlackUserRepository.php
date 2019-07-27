@@ -22,8 +22,10 @@ class SlackUserRepository extends ServiceEntityRepository
     public function persist(SlackUser $instance)
     {
         $em = $this->getEntityManager();
+        $em->beginTransaction();
         $em->persist($instance);
-        return $em->flush();
+        $em->commit();
+        return $em->flush($instance);
     }
 
     public function save(SlackUser $instance)
