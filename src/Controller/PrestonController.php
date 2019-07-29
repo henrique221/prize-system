@@ -149,9 +149,17 @@ class PrestonController extends AbstractController
      */
     public function updateDatabase(SlackService $slackService)
     {
-        $users = $slackService->getAllUsers();
+        $usersFromSlack = collect($slackService->getAllUsers()->members);
+
+        $usersFromSlack = $usersFromSlack->map(function ($user){
+            $userFromDatabase = $this->slackUserRepository->findOneBy(['SlackId' => $user->id]);
+            if(!$userFromDatabase){
+                return $user;
+            }
+        });
+
         return $this->render('preston/updateDatabase.html.twig', [
-            'users' => $users->members,
+            'users' => $usersFromSlack->filter(null)->toArray(),
             'user' => $this->getUser()
         ]);
     }
