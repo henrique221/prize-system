@@ -210,7 +210,6 @@ class PrestonController extends AbstractController
      */
     public function editUser(Request $request, SlackUser $slackUser, CheckIfUserHasAccess $checkIfUserHasAccess)
     {
-
         $checkIfUserHasAccess->checkAndSetEntityHasAccess($slackUser);
 
         $form = $this->createForm(SlackUserType::class, $slackUser);
@@ -224,6 +223,10 @@ class PrestonController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->slackUserRepository->save($slackUser);
+            $birthdate = $form->get('dataDeNascimento')->getData();
+            if(!is_null($birthdate) and !$slackUser->getUserAccess()){
+                return $this->redirectToRoute('add_user_access', ['id' => $slackUser->getId()]);
+            }
 
             $this->addFlash('notice', "User edited sucessfully");
             return $this->redirectToRoute('edit_user', array('id' => $slackUser->getId(), 'user' => $this->getUser()));

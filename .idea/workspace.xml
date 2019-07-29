@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9619f130-f45f-4468-bcdc-0db50da68777" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/preston.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/preston.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/PrestonController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PrestonController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,10 +24,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Controller/PrestonController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="161" column="64" lean-forward="true" selection-start-line="161" selection-start-column="64" selection-end-line="161" selection-end-column="64" />
+            <state relative-caret-position="583">
+              <caret line="226" column="41" selection-start-line="226" selection-start-column="41" selection-end-line="226" selection-end-column="41" />
               <folding>
                 <element signature="e#34#61#0#PHP" expanded="true" />
+                <element signature="e#4371#4405#0#PHP" expanded="true" />
+                <element signature="e#5902#5913#0#PHP" expanded="true" />
+                <element signature="e#7214#7231#1#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -42,10 +39,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/UserAccessController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="17" selection-start-line="17" selection-end-line="17" />
+            <state relative-caret-position="303">
+              <caret line="75" column="53" selection-start-line="75" selection-start-column="38" selection-end-line="75" selection-end-column="53" />
               <folding>
                 <element signature="e#35#60#0#PHP" expanded="true" />
+                <element signature="e#2108#2119#0#PHP" expanded="true" />
+                <element signature="e#2983#2994#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -137,7 +136,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Hoje</find>
       <find>alread</find>
       <find>dump</find>
       <find>updateDat</find>
@@ -167,6 +165,7 @@
       <find>this-&gt;add</find>
       <find>create</find>
       <find>update</find>
+      <find>edit</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -487,12 +486,12 @@
       <workItem from="1564026083106" duration="514000" />
       <workItem from="1564026988630" duration="9901000" />
       <workItem from="1564198320846" duration="9450000" />
-      <workItem from="1564359358623" duration="2981000" />
+      <workItem from="1564359358623" duration="4295000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="378350000" />
+    <option name="totallyTimeSpent" value="379664000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="26" width="2560" height="1016" extended-state="6" />
@@ -817,16 +816,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/UserAccessController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-          <folding>
-            <element signature="e#35#60#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Repository/SlackUserRepository.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -841,12 +830,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/UserAccessController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="75" column="53" selection-start-line="75" selection-start-column="38" selection-end-line="75" selection-end-column="53" />
+          <folding>
+            <element signature="e#35#60#0#PHP" expanded="true" />
+            <element signature="e#2108#2119#0#PHP" expanded="true" />
+            <element signature="e#2983#2994#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/PrestonController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="161" column="64" lean-forward="true" selection-start-line="161" selection-start-column="64" selection-end-line="161" selection-end-column="64" />
+        <state relative-caret-position="583">
+          <caret line="226" column="41" selection-start-line="226" selection-start-column="41" selection-end-line="226" selection-end-column="41" />
           <folding>
             <element signature="e#34#61#0#PHP" expanded="true" />
+            <element signature="e#4371#4405#0#PHP" expanded="true" />
+            <element signature="e#5902#5913#0#PHP" expanded="true" />
+            <element signature="e#7214#7231#1#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
