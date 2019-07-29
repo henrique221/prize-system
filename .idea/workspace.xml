@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9619f130-f45f-4468-bcdc-0db50da68777" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Controller/PrestonController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PrestonController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,11 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/PrestonController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="583">
-              <caret line="226" column="41" selection-start-line="226" selection-start-column="41" selection-end-line="226" selection-end-column="41" />
+            <state relative-caret-position="331">
+              <caret line="214" column="68" selection-start-line="214" selection-start-column="68" selection-end-line="214" selection-end-column="68" />
               <folding>
                 <element signature="e#34#61#0#PHP" expanded="true" />
                 <element signature="e#4371#4405#0#PHP" expanded="true" />
@@ -116,11 +116,19 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1659">
-              <caret line="79" column="41" selection-start-line="79" selection-start-column="41" selection-end-line="79" selection-end-column="41" />
+            <state relative-caret-position="553">
+              <caret line="108" column="146" selection-start-line="108" selection-start-column="146" selection-end-line="108" selection-end-column="146" />
+              <folding>
+                <element signature="n#style#0;n#a#2;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -222,7 +230,6 @@
         <option value="$PROJECT_DIR$/templates/ideas/new.html.twig" />
         <option value="$PROJECT_DIR$/public/css/back.css" />
         <option value="$PROJECT_DIR$/templates/preston/list.html.twig" />
-        <option value="$PROJECT_DIR$/templates/base.html.twig" />
         <option value="$PROJECT_DIR$/public/css/backGround.css" />
         <option value="$PROJECT_DIR$/templates/preston/updateDatabase.html.twig" />
         <option value="$PROJECT_DIR$/src/Repository/SlackUserRepository.php" />
@@ -231,6 +238,7 @@
         <option value="$PROJECT_DIR$/templates/preston/editUser.html.twig" />
         <option value="$PROJECT_DIR$/src/Controller/UserAccessController.php" />
         <option value="$PROJECT_DIR$/src/Controller/PrestonController.php" />
+        <option value="$PROJECT_DIR$/templates/base.html.twig" />
       </list>
     </option>
   </component>
@@ -486,12 +494,12 @@
       <workItem from="1564026083106" duration="514000" />
       <workItem from="1564026988630" duration="9901000" />
       <workItem from="1564198320846" duration="9450000" />
-      <workItem from="1564359358623" duration="4295000" />
+      <workItem from="1564359358623" duration="4595000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="379664000" />
+    <option name="totallyTimeSpent" value="379964000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="26" width="2560" height="1016" extended-state="6" />
@@ -809,13 +817,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1659">
-          <caret line="79" column="41" selection-start-line="79" selection-start-column="41" selection-end-line="79" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Repository/SlackUserRepository.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -844,13 +845,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/PrestonController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="583">
-          <caret line="226" column="41" selection-start-line="226" selection-start-column="41" selection-end-line="226" selection-end-column="41" />
+        <state relative-caret-position="331">
+          <caret line="214" column="68" selection-start-line="214" selection-start-column="68" selection-end-line="214" selection-end-column="68" />
           <folding>
             <element signature="e#34#61#0#PHP" expanded="true" />
             <element signature="e#4371#4405#0#PHP" expanded="true" />
             <element signature="e#5902#5913#0#PHP" expanded="true" />
             <element signature="e#7214#7231#1#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="553">
+          <caret line="108" column="146" selection-start-line="108" selection-start-column="146" selection-end-line="108" selection-end-column="146" />
+          <folding>
+            <element signature="n#style#0;n#a#2;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
