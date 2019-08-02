@@ -22,6 +22,7 @@ class UserRewardsDto implements JsonSerializable
     private $email;
     private $id;
     private $rewardsIndex;
+    private $hasAccess;
 
     public function __construct(SlackUser $slackUser, $id, $username, array $rewards, $birthdate, $email)
     {
@@ -31,6 +32,7 @@ class UserRewardsDto implements JsonSerializable
         $this->email = $email;
         $this->id = $id;
         $this->username = $username;
+        $this->hasAccess = $slackUser->getHasAccess();
     }
 
 
@@ -42,7 +44,8 @@ class UserRewardsDto implements JsonSerializable
             "email" => $this->slackUser->getEmail(),
             "birthdate" => $this->slackUser->getDataDeNascimento(),
             "rewards" => $this->getRewards(),
-            "rewardsIndex" => $this->getRewardsIndex()
+            "rewardsIndex" => $this->getRewardsIndex(),
+            "hasAccess" => $this->getHasAccess()
         ];
     }
 
@@ -154,5 +157,37 @@ class UserRewardsDto implements JsonSerializable
             }
         }
         return $rewardsArray;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHasAccess()
+    {
+        return $this->hasAccess;
+    }
+
+    /**
+     * @param mixed $hasAccess
+     */
+    public function setHasAccess($hasAccess): void
+    {
+        $this->hasAccess = $hasAccess;
+    }
+
+    /**
+     * @return SlackUser
+     */
+    public function getSlackUser(): SlackUser
+    {
+        return $this->slackUser;
+    }
+
+    /**
+     * @param SlackUser $slackUser
+     */
+    public function setSlackUser(SlackUser $slackUser): void
+    {
+        $this->slackUser = $slackUser;
     }
 }

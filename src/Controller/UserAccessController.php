@@ -65,7 +65,18 @@ class UserAccessController extends AbstractController
         $userForm->handleRequest($request);
 
 
-        $this->usuarioRepository->save($user);
+        if($userForm->isSubmitted() && $userForm->isValid()) {
+            $path = $this->getParameter("photos_directory");
+            $file = $userForm->get("photo")->getData();
+            if($file) {
+                $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+                $file->move($path, $fileName);
+                $user->setPhoto("{$path}/{$fileName}");
+            }else{
+                $user->setPhoto("photos/profile-icon.png");
+            }
+            $this->usuarioRepository->save($user);
+        }
 
         $this->addFlash("notice", "Access saved successfully");
 

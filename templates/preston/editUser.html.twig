@@ -69,6 +69,12 @@
         <h1 class="text-white mb-md-5">{{ slackUser.username }}</h1>
         {% if slackUser.userAccess.login is defined %}
 
+            {% if slackUser.userAccess.photo != null %}
+            <img style="border-radius: 150px" width="150px" height="150px" src="{{ asset(slackUser.userAccess.photo) }}">
+            {% else %}
+            <img style="border-radius: 150px" width="150px" height="150px" src="{{ asset('photos/profile-icon.png') }}">
+            {% endif %}
+            <br>
             <!-- Button trigger modal -->
             <button type="button" class="button pt-2 pb-2 mb-5 mt-5" data-toggle="modal" data-target="#modelId">
                 User access
@@ -86,7 +92,8 @@
                             </button>
                         </div>
                         <form id="submitUserAccess" method="post"
-                              action="{{ path('save_user_access', {"id": slackUser.id}) }}">
+                              action="{{ path('save_user_access', {"id": slackUser.id}) }}" enctype="multipart/form-data">
+                            {{ form_start(userSaveForm) }}
                             <div class="modal-body">
                                 <div class="container-fluid">
 
@@ -99,6 +106,12 @@
                                     <p class="formUserAccess">{{ form_label(userSaveForm.senha) }}</p>
                                     <p>{{ form_widget(userSaveForm.senha) }}</p>
 
+
+                                    {% if slackUser.hasAccess %}
+                                        <p class="formUserAccess">{{ form_label(userSaveForm.photo) }}</p>
+                                        <p>{{ form_widget(userSaveForm.photo) }}</p>
+                                    {% endif %}
+
                                     <p class="formUserAccess">{{ form_label(userSaveForm.permissoes) }}</p>
                                     <p>{{ form_widget(userSaveForm.permissoes) }}</p>
 
@@ -108,6 +121,7 @@
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary">Save</button>
                             </div>
+                            {{ form_end(userSaveForm) }}
                         </form>
                     </div>
                 </div>
@@ -180,7 +194,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <a href="{{ path('remove_user', {"id": slackUser.id}) }}" style="font-family: 'lato', sans-serif;" class="btn btn-danger">Delete</a>
+                        <a href="{{ path('remove_user', {"id": slackUser.id}) }}"
+                           style="font-family: 'lato', sans-serif;" class="btn btn-danger">Delete</a>
                     </div>
                 </div>
             </div>

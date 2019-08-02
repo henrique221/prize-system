@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class UsuarioType extends AbstractType
 {
@@ -24,8 +25,9 @@ class UsuarioType extends AbstractType
                 "multiple" => true,
                 "choices" => array("admin" => "ROLE_ADMIN", "user" => "ROLE_USER"),
                 "expanded" => true,
-                "attr" => ["class" => "d-flex","style" => 'font-family:"lato", sans-serif;']
-            ));
+                "attr" => ["class" => "d-flex","style" => 'font-family:"lato", sans-serif;', 'data_class' => null]
+            ))
+            ->add("photo",FileType::class, array('data_class' => null,'required' => false));
     }
 
     public function configureOptions(OptionsResolver $resolver)
