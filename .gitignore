@@ -4,7 +4,7 @@
 /.env.local.php
 /.env.*.local
 /public/bundles/
-/public/photos/
+#/public/photos/
 /var/
 /vendor/
 /deploy.sh
