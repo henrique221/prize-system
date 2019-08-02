@@ -3,6 +3,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity
  */
@@ -38,6 +39,13 @@ class Usuario implements UserInterface
      * @ORM\Column(type="string")
      */
     private $name;
+
+
+    /**
+     * @ORM\Column(name="photo", type="string", nullable=true, unique=false)
+     * @Assert\File(mimeTypes={ "image/png", "image/jpeg" })
+     */
+    private $photo;
 
     /**
      * @return mixed
@@ -194,5 +202,21 @@ class Usuario implements UserInterface
     public function setUserId($userId): void
     {
         $this->userId = $userId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    /**
+     * @param mixed $photo
+     */
+    public function setPhoto($photo): void
+    {
+        $this->photo = $photo;
     }
 }
